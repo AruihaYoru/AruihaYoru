@@ -24,14 +24,14 @@
 ### 💖 「推し」について話そうか？
 
 #### HTTPステータスコード
-- INFO **100: Continue.**
-- INFO **101: Swithing Protocol.**
-- SUCCESS **202: Accepted.**
-- REDIRECT **303: See Other.**
-- ERROR **403: Forbidden.**
-- ERROR **429: Too Many Requests.**
-- ERROR **410: Gone.**
-- SERVER ERROR **500: Internal Server Error.**
+- INFO **100: Continue.** - *全肯定ありがとうございますンナアアアア！！！！*
+- INFO **101: Swithing Protocol.** - *Fun Fact:急に早口になったらかわいいね*
+- SUCCESS **202: Accepted.** - *受理しただけで完了していない儚さがわかる友を探している*
+- REDIRECT **303: See Other.** - *こいつ自身は何も出来ないのがいい*
+- ERROR **403: Forbidden.** - *権限なしんな！！！！！！！*
+- ERROR **429: Too Many Requests.** - *Good/10*
+- ERROR **410: Gone.** - *410>>>>>>>>>>>>>>>ALL*
+- SERVER ERROR **500: Internal Server Error.** - *何が起きてるのかわかってなくて可愛い
 
 
 #### ポート番号
