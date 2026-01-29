@@ -3,7 +3,8 @@
 わたしは学生！！！とっても！！！高次脳機能障害って言ったら間違いだけど、文字にすると短期記憶障害みたいな感じ（JSDoc警報）。
 （俺のJSDocはあまりに多いから、LLMが生成するものって俺のもの学習してんのかな（ぼやき））
 めんどいときはAIにコード生成やらせてますわよ！！！！
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=AruihaYoru&layout=compact&theme=vision-friendly-dark)](https://github.com/anuraghazra/github-readme-stats)
+<br> <!-- 許して -->
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=AruihaYoru&theme=vision-friendly-dark)](https://github.com/anuraghazra/github-readme-stats)
 
 ### 🛠 学んだことがあるもの
 
