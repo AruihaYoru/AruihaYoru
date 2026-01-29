@@ -1,7 +1,7 @@
 ## Hi there 👋
-わたしは学生！！！とっても！！！高次脳機能障害って言ったら間違いだけど、文字にすると短期記憶障害みたいな感じ（JSDoc警報）。
-（俺のJSDocはあまりに多いから、LLMが生成するものって俺のもの学習してんのかな（ぼやき））
-めんどいときはAIにコード生成やらせてますわよ！！！！
+わたしは学生！！！とっても！！！高次脳機能障害って言ったら間違いだけど、文字にすると短期記憶障害みたいな感じ（JSDoc警報）。  
+（俺のJSDocはあまりに多いから、LLMが生成するものって俺のもの学習してんのかな（ぼやき））  
+めんどいときはAIにコード生成やらせてますわよ！！！！  
 <br> <!-- 許して -->
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=AruihaYoru&layout=compact&theme=vision-friendly-dark)](https://github.com/anuraghazra/github-readme-stats)
 ### 🛠 学んだことがあるもの
@@ -13,7 +13,7 @@
 - **Python**：[mrv player](https://github.com/AruihaYoru/NewVideo) / [minesweeper on CSS](https://github.com/AruihaYoru/no-js-minesweeper) とか
 - **C言語**：ちょっと（まだ一つも作ってないけど）。ワンクリックでスクショできるものが欲しかったから作っただけー。
 
-**好きな言語**：ラテン語と英語
+**好きな言語**：ラテン語と英語  
 **好きな言葉**：接続詞（日本語）と接尾語（ラテン語）、
 
 * * *
@@ -109,11 +109,11 @@
 
 ### 割と真面目に許せなかったこと
 #### Mimi
-後述の音声フォーマット、Mimiにおいて、0F音源(Mimi Hex)の再生時間が総再生時間に加算されないバグがありました
-さすがに夜中の11時、Gemini 2.5 proに全体のコードと修正した欲しいことを教え、完全版というかを生成させました。
-するとですね！！！その部分が修正されましたが！！！
-- 16進数ではなく10進数を取り扱うように変更
-されましたんですよ！！！！！気づかずにデプロイしてあとから気づいてcdnをpurgeした私の労力isなに？？？！？！
+後述の音声フォーマット、Mimiにおいて、0F音源(Mimi Hex)の再生時間が総再生時間に加算されないバグがありました  
+さすがに夜中の11時、Gemini 2.5 proに全体のコードと修正した欲しいことを教え、完全版というかを生成させました。  
+するとですね！！！その部分が修正されましたが！！！  
+- 16進数ではなく10進数を取り扱うように変更  
+されましたんですよ！！！！！気づかずにデプロイしてあとから気づいてcdnをpurgeした私の労力isなに？？？！？！  
 
 [![AruihaYoru's Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=AruihaYoru&theme=react-dark)](https://github.com/ashutosh00710/github-readme-activity-graph)
 	
