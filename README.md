@@ -118,6 +118,12 @@
 - 16進数ではなく10進数を取り扱うように変更  
 されましたんですよ！！！！！気づかずにデプロイしてあとから気づいてcdnをpurgeした私の労力isなに？？？！？！  
 
+#### 公共Wi-Fi
+昔、図書館のWi-Fiで少しだけコーディングしてたことがあって  
+それで...localhostつけてたんすよ  
+そしたら、`192.168.0.45`からGET送られてきて  
+腹が立ちましたね、誰ですか名乗れ
+
 [![AruihaYoru's Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=AruihaYoru&theme=react-dark)](https://github.com/ashutosh00710/github-readme-activity-graph)
 	
 <!--
