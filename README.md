@@ -1,7 +1,4 @@
 ## Hi there 👋
-![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FAruihaYoru%2FAruihaYoru&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)
-<br>
-
 わたしは学生！！！とっても！！！高次脳機能障害って言ったら間違いだけど、文字にすると短期記憶障害みたいな感じ（JSDoc警報）。
 （俺のJSDocはあまりに多いから、LLMが生成するものって俺のもの学習してんのかな（ぼやき））
 めんどいときはAIにコード生成やらせてますわよ！！！！
@@ -52,6 +49,7 @@
 - **jszip**：jszip.min.jsをお気に入り登録してるの俺ぐらいだろ
 - **three.js**: ギズモがあるの良すぎる
 - **Web Audio API**：縁が深い
+
 
 #### ソフトウェア
 
