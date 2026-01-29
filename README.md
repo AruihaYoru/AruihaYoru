@@ -1,11 +1,12 @@
 ## Hi there 👋
+![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FAruihaYoru%2FAruihaYoru&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)
+<br>
 
 わたしは学生！！！とっても！！！高次脳機能障害って言ったら間違いだけど、文字にすると短期記憶障害みたいな感じ（JSDoc警報）。
 （俺のJSDocはあまりに多いから、LLMが生成するものって俺のもの学習してんのかな（ぼやき））
 めんどいときはAIにコード生成やらせてますわよ！！！！
 <br> <!-- 許して -->
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=AruihaYoru&theme=vision-friendly-dark)](https://github.com/anuraghazra/github-readme-stats)
-
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=AruihaYoru&layout=compact&theme=vision-friendly-dark)](https://github.com/anuraghazra/github-readme-stats)
 ### 🛠 学んだことがあるもの
 
 - **JavaScript**：[HelloWorld, but it's 800 lines long.](http://AruihaYoru.github.io/HelloWorld) （"HelloWorldを出すために800行使ったプロジェクト）
@@ -116,6 +117,7 @@
 - 16進数ではなく10進数を取り扱うように変更
 されましたんですよ！！！！！気づかずにデプロイしてあとから気づいてcdnをpurgeした私の労力isなに？？？！？！
 
+[![AruihaYoru's Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=AruihaYoru&theme=react-dark)](https://github.com/ashutosh00710/github-readme-activity-graph)
 	
 <!--
 
