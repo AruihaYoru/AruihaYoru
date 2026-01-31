@@ -3,7 +3,6 @@ import os
 import re
 
 def main():
-    # 1. HTMLテンプレートの読み込み
     try:
         with open('template.html', 'r', encoding='utf-8') as f:
             template_html = f.read()
@@ -14,7 +13,6 @@ def main():
         print(f"Error reading template.html: {e}")
         return
 
-    # 2. template.cssの読み込み
     template_css_content = ""
     try:
         with open('template.css', 'r', encoding='utf-8') as f:
@@ -25,7 +23,6 @@ def main():
     except Exception as e:
         print(f"Error reading template.css: {e}")
         
-    # 3. Blueprint.jsonの読み込み
     try:
         with open('Blueprint.json', 'r', encoding='utf-8') as f:
             blueprint_data = json.load(f)
@@ -39,12 +36,10 @@ def main():
         print(f"Error reading Blueprint.json: {e}")
         return
 
-    # 4. 出力ディレクトリの作成
     output_dir = './pages'
     os.makedirs(output_dir, exist_ok=True)
     print(f"Output directory '{output_dir}' ensured.")
 
-    # 5. 各ステータスコード情報に基づいてHTMLファイルを生成
     for item in blueprint_data:
         try:
             number = item['number']
@@ -52,40 +47,29 @@ def main():
             reason_phrase = item['reason_phrase']
             description = item['description']
             
-            # オプションフィールド
-            # Blueprint.jsonのstylesは、template.cssの後に適用される
             item_styles = item.get('styles', '') 
-            og_description = item.get('og_description', description) # og_descriptionがなければdescriptionを使用
+            og_description = item.get('og_description', description)
 
-            # ファイル名、OGP画像名に使用するためのサニタイズされた文字列
-            # categoryはファイル名に使用するため、英数字以外を除去
             category_sanitized_for_filename = re.sub(r'[^a-zA-Z0-9]+', '', category)
 
-            # image_filename は Blueprint.json にある場合はそれを使用し、ない場合は自動生成
-            # 例: "100-continue.gif"
             default_image_filename = f"{number}-{reason_phrase.replace(' ', '-').lower()}.gif"
             image_filename = item.get('image', default_image_filename)
 
-            # OGP/Twitter Cardの画像URLは絶対パス
-            base_ogp_path = "https://aruihayoru.github.io/AruihaYoru/HTTP/"
+            base_ogp_path = "https://aruihayoru.github.io/AruihaYoru/HTTP/pages/"
             ogp_image_url = f"{base_ogp_path}{image_filename}"
 
-            # OGP URLも出力ファイル名形式に合わせる
             ogp_url = f"{base_ogp_path}{category_sanitized_for_filename}-{number}.html"
 
-            # プレースホルダの置換
             generated_html = template_html
 
-            # タイトルとOGP/Twitterタイトル
             generated_html = generated_html.replace("HTTP Status Code: 000 PLACEHOLDER", f"HTTP Status Code: {number} {reason_phrase}")
             
-            # OGP/Twitter Cardのメタデータ
             generated_html = generated_html.replace(
-                'property="og:url" content="https://aruihayoru.github.io/AruihaYoru/HTTP/PLACEHOLDER-000.html"',
+                'property="og:url" content="https://aruihayoru.github.io/AruihaYoru/HTTP/pages/PLACEHOLDER-000.html"',
                 f'property="og:url" content="{ogp_url}"'
             )
             generated_html = generated_html.replace(
-                'property="og:image" content="https://aruihayoru.github.io/AruihaYoru/HTTP/PLACEHOLDER-000.gif"',
+                'property="og:image" content="https://aruihayoru.github.io/AruihaYoru/HTTP/pages/PLACEHOLDER-000.gif"',
                 f'property="og:image" content="{ogp_image_url}"'
             )
             generated_html = generated_html.replace(
@@ -101,18 +85,15 @@ def main():
                 f'name="twitter:description" content="{og_description}"'
             )
             
-            # カスタムスタイル (template.cssの内容 + Blueprint.jsonのstyles)
             combined_styles = template_css_content
-            if item_styles: # Blueprint.jsonのstylesが空でなければ追加
-                if combined_styles: # template_css_contentも空でなければ間に改行を入れる
+            if item_styles:
+                if combined_styles:
                     combined_styles += "\n\n/* Additional styles from Blueprint.json */\n"
                 combined_styles += item_styles
             
-            # <link rel="stylesheet" href="template.css"> を削除し、スタイルを直接埋め込む
             generated_html = re.sub(r'<link rel="stylesheet" href="template\.css">\n\s*', '', generated_html)
             generated_html = generated_html.replace("{{STYLES}}", combined_styles)
 
-            # ページ本文のコンテンツ
             generated_html = generated_html.replace(
                 '<div id="description">このページは、まだ具体的なHTTPステータスコードが割り当てられていないプレースホルダーです</div>',
                 f'<div id="description">{description}</div>'
@@ -127,13 +108,11 @@ def main():
             )
             generated_html = generated_html.replace(
                 '<span class="reason-phrase-glitch-text">THERE IS NOTHING</span>',
-                f'<span class="reason-phrase-glitch-text">{reason_phrase.upper()}</span>' # テンプレートの形式に合わせて大文字化
+                f'<span class="reason-phrase-glitch-text">{reason_phrase.upper()}</span>'
             )
 
-            # 出力ファイル名
             output_filename = os.path.join(output_dir, f"{category_sanitized_for_filename}-{number}.html")
 
-            # HTMLファイルの保存
             with open(output_filename, 'w', encoding='utf-8') as f:
                 f.write(generated_html)
 
