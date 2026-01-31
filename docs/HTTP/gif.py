@@ -1,118 +1,105 @@
 import asyncio
 import os
-import glob
+import json
 import subprocess
 import shutil
 from playwright.async_api import async_playwright
 
-# 設定
 PAGES_DIR = './pages'
-TEMP_SCREENSHOTS_DIR = './temp_screenshots' # 一時スクリーンショット保存用ディレクトリ
-VIEWPORT_WIDTH = 1200  # ブラウザのビューポート幅
-VIEWPORT_HEIGHT = 800  # ブラウザのビューポート高さ
-NUM_FRAMES = 5         # GIFを作成するためのスクリーンショット枚数
-SCREENSHOT_INTERVAL_SECONDS = 0.2 # スクリーンショット間の待機時間 (秒)
-GIF_FRAME_DELAY_HUNDREDTHS = 20 # GIFのアニメーション速度 (100分の1秒単位)。20で0.2秒/フレーム
+TEMP_SCREENSHOTS_DIR = './temp_screenshots'
+BLUEPRINT_PATH = 'blueprint.json'
+VIEWPORT_WIDTH = 1200
+VIEWPORT_HEIGHT = 800
+NUM_FRAMES = 5
+SCREENSHOT_INTERVAL_SECONDS = 0.1
+GIF_FRAME_DELAY_HUNDREDTHS = 10
+MAX_CONCURRENT_PAGES = 5
 
-async def create_gif_for_page(browser, html_file_path, output_gif_path):
+async def create_gif_for_page(semaphore, browser, html_file_path, output_gif_path):
     """
-    指定されたHTMLファイルから複数枚のスクリーンショットを撮影し、GIFを作成します。
+    並列実行数を制限しつつ、HTMLから透過・クロップ済みGIFを作成します。
     """
-    page = await browser.new_page(viewport={'width': VIEWPORT_WIDTH, 'height': VIEWPORT_HEIGHT})
-    
-    # ローカルファイルをブラウザで開くには 'file://' プロトコルと絶対パスが必要
-    await page.goto(f"file://{os.path.abspath(html_file_path)}")
+    async with semaphore:
+        page = await browser.new_page(viewport={'width': VIEWPORT_WIDTH, 'height': VIEWPORT_HEIGHT})
+        abs_path = os.path.abspath(html_file_path)
+        await page.goto(f"file://{abs_path}")
 
-    # 一時スクリーンショット保存用ディレクトリを作成
-    os.makedirs(TEMP_SCREENSHOTS_DIR, exist_ok=True)
+        page_id = os.path.basename(html_file_path).replace('.', '_')
+        page_temp_dir = os.path.join(TEMP_SCREENSHOTS_DIR, page_id)
+        os.makedirs(page_temp_dir, exist_ok=True)
 
-    screenshot_paths = []
-    print(f"  - Capturing {NUM_FRAMES} frames for {os.path.basename(html_file_path)}...")
-    for i in range(NUM_FRAMES):
-        temp_screenshot_path = os.path.join(TEMP_SCREENSHOTS_DIR, f"frame_{i:02d}.png")
-        # ページ全体のスクリーンショットを撮影
-        await page.screenshot(path=temp_screenshot_path, full_page=True)
-        screenshot_paths.append(temp_screenshot_path)
-        if i < NUM_FRAMES - 1: # 最後のフレームの後は待たない
-            await asyncio.sleep(SCREENSHOT_INTERVAL_SECONDS) # 次のスクリーンショットまで待機
+        screenshot_paths = []
+        print(f"  - Capturing: {os.path.basename(html_file_path)}")
+        
+        for i in range(NUM_FRAMES):
+            temp_path = os.path.join(page_temp_dir, f"frame_{i:02d}.png")
+            await page.screenshot(path=temp_path)
+            screenshot_paths.append(temp_path)
+            if i < NUM_FRAMES - 1:
+                await asyncio.sleep(SCREENSHOT_INTERVAL_SECONDS)
 
-    await page.close()
+        await page.close()
 
-    if not screenshot_paths:
-        print(f"  Warning: No screenshots taken for {html_file_path}. Skipping GIF creation.")
-        return
-
-    # ImageMagickの 'convert' コマンドを使ってGIFを作成
-    # Windows環境での 'convert' コマンドの競合を避けるため 'magick convert' を使用
-    # -delay: 各フレームの表示時間 (100分の1秒)
-    # -loop 0: 無限ループ
-    command = [
-        'magick', 'convert', # <-- ここを 'magick convert' に変更
-        '-delay', str(GIF_FRAME_DELAY_HUNDREDTHS),
-        '-loop', '0', 
-        *screenshot_paths, # 全てのスクリーンショットファイル
-        output_gif_path
-    ]
-    
-    try:
-        # サブプロセスとしてImageMagickを実行
-        subprocess.run(command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        print(f"  GIF created: {output_gif_path}")
-    except FileNotFoundError:
-        # 'magick' コマンドが見つからない場合のメッセージも修正
-        print("\nError: ImageMagick 'magick' command not found.")
-        print("Please ensure ImageMagick is installed and its 'magick' executable is accessible in your system's PATH.")
-        print("  e.g., 'brew install imagemagick' (macOS), 'sudo apt-get install imagemagick' (Linux).")
-        print("  For Windows, verify ImageMagick is installed and its folder (e.g., C:\\Program Files\\ImageMagick-7.X.X-Q16) is in PATH.")
-    except subprocess.CalledProcessError as e:
-        # UnicodeDecodeError を避けるため、エラーメッセージのデコード時に errors='replace' を使用
-        error_output = e.stderr.decode(errors='replace') 
-        print(f"  Error creating GIF for {html_file_path} (Exit Status {e.returncode}):")
-        print(f"    Command: {' '.join(command)}")
-        print(f"    Error output:\n{error_output.strip()}")
-    except Exception as e:
-        print(f"  An unexpected error occurred during GIF creation for {html_file_path}: {e}")
-    finally:
-        # 一時スクリーンショットを削除
-        for path in screenshot_paths:
-            if os.path.exists(path):
-                os.remove(path)
+        command = [
+            'magick', 'convert',
+            '-delay', str(GIF_FRAME_DELAY_HUNDREDTHS),
+            '-loop', '0',
+            *screenshot_paths,
+            '-fill', 'none', 
+            '-draw', 'color 0,0 floodfill',
+            '-trim',
+            '+repage',
+            output_gif_path
+        ]
+        
+        try:
+            process = await asyncio.create_subprocess_exec(
+                *command, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+            )
+            await process.communicate()
+            print(f"  GIF created: {os.path.basename(output_gif_path)}")
+        except Exception as e:
+            print(f"  Error creating GIF for {html_file_path}: {e}")
+        finally:
+            if os.path.exists(page_temp_dir):
+                shutil.rmtree(page_temp_dir)
 
 async def main():
+    if not os.path.exists(BLUEPRINT_PATH):
+        print(f"Error: '{BLUEPRINT_PATH}' not found.")
+        return
+    
+    with open(BLUEPRINT_PATH, 'r', encoding='utf-8') as f:
+        blueprint_data = json.load(f)
+
     if not os.path.exists(PAGES_DIR):
         print(f"Error: Directory '{PAGES_DIR}' not found.")
-        print("Please run 'main.py' first to generate HTML pages.")
         return
 
-    html_files = glob.glob(os.path.join(PAGES_DIR, '*.html'))
-    if not html_files:
-        print(f"No HTML files found in '{PAGES_DIR}'.")
-        return
-
-    print(f"Found {len(html_files)} HTML files to process in '{PAGES_DIR}'.")
+    if os.path.exists(TEMP_SCREENSHOTS_DIR):
+        shutil.rmtree(TEMP_SCREENSHOTS_DIR)
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch() # Chromiumブラウザを起動
-        print("Browser launched.")
-
-        for html_file in html_files:
-            base_name = os.path.basename(html_file) # ファイル名 (例: SuccessfulResponses-200.html)
-            gif_name = base_name.replace('.html', '.gif') # GIFファイル名 (例: SuccessfulResponses-200.gif)
-            output_gif_path = os.path.join(PAGES_DIR, gif_name) # GIFの出力パス
-
-            # print(f"Processing '{html_file}'...") # 冗長になるのでコメントアウト
-            await create_gif_for_page(browser, html_file, output_gif_path)
+        browser = await p.chromium.launch()
+        semaphore = asyncio.Semaphore(MAX_CONCURRENT_PAGES)
         
+        tasks = []
+        for item in blueprint_data:
+            category = item.get('category', '')
+            number = item.get('number', '')
+            html_file_path = os.path.join(PAGES_DIR, f"{category}-{number}.html")
+            gif_name = item.get('image')
+
+            if gif_name and os.path.exists(html_file_path):
+                output_gif_path = os.path.join(PAGES_DIR, gif_name)
+                tasks.append(create_gif_for_page(semaphore, browser, html_file_path, output_gif_path))
+            else:
+                print(f"  Skip/Warning: {html_file_path} issue.")
+
+        await asyncio.gather(*tasks)
         await browser.close()
-        print("Browser closed.")
     
-    # 全ての処理が終わった後、一時スクリーンショットディレクトリを削除
-    if os.path.exists(TEMP_SCREENSHOTS_DIR):
-        try:
-            shutil.rmtree(TEMP_SCREENSHOTS_DIR) # ディレクトリと内容を完全に削除
-            print(f"Cleaned up temporary directory: {TEMP_SCREENSHOTS_DIR}")
-        except OSError as e:
-            print(f"Warning: Could not remove temporary directory {TEMP_SCREENSHOTS_DIR}: {e}")
+    print("All processes completed.")
 
 if __name__ == "__main__":
     asyncio.run(main())
