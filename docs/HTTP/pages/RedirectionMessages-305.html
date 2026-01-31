@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- タイトルとOGP/TwitterCardのプレースホルダ -->
+    <title>HTTP Status Code: 305 Use Proxy</title>
+    <meta property="og:title" content="HTTP Status Code: 305 Use Proxy">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aruihayoru.github.io/AruihaYoru/HTTP/RedirectionMessages-305.html">
+    <meta property="og:image" content="https://aruihayoru.github.io/AruihaYoru/HTTP/305-use-proxy.gif">
+    <meta property="og:description" content="HTTP 305 Use Proxy status code is deprecated and indicates that the requested resource must be accessed through the proxy given by the Location field.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HTTP Status Code: 305 Use Proxy">
+    <meta name="twitter:description" content="HTTP 305 Use Proxy status code is deprecated and indicates that the requested resource must be accessed through the proxy given by the Location field.">
+    <meta name="twitter:image" content="https://aruihayoru.github.io/AruihaYoru/HTTP/305-use-proxy.gif">
+    
+    <style>
+        html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-color: black;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#description {
+    position: absolute;
+    top: 17px;
+    left: 18px;
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-size: 1.8em;
+    z-index: 10;
+    max-width:450px;
+    text-align: left;
+    line-height: 2.0;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+    font-family: "Yu Gothic";
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            #000,
+            #000 1px,
+            #111 2px,
+            #000 3px
+        );
+    background-size: 100% 4px;
+    animation: scanline-move 0.2s infinite linear;
+    animation-delay: 0s;
+}
+
+@keyframes scanline-move {
+    from { background-position: 0 0; }
+    to { background-position: 0 4px; }
+}
+
+.category {
+    font-size: 2em;
+    color: white;
+    margin-bottom: -6px;
+    text-transform: uppercase;
+    letter-spacing: 39px;
+    font-weight: bold;
+}
+
+.status-code {
+    font-family: 'Impact', sans-serif;
+    font-size: 29vw;
+    line-height: 1;
+    color: black;
+    padding: 0.1em 0.3em;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: white;
+    letter-spacing: 54px;
+}
+
+.status-code::before,
+.status-code::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: white;
+    background-color: black;
+    text-align: center;
+    line-height: inherit;
+    padding: inherit;
+    z-index: 1;
+}
+
+@keyframes glitch-anim-1 {
+    0% { transform: translate(-2px, -2px); clip-path: polygon(0 0, 100% 0, 100% 10%, 0 10%); }
+    20% { transform: translate(2px, 2px); clip-path: polygon(0 20%, 100% 20%, 100% 30%, 0 30%); }
+    40% { transform: translate(-1px, -1px); clip-path: polygon(0 40%, 100% 40%, 100% 50%, 0 50%); }
+    60% { transform: translate(1px, 1px); clip-path: polygon(0 60%, 100% 60%, 100% 70%, 0 70%); }
+    80% { transform: translate(-2px, -2px); clip-path: polygon(0 80%, 100% 80%, 100% 90%, 0 90%); }
+    100% { transform: translate(0, 0); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+@keyframes glitch-anim-2 {
+    0% { transform: translate(2px, 2px); clip-path: polygon(0 10%, 100% 10%, 100% 20%, 0 20%); }
+    20% { transform: translate(-2px, -2px); clip-path: polygon(0 30%, 100% 30%, 100% 40%, 0 40%); }
+    40% { transform: translate(1px, 1px); clip-path: polygon(0 50%, 100% 50%, 100% 60%, 0 60%); }
+    60% { transform: translate(-1px, -1px); clip-path: polygon(0 70%, 100% 70%, 100% 80%, 0 80%); }
+    80% { transform: translate(2px, 2px); clip-path: polygon(0 90%, 100% 90%, 100% 100%, 0 100%); }
+    100% { transform: translate(0, 0); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+.status-code::before {
+    animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.status-code::after {
+    animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+
+.reason-phrase {
+    font-size: 1.5em;
+    color: white;
+    margin-top: 30px;
+    position: relative;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.reason-phrase-glitch-text {
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    padding-right: 2px;
+}
+
+.reason-phrase-glitch-text::before,
+.reason-phrase-glitch-text::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    line-height: inherit;
+    z-index: 1;
+}
+
+@keyframes reason-glitch-1 {
+    0% { transform: translateX(0px); clip-path: polygon(0 0, 100% 0, 100% 25%, 0 25%); }
+    25% { transform: translateX(1px); clip-path: polygon(0 25%, 100% 25%, 100% 50%, 0 50%); }
+    50% { transform: translateX(-1px); clip-path: polygon(0 50%, 100% 50%, 100% 75%, 0 75%); }
+    75% { transform: translateX(0px); clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%); }
+    100% { transform: translateX(0px); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+@keyframes reason-glitch-2 {
+    0% { transform: translateX(0px); clip-path: polygon(0 10%, 100% 10%, 100% 35%, 0 35%); }
+    25% { transform: translateX(-1px); clip-path: polygon(0 35%, 100% 35%, 100% 60%, 0 60%); }
+    50% { transform: translateX(1px); clip-path: polygon(0 60%, 100% 60%, 100% 85%, 0 85%); }
+    75% { transform: translateX(0px); clip-path: polygon(0 85%, 100% 85%, 100% 100%, 0 100%); }
+    100% { transform: translateX(0px); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+.reason-phrase-glitch-text::before {
+    animation: reason-glitch-1 1.5s infinite linear alternate-reverse;
+}
+.reason-phrase-glitch-text::after {
+    animation: reason-glitch-2 1.5s infinite linear alternate-reverse;
+}
+
+.period-suffix {
+    color: white;
+    font-size: 1em;
+    position: relative;
+    z-index: 2;
+    animation: none;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Additional styles from Blueprint.json */
+body { background-color: #fff9e0; }
+    </style>
+</head>
+<body>
+    <div id="description">要求されたレスポンスはプロキシを経由してアクセスしなければならないことを示します（現在はセキュリティ上の懸念により非推奨です）。</div>
+    
+    <div class="main-content">
+        <div class="category">Redirection Messages</div>
+        
+        <div class="status-code">305</div>
+        
+        <div class="reason-phrase">
+            <span class="reason-phrase-glitch-text">USE PROXY</span><span class="period-suffix">.</span>
+        </div>
+    </div>
+</body>
+</html>

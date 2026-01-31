@@ -4,6 +4,11 @@
 めんどいときはAIにコード生成やらせてますわよ！！！！  
 <br> <!-- 許して -->
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=AruihaYoru&layout=compact&theme=vision-friendly-dark)](https://github.com/anuraghazra/github-readme-stats)
+
+## License
+<p align="right">docsの中で使用フォント: <a href="https://github.com/keshikan/DSEG">DSEG</a>....<a href="https://www.keshikan.net/fonts.html"もしくは</a></p>
+
+
 ### 🛠 学んだことがあるもの
 
 - **JavaScript**：[HelloWorld, but it's 800 lines long.](http://AruihaYoru.github.io/HelloWorld) （"HelloWorldを出すために800行使ったプロジェクト）
@@ -111,6 +116,7 @@
 
 
 ### 割と真面目に許せなかったこと
+
 #### Mimi
 後述の音声フォーマット、Mimiにおいて、0F音源(Mimi Hex)の再生時間が総再生時間に加算されないバグがありました  
 さすがに夜中の11時、Gemini 2.5 proに全体のコードと修正した欲しいことを教え、完全版というかを生成させました。  
@@ -125,6 +131,14 @@
 腹が立ちましたね、誰ですか名乗れ
 
 [![AruihaYoru's Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=AruihaYoru&theme=react-dark)](https://github.com/ashutosh00710/github-readme-activity-graph)
+
+<!--
+### やらかしたこと
+
+#### Firebase
+[AruihaYoruのポータルページ](https://aruihayoru.github.io) を御覧なさい。  
+`resources\js\script.js` に、FirebaseのAPIキーとかが平文で埋め込まれてますわよ
+-->
 
 <!--
 
