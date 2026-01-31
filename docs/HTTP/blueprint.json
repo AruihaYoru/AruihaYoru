@@ -4,7 +4,7 @@
         "category": "INFO",
         "reason_phrase": "Continue",
         "description": "サーバーがリクエストのヘッダーを受信し、クライアントがリクエストのボディ送信を継続しても問題ないことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 100 Continue status code indicates that the server has received the request headers and the client should proceed to send the request body.",
         "image": "100-continue.gif"
     },
@@ -13,7 +13,7 @@
         "category": "INFO",
         "reason_phrase": "Switching Protocols",
         "description": "クライアントのUpgradeヘッダーによる要求に従い、サーバーがプロトコルを切り替える（例：HTTPからWebSocket）ことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 101 Switching Protocols status code indicates that the server understands and is willing to comply with the client's request for a change in the application protocol being used on this connection.",
         "image": "101-switching-protocols.gif"
     },
@@ -22,7 +22,7 @@
         "category": "INFO",
         "reason_phrase": "Processing",
         "description": "サーバーがリクエストを受理し処理中ですが、まだ完了していないことをクライアントに通知するWebDAVの拡張コードです。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 102 Processing status code is an interim response used to inform the client that the server has accepted the complete request, but has not yet completed it.",
         "image": "102-processing.gif"
     },
@@ -31,7 +31,7 @@
         "category": "INFO",
         "reason_phrase": "Early Hints",
         "description": "サーバーが最終的なレスポンスを準備している間に、クライアントがリソース（CSSやJS等）のプリロードを早期に開始できるようにするためのものです。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 103 Early Hints status code is intended to be used with the Link header to allow the user agent to start preloading resources while the server prepares a response.",
         "image": "103-early-hints.gif"
     },
@@ -40,7 +40,7 @@
         "category": "SUCCESS",
         "reason_phrase": "OK",
         "description": "リクエストは成功し、リソースはクライアントに返されます。これは最も一般的なHTTPステータスコードです。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 200 OK status code indicates that the request has succeeded and the requested resource has been successfully retrieved.",
         "image": "200-ok.gif"
     },
@@ -49,7 +49,7 @@
         "category": "SUCCESS",
         "reason_phrase": "Created",
         "description": "リクエストが完了し、その結果として新しいリソースが作成されたことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 201 Created status code indicates that the request has been fulfilled and has resulted in one or more new resources being created.",
         "image": "201-created.gif"
     },
@@ -58,7 +58,7 @@
         "category": "SUCCESS",
         "reason_phrase": "Accepted",
         "description": "リクエストは受理されましたが、処理が完了していないことを示します。バッチ処理などに使用されます。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 202 Accepted status code indicates that the request has been accepted for processing, but the processing has not been completed.",
         "image": "202-accepted.gif"
     },
@@ -67,7 +67,7 @@
         "category": "SUCCESS",
         "reason_phrase": "Non-Authoritative Information",
         "description": "返されるメタ情報がオリジンサーバーのものではなく、プロキシなどによって変更されたコピーであることを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 203 Non-Authoritative Information status code indicates that the request was successful but the enclosed payload has been modified from that of the origin server's 200 OK response.",
         "image": "203-non-authoritative-information.gif"
     },
@@ -76,7 +76,7 @@
         "category": "SUCCESS",
         "reason_phrase": "No Content",
         "description": "リクエストは成功しましたが、返却するコンテンツがないことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 204 No Content status code indicates that the server successfully fulfilled the request and that there is no additional content to send in the response payload body.",
         "image": "204-no-content.gif"
     },
@@ -85,7 +85,7 @@
         "category": "SUCCESS",
         "reason_phrase": "Reset Content",
         "description": "リクエストは成功しました。サーバーはクライアントに対し、ドキュメントの表示（フォームの入力値など）をリセットすることを要求します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 205 Reset Content status code indicates that the server fulfilled the request and desires that the user agent reset the \"document view\", which caused the request to be sent.",
         "image": "205-reset-content.gif"
     },
@@ -94,7 +94,7 @@
         "category": "SUCCESS",
         "reason_phrase": "Partial Content",
         "description": "クライアントが送信したRangeヘッダーに基づき、リソースの一部のみを返していることを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 206 Partial Content status code indicates that the server is delivering only part of the resource due to a range header sent by the client.",
         "image": "206-partial-content.gif"
     },
@@ -103,7 +103,7 @@
         "category": "SUCCESS",
         "reason_phrase": "Multi-Status",
         "description": "複数のステータスコードがレスポンスボディに含まれていることを示すWebDAVのコードです。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 207 Multi-Status status code conveys information about multiple resources, for situations where multiple status codes might be appropriate.",
         "image": "207-multi-status.gif"
     },
@@ -112,7 +112,7 @@
         "category": "SUCCESS",
         "reason_phrase": "Already Reported",
         "description": "DAVのバインディングが以前のリクエストですでに列挙されていることを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 208 Already Reported status code is used inside a DAV: propstat response element to avoid repeatedly enumerating the internal members of multiple bindings to the same collection.",
         "image": "208-already-reported.gif"
     },
@@ -121,7 +121,7 @@
         "category": "SUCCESS",
         "reason_phrase": "IM Used",
         "description": "サーバーがリソースに対するGETリクエストを完了し、レスポンスが現在にインスタンスに適用された1つ以上のインスタンス操作の結果であることを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 226 IM Used status code indicates that the server has fulfilled a GET request for the resource, and the response is a representation of the result of one or more instance-manipulations applied to the current instance.",
         "image": "226-im-used.gif"
     },
@@ -130,7 +130,7 @@
         "category": "REDIRECT",
         "reason_phrase": "Multiple Choices",
         "description": "リクエストに対して複数の選択肢があることを示します。ユーザーやユーザーエージェントが最適なものを選択するために使用されます。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 300 Multiple Choices status code indicates that the request has more than one possible response and the user or user agent should choose one of them.",
         "image": "300-multiple-choices.gif"
     },
@@ -139,7 +139,7 @@
         "category": "REDIRECT",
         "reason_phrase": "Moved Permanently",
         "description": "要求されたリソースが恒久的に新しいURIに移動したことを示します。後続の参照では新しいURIを使用する必要があります。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 301 Moved Permanently status code indicates that the resource has been assigned a new permanent URI and any future references to this resource should use one of the enclosed URIs.",
         "image": "301-moved-permanently.gif"
     },
@@ -148,7 +148,7 @@
         "category": "REDIRECT",
         "reason_phrase": "Found",
         "description": "要求されたリソースが一時的に異なるURIに存在することを示します。将来的に元のURIに戻る可能性があります。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 302 Found status code indicates that the resource resides temporarily under a different URI.",
         "image": "302-found.gif"
     },
@@ -157,7 +157,7 @@
         "category": "REDIRECT",
         "reason_phrase": "See Other",
         "description": "リクエストに対するレスポンスが別のURIに見つかったことを示し、クライアントにそのURIへGETリクエストを送信するよう促します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 303 See Other status code indicates that the response to the request can be found under a different URI and should be retrieved using a GET method on that resource.",
         "image": "303-see-other.gif"
     },
@@ -166,7 +166,7 @@
         "category": "REDIRECT",
         "reason_phrase": "Not Modified",
         "description": "条件付きリクエストに対し、リソースが更新されていないことを示します。クライアントはキャッシュされたバージョンを再利用できます。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 304 Not Modified status code indicates that there is no need to retransmit the requested resources, and the client can continue to use the cached copy.",
         "image": "304-not-modified.gif"
     },
@@ -175,7 +175,7 @@
         "category": "REDIRECT",
         "reason_phrase": "Multiple Choices",
         "description": "リクエストに対して複数の選択肢があることを示します。ユーザーやユーザーエージェントが最適なものを選択するために使用されます。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 300 Multiple Choices status code indicates that the request has more than one possible response and the user or user agent should choose one of them.",
         "image": "300-multiple-choices.gif"
     },
@@ -184,7 +184,7 @@
         "category": "REDIRECT",
         "reason_phrase": "Moved Permanently",
         "description": "要求されたリソースが恒久的に新しいURIに移動したことを示します。後続の参照では新しいURIを使用する必要があります。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 301 Moved Permanently status code indicates that the resource has been assigned a new permanent URI and any future references to this resource should use one of the enclosed URIs.",
         "image": "301-moved-permanently.gif"
     },
@@ -193,7 +193,7 @@
         "category": "REDIRECT",
         "reason_phrase": "Found",
         "description": "要求されたリソースが一時的に異なるURIに存在することを示します。将来的に元のURIに戻る可能性があります。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 302 Found status code indicates that the resource resides temporarily under a different URI.",
         "image": "302-found.gif"
     },
@@ -202,7 +202,7 @@
         "category": "REDIRECT",
         "reason_phrase": "See Other",
         "description": "リクエストに対するレスポンスが別のURIに見つかったことを示し、クライアントにそのURIへGETリクエストを送信するよう促します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 303 See Other status code indicates that the response to the request can be found under a different URI and should be retrieved using a GET method on that resource.",
         "image": "303-see-other.gif"
     },
@@ -211,7 +211,7 @@
         "category": "REDIRECT",
         "reason_phrase": "Not Modified",
         "description": "条件付きリクエストに対し、リソースが更新されていないことを示します。クライアントはキャッシュされたバージョンを再利用できます。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 304 Not Modified status code indicates that there is no need to retransmit the requested resources, and the client can continue to use the cached copy.",
         "image": "304-not-modified.gif"
     },
@@ -220,7 +220,7 @@
         "category": "REDIRECT",
         "reason_phrase": "Use Proxy",
         "description": "要求されたレスポンスはプロキシを経由してアクセスしなければならないことを示します（現在はセキュリティ上の懸念により非推奨です）。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 305 Use Proxy status code is deprecated and indicates that the requested resource must be accessed through the proxy given by the Location field.",
         "image": "305-use-proxy.gif"
     },
@@ -229,7 +229,7 @@
 		"category": "REDIRECT",
 		"reason_phrase": "(Unused)",
 		"description": "このステータスコードはかつて「Switch Proxy」として定義されていましたが、現在は使用されておらず、将来のために予約されています。",
-		"styles": "body { background-color: #FFFFFF; }",
+		"styles": "body { background-color: rgba(255,255,255,0.9); }",
 		"og_description": "HTTP 306 is a reserved status code that is no longer used. It was originally intended for 'Switch Proxy' but has since been deprecated.",
 		"image": "306-unused.gif"
 	},
@@ -238,7 +238,7 @@
         "category": "REDIRECT",
         "reason_phrase": "Temporary Redirect",
         "description": "302と同様に一時的な移動を示しますが、リダイレクト時にHTTPメソッドを変更してはならない（例: POSTはPOSTのまま）という制約があります。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 307 Temporary Redirect status code indicates that the resource resides temporarily under a different URI, and the user agent must not change the request method if it performs an automatic redirection.",
         "image": "307-temporary-redirect.gif"
     },
@@ -247,7 +247,7 @@
         "category": "REDIRECT",
         "reason_phrase": "Permanent Redirect",
         "description": "301と同様に恒久的な移動を示しますが、リダイレクト時にHTTPメソッドを変更してはならないという制約があります。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 308 Permanent Redirect status code indicates that the resource has been assigned a new permanent URI and any future references to this resource should use one of the enclosed URIs, without changing the request method.",
         "image": "308-permanent-redirect.gif"
     },
@@ -256,7 +256,7 @@
         "category": "REDIRECT",
         "reason_phrase": "Temporary Redirect",
         "description": "302と同様に一時的な移動を示しますが、リダイレクト時にHTTPメソッドを変更してはならない（例: POSTはPOSTのまま）という制約があります。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 307 Temporary Redirect status code indicates that the resource resides temporarily under a different URI, and the user agent must not change the request method if it performs an automatic redirection.",
         "image": "307-temporary-redirect.gif"
     },
@@ -265,7 +265,7 @@
         "category": "REDIRECT",
         "reason_phrase": "Permanent Redirect",
         "description": "301と同様に恒久的な移動を示しますが、リダイレクト時にHTTPメソッドを変更してはならないという制約があります。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 308 Permanent Redirect status code indicates that the resource has been assigned a new permanent URI and any future references to this resource should use one of the enclosed URIs, without changing the request method.",
         "image": "308-permanent-redirect.gif"
     },
@@ -274,7 +274,7 @@
         "category": "ERROR",
         "reason_phrase": "Bad Request",
         "description": "リクエストが不正であるか、サーバーが理解できない形式であることを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 400 Bad Request status code indicates that the server cannot or will not process the request due to something that is perceived to be a client error.",
         "image": "400-bad-request.gif"
     },
@@ -283,7 +283,7 @@
         "category": "ERROR",
         "reason_phrase": "Unauthorized",
         "description": "認証が必要です。有効な認証資格情報がないリクエストに対して返されます。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 401 Unauthorized status code indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.",
         "image": "401-unauthorized.gif"
     },
@@ -292,7 +292,7 @@
         "category": "ERROR",
         "reason_phrase": "Payment Required",
         "description": "将来的な使用のために予約されているコードですが、一部のデジタル決済システムで使用されることもあります。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 402 Payment Required status code is reserved for future use, though it is sometimes used by digital payment systems.",
         "image": "402-payment-required.gif"
     },
@@ -301,7 +301,7 @@
         "category": "ERROR",
         "reason_phrase": "Forbidden",
         "description": "サーバーはリクエストを理解していますが、アクセス権限がないため拒否されています。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 403 Forbidden status code indicates that the server understood the request but refuses to authorize it.",
         "image": "403-forbidden.gif"
     },
@@ -310,7 +310,7 @@
         "category": "ERROR",
         "reason_phrase": "Not Found",
         "description": "要求されたリソースが見つかりませんでした。URLが間違っているか、削除された可能性があります。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 404 Not Found status code indicates that the server could not find the requested resource.",
         "image": "404-not-found.gif"
     },
@@ -319,7 +319,7 @@
         "category": "ERROR",
         "reason_phrase": "Method Not Allowed",
         "description": "リクエストされたメソッド（GET, POSTなど）がそのリソースで許可されていないことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 405 Method Not Allowed status code indicates that the request method is known by the server but has been disabled and cannot be used.",
         "image": "405-method-not-allowed.gif"
     },
@@ -328,7 +328,7 @@
         "category": "ERROR",
         "reason_phrase": "Not Acceptable",
         "description": "サーバーがクライアントの許容範囲（Acceptヘッダー）に一致するコンテンツを生成できないことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 406 Not Acceptable status code indicates that the server cannot produce a response matching the list of acceptable values defined in the request's proactive content negotiation headers.",
         "image": "406-not-acceptable.gif"
     },
@@ -337,7 +337,7 @@
         "category": "ERROR",
         "reason_phrase": "Proxy Authentication Required",
         "description": "プロキシサーバーによる認証が必要であることを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 407 Proxy Authentication Required status code indicates that the client must first authenticate itself with the proxy.",
         "image": "407-proxy-authentication-required.gif"
     },
@@ -346,7 +346,7 @@
         "category": "ERROR",
         "reason_phrase": "Request Timeout",
         "description": "サーバーがリクエストを待機している間にタイムアウトしたことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 408 Request Timeout status code indicates that the server did not receive a complete request message within the time that it was prepared to wait.",
         "image": "408-request-timeout.gif"
     },
@@ -355,7 +355,7 @@
         "category": "ERROR",
         "reason_phrase": "Conflict",
         "description": "リクエストが現在のサーバーの状態と競合している（例：既に存在するデータを登録しようとした）ことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 409 Conflict status code indicates that the request conflicts with the current state of the server.",
         "image": "409-conflict.gif"
     },
@@ -364,7 +364,7 @@
         "category": "ERROR",
         "reason_phrase": "Gone",
         "description": "要求されたリソースが恒久的に削除され、転送先も不明であることを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 410 Gone status code indicates that access to the target resource is no longer available at the origin server and that this condition is likely to be permanent.",
         "image": "410-gone.gif"
     },
@@ -373,7 +373,7 @@
         "category": "ERROR",
         "reason_phrase": "Length Required",
         "description": "Content-Lengthヘッダーが定義されていないため、リクエストが拒否されたことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 411 Length Required status code indicates that the server refuses to accept the request without a defined Content-Length header.",
         "image": "411-length-required.gif"
     },
@@ -382,7 +382,7 @@
         "category": "ERROR",
         "reason_phrase": "Precondition Failed",
         "description": "クライアントがリクエストヘッダーに含めた前提条件が満たされていないことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 412 Precondition Failed status code indicates that one or more preconditions given in the request header fields were evaluated to false when tested on the server.",
         "image": "412-precondition-failed.gif"
     },
@@ -391,7 +391,7 @@
         "category": "ERROR",
         "reason_phrase": "Payload Too Large",
         "description": "リクエストのエンティティがサーバーの制限を超えて大きいことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 413 Payload Too Large status code indicates that the request entity is larger than limits defined by server.",
         "image": "413-payload-too-large.gif"
     },
@@ -400,7 +400,7 @@
         "category": "ERROR",
         "reason_phrase": "URI Too Long",
         "description": "リクエストされたURI（URL）がサーバーが処理できる長さを超えていることを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 414 URI Too Long status code indicates that the URI requested by the client is longer than the server is willing to interpret.",
         "image": "414-uri-too-long.gif"
     },
@@ -409,7 +409,7 @@
         "category": "ERROR",
         "reason_phrase": "Unsupported Media Type",
         "description": "リクエストされたデータのメディア形式をサーバーがサポートしていないことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 415 Unsupported Media Type status code indicates that the origin server is refusing to service the request because the payload is in a format not supported by this method on the target resource.",
         "image": "415-unsupported-media-type.gif"
     },
@@ -418,7 +418,7 @@
         "category": "ERROR",
         "reason_phrase": "Range Not Satisfiable",
         "description": "Rangeヘッダーで指定された範囲がリソースのサイズを超えているなどの理由で満たせないことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 416 Range Not Satisfiable status code indicates that the set of ranges in the request's Range header field cannot be satisfied.",
         "image": "416-range-not-satisfiable.gif"
     },
@@ -427,7 +427,7 @@
         "category": "ERROR",
         "reason_phrase": "Expectation Failed",
         "description": "Expectヘッダーで指定された期待に応えることができないことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 417 Expectation Failed status code indicates that the expectation given in the request's Expect header field could not be met by at least one of the inbound servers.",
         "image": "417-expectation-failed.gif"
     },
@@ -436,7 +436,7 @@
         "category": "ERROR",
         "reason_phrase": "I'm a teapot",
         "description": "私はティーポットです。コーヒーを淹れるように頼まれたティーポットが返すジョークコードです。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 418 I'm a teapot status code indicates that the server refuses to brew coffee because it is, permanently, a teapot.",
         "image": "418-im-a-teapot.gif"
     },
@@ -445,7 +445,7 @@
         "category": "ERROR",
         "reason_phrase": "Misdirected Request",
         "description": "リクエストがレスポンスを生成できないサーバーに向けられたことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 421 Misdirected Request status code indicates that the request was directed at a server that is not able to produce a response.",
         "image": "421-misdirected-request.gif"
     },
@@ -454,7 +454,7 @@
         "category": "ERROR",
         "reason_phrase": "Unprocessable Entity",
         "description": "リクエストの形式は正しいが、意味的なエラーのために処理できないことを示します（WebDAV）。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 422 Unprocessable Entity status code indicates that the server understands the content type of the request entity, and the syntax of the request entity is correct, but it was unable to process the contained instructions.",
         "image": "422-unprocessable-entity.gif"
     },
@@ -463,7 +463,7 @@
         "category": "ERROR",
         "reason_phrase": "Locked",
         "description": "アクセスしようとしているリソースがロックされていることを示します（WebDAV）。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 423 Locked status code indicates that the source or destination resource of a method is locked.",
         "image": "423-locked.gif"
     },
@@ -472,7 +472,7 @@
         "category": "ERROR",
         "reason_phrase": "Failed Dependency",
         "description": "以前のリクエストが失敗したため、現在のリクエストも失敗したことを示します（WebDAV）。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 424 Failed Dependency status code indicates that the method could not be performed on the resource because the requested action depended on another action and that action failed.",
         "image": "424-failed-dependency.gif"
     },
@@ -481,7 +481,7 @@
         "category": "ERROR",
         "reason_phrase": "Too Early",
         "description": "再生攻撃の可能性があるため、サーバーが処理を拒否したことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 425 Too Early status code indicates that the server is unwilling to risk processing a request that might be replayed.",
         "image": "425-too-early.gif"
     },
@@ -490,7 +490,7 @@
         "category": "ERROR",
         "reason_phrase": "Upgrade Required",
         "description": "クライアントが別のプロトコル（TLS 1.3など）にアップグレードする必要があることを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 426 Upgrade Required status code indicates that the server refuses to perform the request using the current protocol but might be willing to do so after the client upgrades to a different protocol.",
         "image": "426-upgrade-required.gif"
     },
@@ -499,7 +499,7 @@
         "category": "ERROR",
         "reason_phrase": "Precondition Required",
         "description": "オリジンサーバーがリクエストを条件付きにすることを要求しています。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 428 Precondition Required status code indicates that the origin server requires the request to be conditional.",
         "image": "428-precondition-required.gif"
     },
@@ -508,7 +508,7 @@
         "category": "ERROR",
         "reason_phrase": "Too Many Requests",
         "description": "一定期間内に送信されたリクエストが多すぎる（レート制限）ことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 429 Too Many Requests status code indicates that the user has sent too many requests in a given amount of time.",
         "image": "429-too-many-requests.gif"
     },
@@ -517,7 +517,7 @@
         "category": "ERROR",
         "reason_phrase": "Request Header Fields Too Large",
         "description": "ヘッダーフィールドが大きすぎるため、サーバーが処理を拒否したことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 431 Request Header Fields Too Large status code indicates that the server is unwilling to process the request because its header fields are too large.",
         "image": "431-request-header-fields-too-large.gif"
     },
@@ -526,7 +526,7 @@
         "category": "ERROR",
         "reason_phrase": "Unavailable For Legal Reasons",
         "description": "検閲や法的命令など、法的理由によりアクセスできないことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 451 Unavailable For Legal Reasons status code indicates that the user-agent requested a resource that cannot legally be provided, such as a web page censored by a government.",
         "image": "451-unavailable-for-legal-reasons.gif"
     },
@@ -535,7 +535,7 @@
         "category": "ServerError",
         "reason_phrase": "Internal Server Error",
         "description": "サーバー内部で予期しないエラーが発生し、リクエストを完了できないことを示します。具体的な原因が不明な場合の汎用的なエラーです。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 500 Internal Server Error status code indicates that the server encountered an unexpected condition that prevented it from fulfilling the request.",
         "image": "500-internal-server-error.gif"
     },
@@ -544,7 +544,7 @@
         "category": "ServerError",
         "reason_phrase": "Not Implemented",
         "description": "サーバーがリクエストを処理するために必要な機能をサポートしていないことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 501 Not Implemented status code indicates that the server does not support the functionality required to fulfill the request.",
         "image": "501-not-implemented.gif"
     },
@@ -553,7 +553,7 @@
         "category": "ServerError",
         "reason_phrase": "Bad Gateway",
         "description": "ゲートウェイまたはプロキシとして動作しているサーバーが、上流のサーバーから無効なレスポンスを受け取ったことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 502 Bad Gateway status code indicates that the server, while acting as a gateway or proxy, received an invalid response from an inbound server it accessed while attempting to fulfill the request.",
         "image": "502-bad-gateway.gif"
     },
@@ -562,7 +562,7 @@
         "category": "ServerError",
         "reason_phrase": "Service Unavailable",
         "description": "サーバーが一時的にメンテナンス中であるか、過負荷のためにリクエストを処理できないことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 503 Service Unavailable status code indicates that the server is currently unable to handle the request due to a temporary overload or scheduled maintenance, which will likely be alleviated after some delay.",
         "image": "503-service-unavailable.gif"
     },
@@ -571,7 +571,7 @@
         "category": "ServerError",
         "reason_phrase": "Gateway Timeout",
         "description": "ゲートウェイまたはプロキシとして動作しているサーバーが、上流のサーバーからのレスポンスを時間内に受け取れなかったことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 504 Gateway Timeout status code indicates that the server, while acting as a gateway or proxy, did not receive a timely response from an upstream server it needed to access in order to complete the request.",
         "image": "504-gateway-timeout.gif"
     },
@@ -580,7 +580,7 @@
         "category": "ServerError",
         "reason_phrase": "HTTP Version Not Supported",
         "description": "サーバーがリクエストで使用されたHTTPプロトコルのバージョンをサポートしていないことを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 505 HTTP Version Not Supported status code indicates that the server does not support, or refuses to support, the major version of HTTP that was used in the request message.",
         "image": "505-http-version-not-supported.gif"
     },
@@ -589,7 +589,7 @@
         "category": "ServerError",
         "reason_phrase": "Variant Also Negotiates",
         "description": "サーバー内部の構成エラーにより、選択されたリソース自体が透過的コンテンツネゴシエーションに関与するように設定されていることを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 506 Variant Also Negotiates status code indicates that the server has an internal configuration error: the chosen variant resource is configured to engage in transparent content negotiation itself, and is therefore not a proper end point in the negotiation process.",
         "image": "506-variant-also-negotiates.gif"
     },
@@ -598,7 +598,7 @@
         "category": "ServerError",
         "reason_phrase": "Insufficient Storage",
         "description": "リクエストを完了するために必要なストレージ容量をサーバーが確保できないことを示します（WebDAV）。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 507 Insufficient Storage status code indicates that the method could not be performed on the resource because the server is unable to store the representation needed to successfully complete the request.",
         "image": "507-insufficient-storage.gif"
     },
@@ -607,7 +607,7 @@
         "category": "ServerError",
         "reason_phrase": "Loop Detected",
         "description": "サーバーがリクエストを処理中に無限ループを検出したことを示します（WebDAV）。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 508 Loop Detected status code indicates that the server terminated an operation because it encountered an infinite loop while processing a request with \"Depth: infinity\".",
         "image": "508-loop-detected.gif"
     },
@@ -616,7 +616,7 @@
         "category": "ServerError",
         "reason_phrase": "Not Extended",
         "description": "サーバーがリクエストを処理するために、さらに拡張が必要であることを示します。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 510 Not Extended status code indicates that further extensions to the request are required for the server to fulfill it.",
         "image": "510-not-extended.gif"
     },
@@ -625,7 +625,7 @@
         "category": "ServerError",
         "reason_phrase": "Network Authentication Required",
         "description": "クライアントがネットワークアクセスを得るために認証を受ける必要があることを示します（例：公衆無線LANのログイン）。",
-        "styles": "body { background-color: #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 511 Network Authentication Required status code indicates that the client needs to authenticate to gain network access.",
         "image": "511-network-authentication-required.gif"
     },
@@ -634,7 +634,7 @@
         "category": "Joke",
         "reason_phrase": "Unresolved Mystery",
         "description": "何かが起きましたが、ログにも残っておらず、誰も原因を説明できません。神のみぞ知る状態です。",
-        "styles": "body { background-color: #000000; color: #FFFFFF; }",
+        "styles": "body { background-color: #000000; color: rgba(255,255,255,0.9); }",
         "og_description": "HTTP 600 Unresolved Mystery indicates that something happened, but there are no logs, no traces, and no logic to explain it.",
         "image": "600-unresolved-mystery.gif"
     },
@@ -643,7 +643,7 @@
         "category": "Joke",
         "reason_phrase": "Friday Afternoon",
         "description": "金曜の17時過ぎです。サーバーはすでに週末モードに入っており、デプロイや重い処理を受け付けません。",
-        "styles": "body { background-color: #FFFFFF; font-family: 'Comic Sans MS'; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); font-family: 'Comic Sans MS'; }",
         "og_description": "HTTP 601 Friday Afternoon indicates the server has checked out for the weekend and refuses to handle any critical tasks until Monday.",
         "image": "601-friday-afternoon.gif"
     },
@@ -661,7 +661,7 @@
         "category": "Joke",
         "reason_phrase": "Intern's First Day",
         "description": "新人のインターンが本番環境のデータベースを操作しようとしています。安全のためにすべてをシャットダウンしました。",
-        "styles": "body { background-color: #FFFFFF; border: 10px solid #FFFFFF; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); border: 10px solid rgba(255,255,255,0.9); }",
         "og_description": "HTTP 603 Intern's First Day indicates a high-risk operation by a novice user. System locked for safety.",
         "image": "603-interns-first-day.gif"
     },
@@ -679,7 +679,7 @@
         "category": "Joke",
         "reason_phrase": "Summoning Demons",
         "description": "コードの複雑さが臨界点を超え、サーバーから悪魔が召喚されようとしています。直ちにPCを閉じて祈ってください。",
-        "styles": "body { background-color: #FFFFFF; color: #FFFFFF; animation: shake 0.5s infinite; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); color: rgba(255,255,255,0.9); animation: shake 0.5s infinite; }",
         "og_description": "HTTP 666 Summoning Demons indicates that the code complexity has reached a level that threatens the fabric of reality.",
         "image": "666-summoning-demons.gif"
     },
@@ -688,7 +688,7 @@
         "category": "Joke",
         "reason_phrase": "Works on My Machine",
         "description": "私のローカル環境では動いています。あなたの環境で動かない理由は、サーバーの関知するところではありません。",
-        "styles": "body { background-color: #FFFFFF; font-style: italic; }",
+        "styles": "body { background-color: rgba(255,255,255,0.9); font-style: italic; }",
         "og_description": "HTTP 699 Works on My Machine indicates that the issue is specific to your environment and the server developer denies all responsibility.",
         "image": "699-works-on-my-machine.gif"
     }
