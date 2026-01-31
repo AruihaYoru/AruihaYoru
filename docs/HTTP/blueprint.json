@@ -1,7 +1,7 @@
 [
     {
         "number": "100",
-        "category": "Informational Responses",
+        "category": "INFO",
         "reason_phrase": "Continue",
         "description": "サーバーがリクエストのヘッダーを受信し、クライアントがリクエストのボディ送信を継続しても問題ないことを示します。",
         "styles": "body { background-color: #f0f8ff; }",
@@ -10,7 +10,7 @@
     },
     {
         "number": "101",
-        "category": "Informational Responses",
+        "category": "INFO",
         "reason_phrase": "Switching Protocols",
         "description": "クライアントのUpgradeヘッダーによる要求に従い、サーバーがプロトコルを切り替える（例：HTTPからWebSocket）ことを示します。",
         "styles": "body { background-color: #f0f8ff; }",
@@ -19,7 +19,7 @@
     },
     {
         "number": "102",
-        "category": "Informational Responses",
+        "category": "INFO",
         "reason_phrase": "Processing",
         "description": "サーバーがリクエストを受理し処理中ですが、まだ完了していないことをクライアントに通知するWebDAVの拡張コードです。",
         "styles": "body { background-color: #f0f8ff; }",
@@ -28,7 +28,7 @@
     },
     {
         "number": "103",
-        "category": "Informational Responses",
+        "category": "INFO",
         "reason_phrase": "Early Hints",
         "description": "サーバーが最終的なレスポンスを準備している間に、クライアントがリソース（CSSやJS等）のプリロードを早期に開始できるようにするためのものです。",
         "styles": "body { background-color: #f0f8ff; }",
@@ -37,7 +37,7 @@
     },
     {
         "number": "200",
-        "category": "Successful Responses",
+        "category": "SUCCESS",
         "reason_phrase": "OK",
         "description": "リクエストは成功し、リソースはクライアントに返されます。これは最も一般的なHTTPステータスコードです。",
         "styles": "body { background-color: #e0ffe0; }",
@@ -46,7 +46,7 @@
     },
     {
         "number": "201",
-        "category": "Successful Responses",
+        "category": "SUCCESS",
         "reason_phrase": "Created",
         "description": "リクエストが完了し、その結果として新しいリソースが作成されたことを示します。",
         "styles": "body { background-color: #e0ffe0; }",
@@ -55,7 +55,7 @@
     },
     {
         "number": "202",
-        "category": "Successful Responses",
+        "category": "SUCCESS",
         "reason_phrase": "Accepted",
         "description": "リクエストは受理されましたが、処理が完了していないことを示します。バッチ処理などに使用されます。",
         "styles": "body { background-color: #e0ffe0; }",
@@ -64,7 +64,7 @@
     },
     {
         "number": "203",
-        "category": "Successful Responses",
+        "category": "SUCCESS",
         "reason_phrase": "Non-Authoritative Information",
         "description": "返されるメタ情報がオリジンサーバーのものではなく、プロキシなどによって変更されたコピーであることを示します。",
         "styles": "body { background-color: #e0ffe0; }",
@@ -73,7 +73,7 @@
     },
     {
         "number": "204",
-        "category": "Successful Responses",
+        "category": "SUCCESS",
         "reason_phrase": "No Content",
         "description": "リクエストは成功しましたが、返却するコンテンツがないことを示します。",
         "styles": "body { background-color: #e0ffe0; }",
@@ -82,7 +82,7 @@
     },
     {
         "number": "205",
-        "category": "Successful Responses",
+        "category": "SUCCESS",
         "reason_phrase": "Reset Content",
         "description": "リクエストは成功しました。サーバーはクライアントに対し、ドキュメントの表示（フォームの入力値など）をリセットすることを要求します。",
         "styles": "body { background-color: #e0ffe0; }",
@@ -91,7 +91,7 @@
     },
     {
         "number": "206",
-        "category": "Successful Responses",
+        "category": "SUCCESS",
         "reason_phrase": "Partial Content",
         "description": "クライアントが送信したRangeヘッダーに基づき、リソースの一部のみを返していることを示します。",
         "styles": "body { background-color: #e0ffe0; }",
@@ -100,7 +100,7 @@
     },
     {
         "number": "207",
-        "category": "Successful Responses",
+        "category": "SUCCESS",
         "reason_phrase": "Multi-Status",
         "description": "複数のステータスコードがレスポンスボディに含まれていることを示すWebDAVのコードです。",
         "styles": "body { background-color: #e0ffe0; }",
@@ -109,7 +109,7 @@
     },
     {
         "number": "208",
-        "category": "Successful Responses",
+        "category": "SUCCESS",
         "reason_phrase": "Already Reported",
         "description": "DAVのバインディングが以前のリクエストですでに列挙されていることを示します。",
         "styles": "body { background-color: #e0ffe0; }",
@@ -118,7 +118,7 @@
     },
     {
         "number": "226",
-        "category": "Successful Responses",
+        "category": "SUCCESS",
         "reason_phrase": "IM Used",
         "description": "サーバーがリソースに対するGETリクエストを完了し、レスポンスが現在にインスタンスに適用された1つ以上のインスタンス操作の結果であることを示します。",
         "styles": "body { background-color: #e0ffe0; }",
@@ -127,7 +127,7 @@
     },
     {
         "number": "300",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "Multiple Choices",
         "description": "リクエストに対して複数の選択肢があることを示します。ユーザーやユーザーエージェントが最適なものを選択するために使用されます。",
         "styles": "body { background-color: #fff9e0; }",
@@ -136,7 +136,7 @@
     },
     {
         "number": "301",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "Moved Permanently",
         "description": "要求されたリソースが恒久的に新しいURIに移動したことを示します。後続の参照では新しいURIを使用する必要があります。",
         "styles": "body { background-color: #fff9e0; }",
@@ -145,7 +145,7 @@
     },
     {
         "number": "302",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "Found",
         "description": "要求されたリソースが一時的に異なるURIに存在することを示します。将来的に元のURIに戻る可能性があります。",
         "styles": "body { background-color: #fff9e0; }",
@@ -154,7 +154,7 @@
     },
     {
         "number": "303",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "See Other",
         "description": "リクエストに対するレスポンスが別のURIに見つかったことを示し、クライアントにそのURIへGETリクエストを送信するよう促します。",
         "styles": "body { background-color: #fff9e0; }",
@@ -163,7 +163,7 @@
     },
     {
         "number": "304",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "Not Modified",
         "description": "条件付きリクエストに対し、リソースが更新されていないことを示します。クライアントはキャッシュされたバージョンを再利用できます。",
         "styles": "body { background-color: #fff9e0; }",
@@ -172,7 +172,7 @@
     },
     {
         "number": "300",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "Multiple Choices",
         "description": "リクエストに対して複数の選択肢があることを示します。ユーザーやユーザーエージェントが最適なものを選択するために使用されます。",
         "styles": "body { background-color: #fff9e0; }",
@@ -181,7 +181,7 @@
     },
     {
         "number": "301",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "Moved Permanently",
         "description": "要求されたリソースが恒久的に新しいURIに移動したことを示します。後続の参照では新しいURIを使用する必要があります。",
         "styles": "body { background-color: #fff9e0; }",
@@ -190,7 +190,7 @@
     },
     {
         "number": "302",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "Found",
         "description": "要求されたリソースが一時的に異なるURIに存在することを示します。将来的に元のURIに戻る可能性があります。",
         "styles": "body { background-color: #fff9e0; }",
@@ -199,7 +199,7 @@
     },
     {
         "number": "303",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "See Other",
         "description": "リクエストに対するレスポンスが別のURIに見つかったことを示し、クライアントにそのURIへGETリクエストを送信するよう促します。",
         "styles": "body { background-color: #fff9e0; }",
@@ -208,7 +208,7 @@
     },
     {
         "number": "304",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "Not Modified",
         "description": "条件付きリクエストに対し、リソースが更新されていないことを示します。クライアントはキャッシュされたバージョンを再利用できます。",
         "styles": "body { background-color: #fff9e0; }",
@@ -217,7 +217,7 @@
     },
     {
         "number": "305",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "Use Proxy",
         "description": "要求されたレスポンスはプロキシを経由してアクセスしなければならないことを示します（現在はセキュリティ上の懸念により非推奨です）。",
         "styles": "body { background-color: #fff9e0; }",
@@ -226,7 +226,7 @@
     },
 	{
 		"number": "306",
-		"category": "Redirection Messages",
+		"category": "REDIRECT",
 		"reason_phrase": "(Unused)",
 		"description": "このステータスコードはかつて「Switch Proxy」として定義されていましたが、現在は使用されておらず、将来のために予約されています。",
 		"styles": "body { background-color: #f5f5f5; }",
@@ -235,7 +235,7 @@
 	},
     {
         "number": "307",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "Temporary Redirect",
         "description": "302と同様に一時的な移動を示しますが、リダイレクト時にHTTPメソッドを変更してはならない（例: POSTはPOSTのまま）という制約があります。",
         "styles": "body { background-color: #fff9e0; }",
@@ -244,7 +244,7 @@
     },
     {
         "number": "308",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "Permanent Redirect",
         "description": "301と同様に恒久的な移動を示しますが、リダイレクト時にHTTPメソッドを変更してはならないという制約があります。",
         "styles": "body { background-color: #fff9e0; }",
@@ -253,7 +253,7 @@
     },
     {
         "number": "307",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "Temporary Redirect",
         "description": "302と同様に一時的な移動を示しますが、リダイレクト時にHTTPメソッドを変更してはならない（例: POSTはPOSTのまま）という制約があります。",
         "styles": "body { background-color: #fff9e0; }",
@@ -262,7 +262,7 @@
     },
     {
         "number": "308",
-        "category": "Redirection Messages",
+        "category": "REDIRECT",
         "reason_phrase": "Permanent Redirect",
         "description": "301と同様に恒久的な移動を示しますが、リダイレクト時にHTTPメソッドを変更してはならないという制約があります。",
         "styles": "body { background-color: #fff9e0; }",
@@ -271,7 +271,7 @@
     },
     {
         "number": "400",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Bad Request",
         "description": "リクエストが不正であるか、サーバーが理解できない形式であることを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -280,7 +280,7 @@
     },
     {
         "number": "401",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Unauthorized",
         "description": "認証が必要です。有効な認証資格情報がないリクエストに対して返されます。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -289,7 +289,7 @@
     },
     {
         "number": "402",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Payment Required",
         "description": "将来的な使用のために予約されているコードですが、一部のデジタル決済システムで使用されることもあります。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -298,7 +298,7 @@
     },
     {
         "number": "403",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Forbidden",
         "description": "サーバーはリクエストを理解していますが、アクセス権限がないため拒否されています。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -307,7 +307,7 @@
     },
     {
         "number": "404",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Not Found",
         "description": "要求されたリソースが見つかりませんでした。URLが間違っているか、削除された可能性があります。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -316,7 +316,7 @@
     },
     {
         "number": "405",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Method Not Allowed",
         "description": "リクエストされたメソッド（GET, POSTなど）がそのリソースで許可されていないことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -325,7 +325,7 @@
     },
     {
         "number": "406",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Not Acceptable",
         "description": "サーバーがクライアントの許容範囲（Acceptヘッダー）に一致するコンテンツを生成できないことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -334,7 +334,7 @@
     },
     {
         "number": "407",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Proxy Authentication Required",
         "description": "プロキシサーバーによる認証が必要であることを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -343,7 +343,7 @@
     },
     {
         "number": "408",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Request Timeout",
         "description": "サーバーがリクエストを待機している間にタイムアウトしたことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -352,7 +352,7 @@
     },
     {
         "number": "409",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Conflict",
         "description": "リクエストが現在のサーバーの状態と競合している（例：既に存在するデータを登録しようとした）ことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -361,7 +361,7 @@
     },
     {
         "number": "410",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Gone",
         "description": "要求されたリソースが恒久的に削除され、転送先も不明であることを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -370,7 +370,7 @@
     },
     {
         "number": "411",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Length Required",
         "description": "Content-Lengthヘッダーが定義されていないため、リクエストが拒否されたことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -379,7 +379,7 @@
     },
     {
         "number": "412",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Precondition Failed",
         "description": "クライアントがリクエストヘッダーに含めた前提条件が満たされていないことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -388,7 +388,7 @@
     },
     {
         "number": "413",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Payload Too Large",
         "description": "リクエストのエンティティがサーバーの制限を超えて大きいことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -397,7 +397,7 @@
     },
     {
         "number": "414",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "URI Too Long",
         "description": "リクエストされたURI（URL）がサーバーが処理できる長さを超えていることを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -406,7 +406,7 @@
     },
     {
         "number": "415",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Unsupported Media Type",
         "description": "リクエストされたデータのメディア形式をサーバーがサポートしていないことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -415,7 +415,7 @@
     },
     {
         "number": "416",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Range Not Satisfiable",
         "description": "Rangeヘッダーで指定された範囲がリソースのサイズを超えているなどの理由で満たせないことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -424,7 +424,7 @@
     },
     {
         "number": "417",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Expectation Failed",
         "description": "Expectヘッダーで指定された期待に応えることができないことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -433,7 +433,7 @@
     },
     {
         "number": "418",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "I'm a teapot",
         "description": "私はティーポットです。コーヒーを淹れるように頼まれたティーポットが返すジョークコードです。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -442,7 +442,7 @@
     },
     {
         "number": "421",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Misdirected Request",
         "description": "リクエストがレスポンスを生成できないサーバーに向けられたことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -451,7 +451,7 @@
     },
     {
         "number": "422",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Unprocessable Entity",
         "description": "リクエストの形式は正しいが、意味的なエラーのために処理できないことを示します（WebDAV）。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -460,7 +460,7 @@
     },
     {
         "number": "423",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Locked",
         "description": "アクセスしようとしているリソースがロックされていることを示します（WebDAV）。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -469,7 +469,7 @@
     },
     {
         "number": "424",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Failed Dependency",
         "description": "以前のリクエストが失敗したため、現在のリクエストも失敗したことを示します（WebDAV）。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -478,7 +478,7 @@
     },
     {
         "number": "425",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Too Early",
         "description": "再生攻撃の可能性があるため、サーバーが処理を拒否したことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -487,7 +487,7 @@
     },
     {
         "number": "426",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Upgrade Required",
         "description": "クライアントが別のプロトコル（TLS 1.3など）にアップグレードする必要があることを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -496,7 +496,7 @@
     },
     {
         "number": "428",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Precondition Required",
         "description": "オリジンサーバーがリクエストを条件付きにすることを要求しています。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -505,7 +505,7 @@
     },
     {
         "number": "429",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Too Many Requests",
         "description": "一定期間内に送信されたリクエストが多すぎる（レート制限）ことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -514,7 +514,7 @@
     },
     {
         "number": "431",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Request Header Fields Too Large",
         "description": "ヘッダーフィールドが大きすぎるため、サーバーが処理を拒否したことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -523,7 +523,7 @@
     },
     {
         "number": "451",
-        "category": "Client Error Responses",
+        "category": "ERROR",
         "reason_phrase": "Unavailable For Legal Reasons",
         "description": "検閲や法的命令など、法的理由によりアクセスできないことを示します。",
         "styles": "body { background-color: #ffe0e0; }",
@@ -532,7 +532,7 @@
     },
     {
         "number": "500",
-        "category": "Server Error Responses",
+        "category": "ServerError",
         "reason_phrase": "Internal Server Error",
         "description": "サーバー内部で予期しないエラーが発生し、リクエストを完了できないことを示します。具体的な原因が不明な場合の汎用的なエラーです。",
         "styles": "body { background-color: #ffc0cb; }",
@@ -541,7 +541,7 @@
     },
     {
         "number": "501",
-        "category": "Server Error Responses",
+        "category": "ServerError",
         "reason_phrase": "Not Implemented",
         "description": "サーバーがリクエストを処理するために必要な機能をサポートしていないことを示します。",
         "styles": "body { background-color: #ffc0cb; }",
@@ -550,7 +550,7 @@
     },
     {
         "number": "502",
-        "category": "Server Error Responses",
+        "category": "ServerError",
         "reason_phrase": "Bad Gateway",
         "description": "ゲートウェイまたはプロキシとして動作しているサーバーが、上流のサーバーから無効なレスポンスを受け取ったことを示します。",
         "styles": "body { background-color: #ffc0cb; }",
@@ -559,7 +559,7 @@
     },
     {
         "number": "503",
-        "category": "Server Error Responses",
+        "category": "ServerError",
         "reason_phrase": "Service Unavailable",
         "description": "サーバーが一時的にメンテナンス中であるか、過負荷のためにリクエストを処理できないことを示します。",
         "styles": "body { background-color: #ffc0cb; }",
@@ -568,7 +568,7 @@
     },
     {
         "number": "504",
-        "category": "Server Error Responses",
+        "category": "ServerError",
         "reason_phrase": "Gateway Timeout",
         "description": "ゲートウェイまたはプロキシとして動作しているサーバーが、上流のサーバーからのレスポンスを時間内に受け取れなかったことを示します。",
         "styles": "body { background-color: #ffc0cb; }",
@@ -577,7 +577,7 @@
     },
     {
         "number": "505",
-        "category": "Server Error Responses",
+        "category": "ServerError",
         "reason_phrase": "HTTP Version Not Supported",
         "description": "サーバーがリクエストで使用されたHTTPプロトコルのバージョンをサポートしていないことを示します。",
         "styles": "body { background-color: #ffc0cb; }",
@@ -586,7 +586,7 @@
     },
     {
         "number": "506",
-        "category": "Server Error Responses",
+        "category": "ServerError",
         "reason_phrase": "Variant Also Negotiates",
         "description": "サーバー内部の構成エラーにより、選択されたリソース自体が透過的コンテンツネゴシエーションに関与するように設定されていることを示します。",
         "styles": "body { background-color: #ffc0cb; }",
@@ -595,7 +595,7 @@
     },
     {
         "number": "507",
-        "category": "Server Error Responses",
+        "category": "ServerError",
         "reason_phrase": "Insufficient Storage",
         "description": "リクエストを完了するために必要なストレージ容量をサーバーが確保できないことを示します（WebDAV）。",
         "styles": "body { background-color: #ffc0cb; }",
@@ -604,7 +604,7 @@
     },
     {
         "number": "508",
-        "category": "Server Error Responses",
+        "category": "ServerError",
         "reason_phrase": "Loop Detected",
         "description": "サーバーがリクエストを処理中に無限ループを検出したことを示します（WebDAV）。",
         "styles": "body { background-color: #ffc0cb; }",
@@ -613,7 +613,7 @@
     },
     {
         "number": "510",
-        "category": "Server Error Responses",
+        "category": "ServerError",
         "reason_phrase": "Not Extended",
         "description": "サーバーがリクエストを処理するために、さらに拡張が必要であることを示します。",
         "styles": "body { background-color: #ffc0cb; }",
@@ -622,7 +622,7 @@
     },
     {
         "number": "511",
-        "category": "Server Error Responses",
+        "category": "ServerError",
         "reason_phrase": "Network Authentication Required",
         "description": "クライアントがネットワークアクセスを得るために認証を受ける必要があることを示します（例：公衆無線LANのログイン）。",
         "styles": "body { background-color: #ffc0cb; }",
@@ -631,7 +631,7 @@
     },
     {
         "number": "600",
-        "category": "Fictional/Joke Responses",
+        "category": "Joke",
         "reason_phrase": "Unresolved Mystery",
         "description": "何かが起きましたが、ログにも残っておらず、誰も原因を説明できません。神のみぞ知る状態です。",
         "styles": "body { background-color: #000000; color: #ffffff; }",
@@ -640,7 +640,7 @@
     },
     {
         "number": "601",
-        "category": "Fictional/Joke Responses",
+        "category": "Joke",
         "reason_phrase": "Friday Afternoon",
         "description": "金曜の17時過ぎです。サーバーはすでに週末モードに入っており、デプロイや重い処理を受け付けません。",
         "styles": "body { background-color: #ffdab9; font-family: 'Comic Sans MS'; }",
@@ -649,7 +649,7 @@
     },
     {
         "number": "602",
-        "category": "Fictional/Joke Responses",
+        "category": "Joke",
         "reason_phrase": "Cat on Keyboard",
         "description": "キーボードの上を猫が歩いたような、支離滅裂な入力が検出されました。入力をやり直してください。",
         "styles": "body { background-image: url('cat-paw.png'); }",
@@ -658,7 +658,7 @@
     },
     {
         "number": "603",
-        "category": "Fictional/Joke Responses",
+        "category": "Joke",
         "reason_phrase": "Intern's First Day",
         "description": "新人のインターンが本番環境のデータベースを操作しようとしています。安全のためにすべてをシャットダウンしました。",
         "styles": "body { background-color: #ffff00; border: 10px solid #ff0000; }",
@@ -667,7 +667,7 @@
     },
     {
         "number": "606",
-        "category": "Fictional/Joke Responses",
+        "category": "Joke",
         "reason_phrase": "Excessive Jargon",
         "description": "リクエストに含まれるビジネス用語や横文字が多すぎて、サーバーが理解を拒否しました。",
         "styles": "body { text-transform: uppercase; letter-spacing: 5px; }",
@@ -676,7 +676,7 @@
     },
     {
         "number": "666",
-        "category": "Fictional/Joke Responses",
+        "category": "Joke",
         "reason_phrase": "Summoning Demons",
         "description": "コードの複雑さが臨界点を超え、サーバーから悪魔が召喚されようとしています。直ちにPCを閉じて祈ってください。",
         "styles": "body { background-color: #8b0000; color: #ff0000; animation: shake 0.5s infinite; }",
@@ -685,7 +685,7 @@
     },
     {
         "number": "699",
-        "category": "Fictional/Joke Responses",
+        "category": "Joke",
         "reason_phrase": "Works on My Machine",
         "description": "私のローカル環境では動いています。あなたの環境で動かない理由は、サーバーの関知するところではありません。",
         "styles": "body { background-color: #e0f7fa; font-style: italic; }",
