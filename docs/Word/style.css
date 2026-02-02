@@ -1,0 +1,68 @@
+
+:root {
+	--bg-color: #fdfdfd;
+	--text-color: #333;
+	--accent-color: #55acee;
+	--border-color: #eee;
+	--max-width: 700px;
+}
+
+body {
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	font-family: serif;
+	line-height: 1.8;
+	margin: 0;
+	padding: 2rem;
+	display: flex;
+	justify-content: center;
+}
+
+.container {
+	max-width: var(--max-width);
+	width: 100%;
+}
+
+header {
+	margin-bottom: 3rem;
+}
+
+h1 {
+	font-size: 1.2rem;
+	border-left: 4px solid var(--text-color);
+	padding-left: 1rem;
+}
+
+.word-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 2rem;
+}
+
+.word-card {
+	border-bottom: 1px solid var(--border-color);
+	padding-bottom: 1rem;
+}
+
+.word-term {
+	font-size: 1.4rem;
+	font-weight: bold;
+	color: var(--accent-color);
+	margin-bottom: 0.5rem;
+}
+
+.word-definition {
+	font-size: 0.95rem;
+	margin-left: 0;
+	color: #555;
+}
+
+.nav-back {
+	margin-top: 4rem;
+}
+
+.nav-back a {
+	color: #aaa;
+	text-decoration: none;
+	font-size: 0.9rem;
+}

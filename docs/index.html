@@ -1,15 +1,45 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>My Private Space</title>
+		
+		<link rel="stylesheet" href="./style.css">
+		<style>
+		</style>
 	</head>
 	<body>
-		<h1>はろー！</h1>
-		<h2>ちょっとまって、どうしてこんなページが？</h2>
-		<p>えっとね、私がHTML、CSS、JSを作り始めたのって完全にホームページ作りたかったからであって<br>
-		その時には、階層的なファイル構造や簡素なデザインにつよくあこがれていたはずだから</p><br>
-		<p>つくってみたよ。以下にリンクを貼るね！</p>
-		<div>
-			<a href="./HTTP/index.html">Lightning HTTP</a><br><!-- ./を省略した方があの頃を思い出しそう。 -->
+
+		<div class="container">
+			<header>
+				<h1>はろー！</h1>
+			</header>
+
+			<main>
+				<section class="content">
+					<h2>ちょっとまって、どうしてこんなページが？</h2>
+					<p>
+						ええと、....階層的なファイル構造、若しくは、簡素な造形を好んでいると、申し上げたはずなのですが。<br>
+						HTMLとCSSを、或いはJSを、わたくしが、記述し始めたのは、ホームページという極めて個人的な領域を作成したいという欲求に。....基づいたもの、ですので。
+					</p>
+
+					<p><a href="profile.html">わたくしについて</a><p>
+				</section>
+				
+				<section class="link-section">
+					<ul class="link-list">
+						<li class="link-item"><a href="HTTP/index.html">Lightning HTTP</a></li>
+						<li class="link-item"><a href="Word/index.html">好きな単語</a></li>
+
+					</ul>
+				</section>
+			</main>
+
+			<footer>
+				<p>&copy; 2026 My Private Space</p>
+			</footer>
 		</div>
-		<body>
+
+	</body>
 </html>

@@ -6,7 +6,7 @@
 
 ## 説明
 TwitterCardとかogpに、gifを指定しています。
-ので、`https://aruihayoru.github.io/AruihaYoru/HTTP/[Category]-[Number].html`を貼り付けたらそれだけでいいです。
+ので、`https://aruihayoru.github.io/AruihaYoru/HTTP/pages/[Category]-[Number].html`を貼り付けたらそれだけでいいです。
 
 
 ## 1xx INFO
@@ -78,7 +78,7 @@ TwitterCardとかogpに、gifを指定しています。
 - [511 Network Authentication Required](https://aruihayoru.github.io/AruihaYoru/HTTP/pages/ServerError-511.html)
 	
 ## これはダメ
-	[600 Unresolved Mystery](https://aruihayoru.github.io/AruihaYoru/HTTP/pages/Joke-600.html)
+- [600 Unresolved Mystery](https://aruihayoru.github.io/AruihaYoru/HTTP/pages/Joke-600.html)
 - [601 Friday Afternoon](https://aruihayoru.github.io/AruihaYoru/HTTP/pages/Joke-601.html)
 - [602 Cat on Keyboard](https://aruihayoru.github.io/AruihaYoru/HTTP/pages/Joke-602.html)
 - [603 Intern's First Day](https://aruihayoru.github.io/AruihaYoru/HTTP/pages/Joke-603.html)

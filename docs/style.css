@@ -1,0 +1,89 @@
+:root {
+	--bg-color: #fdfdfd;
+	--text-color: #333;
+	--accent-color: #55acee;
+	--border-color: #eee;
+	--max-width: 700px;
+}
+
+body {
+	background-color: var(--bg-color);
+	color: var(--text-color);
+	font-family: "Yu Gothic";
+	line-height: 1.8;
+	margin: 0;
+	padding: 2rem;
+	display: flex;
+	justify-content: center;
+}
+
+.container {
+	max-width: var(--max-width);
+	width: 100%;
+}
+
+header {
+	border-bottom: 2px solid var(--text-color);
+	margin-bottom: 3rem;
+	padding-bottom: 1rem;
+}
+
+h1 {
+	font-size: 1.5rem;
+	letter-spacing: 0.1em;
+}
+
+h2 {
+	font-size: 1.1rem;
+	font-weight: normal;
+	color: #666;
+	margin-bottom: 2rem;
+}
+
+.content {
+	margin-bottom: 4rem;
+}
+
+.content p {
+	margin-bottom: 1.5rem;
+}
+
+.link-section {
+	background: #fff;
+	border: 1px solid var(--border-color);
+	padding: 1.5rem;
+	border-radius: 4px;
+}
+
+.link-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.link-item {
+	padding: 0.5rem 0;
+	border-bottom: 1px dotted var(--border-color);
+}
+
+.link-item:last-child {
+	border-bottom: none;
+}
+
+.link-item a {
+	color: var(--accent-color);
+	text-decoration: none;
+	transition: opacity 0.2s;
+}
+
+.link-item a:hover {
+	text-decoration: underline;
+	opacity: 0.7;
+}
+
+footer {
+	margin-top: 5rem;
+	font-size: 0.8rem;
+	color: #aaa;
+	text-align: center;
+}
