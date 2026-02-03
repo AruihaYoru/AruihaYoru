@@ -3,26 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Favorite Words - My Private Space</title>
-	<link rel="stylesheet" href="./style.css"> 
+    <title>泡沫に帰依する | Favorite Words</title>
+    <link rel="stylesheet" href="./style.css"> 
 </head>
 <body>
 
     <div class="container">
-        <header>
-            <h1>好きな単語</h1>
-        </header>
+		<nav class="nav-back" style="margin-bottom:5rem"><!-- インライン許して... --><a href="../index.html">← indexに戻る</a></nav>
+		
+        <header class="entry-header">
 
+            <div class="meta-info">
+                <span class="category">Fiction / Short Story</span>
+                <time datetime="2026-02-03">2026.02.03</time>
+                <span class="author">By: 或いは夜</span>
+            </div>
+            <h1 class="entry-title">泡沫に帰依する</h1>
+            
+            <div class="entry-description">
+                <p>ええと。本当は、私が好きな単語でも並べて置きたかったのですが...ナニカに使えそうだと思って。</p>
+            </div>
+        </header>
+        
+		<!-- 本文 -->
+		
 		<main>
-			<dl id="word-list" class="word-grid"></dl>
+			<section class="content-section">
+				<h2 class="section-title" data-en="言の葉">好きな単語</h2>
+				<dl id="word-list" class="word-grid"></dl>
+			</section>
 		</main>
 
-		<script src="./main.js"></script>
+		<!-- 本文終わり -->
 
-        <nav class="nav-back">
+		<footer class="entry-footer">
+			<div class="afterword">
+				<p>あとがき</p>
+				<br>
+				<div class="word-card"><dt class="word-term">冗句</dt><dd class="word-definition">Joke。このリストのこと。</dd></div>
+				<p>ええと、少しだけ...ね？それはそれとして、大体私が知ってた言葉或いは手中の文献から探し出して引っ張て来たものばかりで構成しているのですが、とっても疲れました。</p>
+				<p>このリストの中で私が書いていない唯一の言葉、「悒悒」なんてこれ書こうとしなかったら一生知らなかったかもしれない。</p>
+			</div>
+		</footer>
+
+        <nav class="nav-back" style="margin-top:5rem">
             <a href="../index.html">← indexに戻る</a>
         </nav>
     </div>
 
+    <script src="./main.js"></script>
 </body>
 </html>
+

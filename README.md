@@ -5,9 +5,6 @@
 <br> <!-- 許して -->
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=AruihaYoru&layout=compact&theme=vision-friendly-dark)](https://github.com/anuraghazra/github-readme-stats)
 
-## License
-<p align="right">docsの中で使用フォント: <a href="https://github.com/keshikan/DSEG">DSEG</a>....<a href="https://www.keshikan.net/fonts.html"もしくは</a></p>
-
 
 ### 🛠 学んだことがあるもの
 
@@ -22,7 +19,7 @@
 **好きな言葉**：接続詞（日本語）と接尾語（ラテン語）
 
 **苦手な食べ物**：野菜、野菜、野菜、酢  
-**好きな食べ物**：エビの寿司
+**好きな食べ物**：エビの寿司....が好きなわけではない。
 
 * * *
 
