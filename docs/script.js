@@ -17,11 +17,9 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const pathParts = window.location.pathname
     .split('/')
-    .filter(part => part && part !== 'AruihaYoru');
+    .filter(part => part && part !== 'AruihaYoru' && !part.includes('.html'));
 
-let lastPart = pathParts.pop() || 'home';
-
-const pageId = lastPart.replace(/\/(index)?\.html$/, '').replace(/\.html$/, '') || 'home';
+const pageId = pathParts[0] || 'home';
 
 console.log("Current Page ID:", pageId);
 onAuthStateChanged(auth, async (user) => {
