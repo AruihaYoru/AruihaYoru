@@ -16,8 +16,10 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 const pageId = window.location.pathname
-    .replace(/\/(index)?\.html$/, '')
-    .replace(/^\//, '')
+    .split('/')
+    .filter(Boolean)
+    .pop()
+    ?.replace(/\.html$/, '')
     || 'home';
 console.log("Current Page ID:", pageId);
 
