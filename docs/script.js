@@ -15,14 +15,15 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
-const pageId = window.location.pathname
+const pathParts = window.location.pathname
     .split('/')
-    .filter(Boolean)
-    .pop()
-    ?.replace(/\.html$/, '')
-    || 'home';
-console.log("Current Page ID:", pageId);
+    .filter(part => part && part !== 'AruihaYoru');
 
+let lastPart = pathParts.pop() || 'home';
+
+const pageId = lastPart.replace(/\/(index)?\.html$/, '').replace(/\.html$/, '') || 'home';
+
+console.log("Current Page ID:", pageId);
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         await handleViewCount(user.uid);
