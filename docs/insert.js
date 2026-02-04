@@ -11,7 +11,7 @@ const statsAndCommentHTML = `
         <h3>ポスト</h3>
         <div id="comment-list" class="comment-list"></div>
         
-		<a href="/promise.html" class="promise-link">ガイドライン。お約束ごと。（これリンクだよ！）</a>
+		<a href="https://aruihayoru.github.io/AruihaYoru/promise.html" class="promise-link">ガイドライン。お約束ごと。（これリンクだよ！）</a>
         <div class="comment-form">
             <div class="input-group">
                 <input type="text" id="comment-name" placeholder="お名前（空欄でも可）" maxlength="50">
