@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | 或いは夜</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        /* 管理画面専用スタイル */
+        body { background-color: #f4f7f6; color: #333; }
+        .container { max-width: 900px; margin: 40px auto; padding: 20px; }
+        
+        .card { 
+            background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; 
+            padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+        }
+
+        .stats-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .stats-table th, .stats-table td { 
+            padding: 12px; text-align: left; border-bottom: 1px solid #eee; 
+        }
+        .stats-table th { background: #fafafa; font-size: 0.85rem; color: #666; }
+
+        .admin-textarea {
+            width: 100%; min-height: 80px; margin: 5px 0 10px 0; padding: 10px;
+            border: 1px solid #ddd; border-radius: 4px; font-family: inherit;
+            resize: vertical; box-sizing: border-box; display: block;
+        }
+
+        .badge { background: #eee; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; }
+        
+        .minimal-btn {
+            cursor: pointer; border: 1px solid #ccc; background: #fff;
+            padding: 4px 10px; border-radius: 4px; font-size: 0.8rem;
+        }
+        .minimal-btn:hover { background: #f0f0f0; }
+
+        input[type="text"], input[type="number"] {
+            padding: 5px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+            <h1 style="font-size: 1.2rem; margin: 0;">管理者パネル（ありゃりゃ。来ちゃダメだよ。）</h1>
+            <div>
+                <span id="auth-status" style="font-size: 0.8rem; margin-right: 10px;"></span>
+                <button id="login-btn" class="minimal-btn">Googleログイン</button>
+            </div>
+        </header>
+
+        <main id="admin-main" style="display:none;">
+            
+            <section class="card">
+                <h2 style="font-size: 1rem; margin-top: 0;">全ページ統計一覧</h2>
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>ページID</th>
+                            <th>閲覧数</th>
+                            <th>❤</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stats-list">
+                        </tbody>
+                </table>
+            </section>
+
+            <section class="card">
+                <h2 style="font-size: 1rem; margin-top: 0;">最新のお便り</h2>
+                <div id="admin-comment-list">
+                    </div>
+            </section>
+
+        </main>
+        
+        <nav style="margin-top: 40px; text-align: center;">
+            <a href="./index.html" style="color: #888; text-decoration: none; font-size: 0.9rem;">← 表舞台へ戻る</a>
+        </nav>
+    </div>
+
+    <script type="module" src="./admin.js"></script>
+</body>
+</html>
