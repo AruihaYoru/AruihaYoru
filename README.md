@@ -4,8 +4,13 @@
 めんどいときはAIにコード生成やらせてますわよ！！！！  
 <br> <!-- 許して -->
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=AruihaYoru&layout=compact&theme=vision-friendly-dark)](https://github.com/anuraghazra/github-readme-stats)
-
+  
+  
+  
+[![Top Langs](https://github-readme-stats-one-psi-81.vercel.app/api/top-langs/?username=AruihaYoru&layout=compact&theme=vision-friendly-dark)](https://github.com/anuraghazra/github-readme-stats)
+  
+  
+  
 
 ### 🛠 学んだことがあるもの
 
