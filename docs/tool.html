@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>The Masterpiece - OGP Generator</title>
+    <link id="fontLink" rel="stylesheet" href="">
+    <style>
+        :root { --bg: #f0f2f5; --side: #ffffff; --accent: #007aff; --text: #1c1e21; --border: #dddfe2; }
+        body { margin: 0; font-family: "Yu Gothic", "YuGothic", sans-serif; background: var(--bg); color: var(--text); overflow: hidden; display: flex; height: 100vh; }
+        
+        /* サイドバー */
+        .sidebar { width: 360px; background: var(--side); border-right: 1px solid var(--border); display: flex; flex-direction: column; z-index: 100; box-shadow: 2px 0 10px rgba(0,0,0,0.05); }
+        .sidebar-header { padding: 20px; border-bottom: 1px solid var(--border); background: #fafafa; }
+        .sidebar-header h1 { font-size: 0.9rem; margin: 0; letter-spacing: 3px; font-weight: 800; }
+        
+        .tab-nav { display: flex; border-bottom: 1px solid var(--border); }
+        .tab { flex: 1; padding: 12px; text-align: center; cursor: pointer; font-size: 0.7rem; font-weight: bold; color: #888; }
+        .tab.active { color: var(--accent); border-bottom: 2px solid var(--accent); background: #fdfdfd; }
+
+        .inspector { flex: 1; overflow-y: auto; padding: 20px; display: none; }
+        .inspector.active { display: block; }
+        
+        /* キャンバスエリア */
+        .viewport { flex: 1; position: relative; display: flex; align-items: center; justify-content: center; overflow: auto; padding: 40px; background-image: radial-gradient(#d1d1d1 1px, transparent 1px); background-size: 30px 30px; }
+        .canvas-container { position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.15); line-height: 0; background: #fff; }
+        canvas { max-width: 100%; height: auto; cursor: crosshair; }
+
+        /* コンポーネント */
+        .prop-group { margin-bottom: 20px; }
+        .prop-group label { display: block; font-size: 0.65rem; font-weight: 800; color: #999; margin-bottom: 6px; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 4px; font-size: 0.8rem; box-sizing: border-box; font-family: inherit; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+        
+        .layer-item { display: flex; align-items: center; padding: 8px 12px; border: 1px solid var(--border); margin-bottom: 4px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; }
+        .layer-item.active { border-color: var(--accent); background: #eef6ff; font-weight: bold; }
+        
+        button { cursor: pointer; border: 1px solid var(--border); background: #fff; padding: 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; transition: 0.2s; }
+        button:hover { border-color: var(--accent); color: var(--accent); }
+        button.primary { background: #000; color: #fff; border: none; padding: 12px; width: 100%; font-size: 0.85rem; }
+        button.add-btn { background: #f8f9fa; border: 1px dashed #ccc; width: 100%; margin-bottom: 8px; padding: 10px; }
+
+        .toolbar { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; background: #fff; padding: 8px 15px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .hint { position: absolute; bottom: 20px; right: 20px; font-size: 0.65rem; color: #888; text-align: right; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="sidebar-header"><h1>ULTIMATE GENERATOR</h1></div>
+    <div class="tab-nav">
+        <div class="tab active" data-target="panel-edit">OBJECT</div>
+        <div class="tab" data-target="panel-layers">LAYERS</div>
+        <div class="tab" data-target="panel-global">GLOBAL</div>
+    </div>
+
+    <div id="panel-edit" class="inspector active">
+        <p style="text-align:center; color:#ccc; margin-top:50px;">要素を選択してください</p>
+    </div>
+
+    <div id="panel-layers" class="inspector">
+        <label>重ね順 (ドラッグ不可/クリックで選択)</label>
+        <div id="layer-list"></div>
+        <hr style="border:0; border-top:1px solid #eee; margin:20px 0;">
+        <div class="grid-2">
+            <button onclick="moveLayer('top')">最前面へ</button>
+            <button onclick="moveLayer('bottom')">最背面へ</button>
+        </div>
+    </div>
+
+    <div id="panel-global" class="inspector">
+        <div class="prop-group">
+            <label>キャンバス背景色</label>
+            <input type="color" id="cvBg" value="#ffffff" oninput="canvasBg=this.value;draw();">
+        </div>
+        <div class="prop-group">
+            <label>グリッド設定</label>
+            <div class="grid-2">
+                <button id="btnGrid" onclick="showGrid=!showGrid;draw();this.innerText=showGrid?'表示:ON':'表示:OFF'">表示:ON</button>
+                <button id="btnSnap" onclick="useSnap=!useSnap;this.innerText=useSnap?'吸着:ON':'吸着:OFF'">吸着:ON</button>
+            </div>
+            <input type="number" id="gridSize" value="50" style="margin-top:5px;" oninput="gridSize=parseInt(this.value);draw();">
+        </div>
+        <button class="add-btn" onclick="document.getElementById('fileIn').click()">+ 画像をアップロード</button>
+        <input type="file" id="fileIn" hidden accept="image/*" onchange="handleImage(this)">
+        <button class="primary" onclick="download()">画像を保存する</button>
+    </div>
+
+    <div style="padding: 20px; border-top: 1px solid var(--border);">
+        <button class="add-btn" onclick="addText()">+ TEXT</button>
+        <button class="add-btn" onclick="addShape()">+ SHAPE</button>
+    </div>
+</aside>
+
+<main class="viewport">
+    <div class="toolbar">
+        <button onclick="undo()">Undo</button>
+        <button onclick="redo()">Redo</button>
+        <button onclick="duplicate()">Duplicate</button>
+        <button onclick="align('center')">Center</button>
+    </div>
+    <div class="canvas-container">
+        <canvas id="mc" width="1200" height="630"></canvas>
+    </div>
+    <div class="hint">
+        Ctrl+Z: Undo | Ctrl+D: Duplicate | Del: Delete<br>
+        Arrows: 1px Move | Shift+Arrows: Grid Move
+    </div>
+</main>
+
+<script>
+    const canvas = document.getElementById('mc');
+    const ctx = canvas.getContext('2d');
+    const FONT_STACKS = {
+        "Yu Gothic": '"Yu Gothic", "YuGothic", "游ゴシック体", "游ゴシック", sans-serif',
+        "Hiragino Sans": '"Hiragino Sans", "ヒラギノ角ゴ ProN", sans-serif',
+        "Meiryo": '"Meiryo", "メイリオ", sans-serif',
+        "Noto Sans JP": '"Noto Sans JP", sans-serif', "Montserrat": 'Montserrat, sans-serif'
+    };
+
+    let layers = [{ id: 1, type: 'text', text: 'Ultimate Edition', x: 600, y: 315, fontSize: 80, fontWeight: '900', fontFamily: 'Yu Gothic', color: '#000000', textAlign: 'center', lineHeight: 1.2, letterSpacing: 4, opacity: 1, shadowBlur: 0, shadowColor: 'rgba(0,0,0,0.3)', outlineWidth: 0, outlineColor: '#fff' }];
+    let selectedId = 1, canvasBg = "#ffffff", gridSize = 50, showGrid = true, useSnap = true;
+    let history = [], historyIndex = -1;
+    let isDragging = false, isResizing = false, dragTarget = null, startX, startY;
+
+    function init() {
+        canvas.onmousedown = onMouseDown;
+        window.onmousemove = onMouseMove;
+        window.onmouseup = onMouseUp;
+        window.onkeydown = onKeyDown;
+        document.querySelectorAll('.tab').forEach(t => t.onclick = (e) => switchTab(e.target.dataset.target));
+        saveState(); draw(); renderEditor();
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, 1200, 630);
+        ctx.fillStyle = canvasBg;
+        ctx.fillRect(0, 0, 1200, 630);
+        if (showGrid) {
+            ctx.beginPath(); ctx.strokeStyle = 'rgba(0,0,0,0.05)';
+            for(let x=0;x<=1200;x+=gridSize){ctx.moveTo(x,0);ctx.lineTo(x,630);}
+            for(let y=0;y<=630;y+=gridSize){ctx.moveTo(0,y);ctx.lineTo(1200,y);}
+            ctx.stroke();
+            ctx.beginPath(); ctx.strokeStyle = 'rgba(0,122,255,0.2)';
+            ctx.moveTo(600,0);ctx.lineTo(600,630); ctx.moveTo(0,315);ctx.lineTo(1200,315); ctx.stroke();
+        }
+        layers.forEach(l => {
+            ctx.save(); ctx.globalAlpha = l.opacity || 1;
+            if (l.type === 'text') drawText(l);
+            else if (l.type === 'shape') { ctx.fillStyle = l.color; ctx.fillRect(l.x, l.y, l.w, l.h); }
+            else if (l.type === 'image') drawImg(l);
+            ctx.restore();
+        });
+        if (selectedId) { const active = layers.find(l => l.id === selectedId); if(active) drawUI(active); }
+    }
+
+    function drawText(l) {
+        ctx.textAlign = l.textAlign; ctx.textBaseline = 'middle';
+        ctx.font = `${l.fontWeight} ${l.fontSize}px ${FONT_STACKS[l.fontFamily] || l.fontFamily}`;
+        const lines = l.text.split('\n');
+        const h = l.fontSize * l.lineHeight;
+        let py = l.y - ((lines.length - 1) * h / 2);
+        lines.forEach(line => {
+            const chars = line.split('');
+            const widths = chars.map(c => ctx.measureText(c).width);
+            const totalW = widths.reduce((a,b)=>a+b,0) + (l.letterSpacing * (chars.length-1));
+            let px = (l.textAlign === 'center') ? l.x - totalW/2 : (l.textAlign === 'right' ? l.x - totalW : l.x);
+            chars.forEach((c, i) => {
+                ctx.shadowBlur = l.shadowBlur || 0; ctx.shadowColor = l.shadowColor;
+                if(l.outlineWidth > 0){ ctx.strokeStyle = l.outlineColor; ctx.lineWidth = l.outlineWidth*2; ctx.lineJoin='round'; ctx.strokeText(c, px, py); }
+                ctx.fillStyle = l.color; ctx.fillText(c, px, py);
+                px += widths[i] + l.letterSpacing;
+            });
+            py += h;
+        });
+    }
+
+    function drawImg(l) {
+        if (!l.imgEl) { l.imgEl = new Image(); l.imgEl.src = l.src; l.imgEl.onload = draw; return; }
+        ctx.drawImage(l.imgEl, l.x, l.y, l.w, l.h);
+    }
+
+    function drawUI(l) {
+        const b = getBox(l); ctx.setLineDash([4,4]); ctx.strokeStyle = '#007aff';
+        ctx.strokeRect(b.x-2, b.y-2, b.w+4, b.h+4); ctx.setLineDash([]);
+        ctx.fillStyle = '#fff'; ctx.fillRect(b.x+b.w, b.y+b.h, 12, 12); ctx.strokeRect(b.x+b.w, b.y+b.h, 12, 12);
+    }
+
+    function getBox(l) {
+        if (l.type === 'text') {
+            const h = l.text.split('\n').length * l.fontSize * l.lineHeight;
+            return { x: l.x - 300, y: l.y - h/2, w: 600, h: h };
+        }
+        return { x: l.x, y: l.y, w: l.w, h: l.h };
+    }
+
+    function onMouseDown(e) {
+        const { x, y } = getMouse(e); isResizing = isDragging = false;
+        for (let i = layers.length-1; i >= 0; i--) {
+            const l = layers[i], b = getBox(l);
+            if (l.id === selectedId && x > b.x+b.w && x < b.x+b.w+20 && y > b.y+b.h && y < b.y+b.h+20) { isResizing = true; dragTarget = l; break; }
+            if (x > b.x && x < b.x+b.w && y > b.y && y < b.y+b.h) { isDragging = true; dragTarget = l; selectedId = l.id; startX = x - l.x; startY = y - l.y; break; }
+        }
+        renderEditor(); draw();
+    }
+
+    function onMouseMove(e) {
+        if (!dragTarget) return; const { x, y } = getMouse(e);
+        if (isResizing) {
+            let nw = x - dragTarget.x, nh = y - dragTarget.y;
+            if(useSnap){ nw = Math.round(nw/gridSize)*gridSize; nh = Math.round(nh/gridSize)*gridSize; }
+            dragTarget.w = Math.max(20, nw); dragTarget.h = Math.max(20, nh);
+            if(dragTarget.type==='text') dragTarget.fontSize = Math.max(10, dragTarget.h / dragTarget.lineHeight);
+        } else if (isDragging) {
+            let nx = x - startX, ny = y - startY;
+            if(useSnap){ nx = Math.round(nx/gridSize)*gridSize; ny = Math.round(ny/gridSize)*gridSize; }
+            dragTarget.x = nx; dragTarget.y = ny;
+        }
+        draw();
+    }
+
+    function onMouseUp() { if(dragTarget) saveState(); isDragging = isResizing = false; dragTarget = null; }
+
+    function onKeyDown(e) {
+        if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
+        const l = layers.find(l => l.id === selectedId);
+        if (e.ctrlKey && e.key === 'z') { undo(); e.preventDefault(); }
+        if (e.ctrlKey && e.key === 'd') { duplicate(); e.preventDefault(); }
+        if (e.key === 'Delete' || e.key === 'Backspace') { layers = layers.filter(o => o.id !== selectedId); selectedId = null; saveState(); draw(); renderEditor(); }
+        if (l && e.key.startsWith('Arrow')) {
+            const s = e.shiftKey ? gridSize : 1;
+            if(e.key==='ArrowUp') l.y-=s; if(e.key==='ArrowDown') l.y+=s; if(e.key==='ArrowLeft') l.x-=s; if(e.key==='ArrowRight') l.x+=s;
+            draw(); e.preventDefault();
+        }
+    }
+
+    function renderEditor() {
+        const panel = document.getElementById('panel-edit');
+        const l = layers.find(l => l.id === selectedId);
+        if (!l) { panel.innerHTML = '<p style="text-align:center; color:#ccc; margin-top:50px;">要素を選択</p>'; renderLayerList(); return; }
+
+        let html = `<div class="prop-group"><label>不透明度</label><input type="range" id="edOp" min="0" max="1" step="0.05" value="${l.opacity}"></div>`;
+        if (l.type === 'text') {
+            html += `
+                <div class="prop-group"><label>テキスト</label><textarea id="edTxt" rows="3">${l.text}</textarea></div>
+                <div class="prop-group"><label>フォント</label><select id="edFont">${Object.keys(FONT_STACKS).map(f => `<option value="${f}" ${l.fontFamily===f?'selected':''}>${f}</option>`).join('')}</select></div>
+                <div class="grid-2"><div class="prop-group"><label>サイズ</label><input type="number" id="edSize" value="${l.fontSize}"></div><div class="prop-group"><label>太さ</label><input type="number" id="edWght" value="${l.fontWeight}"></div></div>
+                <div class="prop-group"><label>色</label><input type="color" id="edCol" value="${l.color}"></div>
+                <div class="grid-2"><div class="prop-group"><label>縁幅</label><input type="number" id="edOutW" value="${l.outlineWidth}"></div><div class="prop-group"><label>縁色</label><input type="color" id="edOutC" value="${l.outlineColor}"></div></div>
+                <div class="grid-2"><div class="prop-group"><label>字間</label><input type="number" id="edLS" value="${l.letterSpacing}"></div><div class="prop-group"><label>影ぼかし</label><input type="number" id="edSh" value="${l.shadowBlur}"></div></div>
+            `;
+        } else {
+            html += `<div class="prop-group"><label>カラー</label><input type="color" id="edCol" value="${l.color}"></div>
+                     <div class="grid-2"><div class="prop-group"><label>幅</label><input type="number" id="edW" value="${l.w}"></div><div class="prop-group"><label>高さ</label><input type="number" id="edH" value="${l.h}"></div></div>`;
+        }
+        panel.innerHTML = html + `<button onclick="duplicate()" style="width:100%; margin-bottom:5px;">複製 (Ctrl+D)</button><button onclick="align('center')" style="width:100%">中央に整列</button>`;
+        
+        const bind = (id, prop, isNum=false) => {
+            const el = document.getElementById(id); if(!el) return;
+            el.oninput = e => { l[prop] = isNum ? parseFloat(e.target.value) : e.target.value; if(id==='edFont') loadGoogleFont(e.target.value); draw(); };
+            el.onchange = () => saveState();
+        };
+        bind('edOp','opacity',true); bind('edTxt','text'); bind('edFont','fontFamily'); bind('edSize','fontSize',true);
+        bind('edWght','fontWeight'); bind('edCol','color'); bind('edOutW','outlineWidth',true);
+        bind('edOutC','outlineColor'); bind('edLS','letterSpacing',true); bind('edSh','shadowBlur',true);
+        bind('edW','w',true); bind('edH','h',true);
+        renderLayerList();
+    }
+
+    function renderLayerList() {
+        document.getElementById('layer-list').innerHTML = layers.map(l => `<div class="layer-item ${l.id===selectedId?'active':''}" onclick="selectedId=${l.id};renderEditor();draw();">${l.text?l.text.substring(0,12):l.type}</div>`).reverse().join('');
+    }
+
+    function addText() { const id = Date.now(); layers.push({ id, type: 'text', text: 'New Text', x: 600, y: 315, fontSize: 60, fontWeight: '700', fontFamily: 'Yu Gothic', color: '#000', textAlign: 'center', lineHeight: 1.2, letterSpacing: 2, shadowBlur: 0, shadowColor: 'rgba(0,0,0,0.3)', outlineWidth: 0, outlineColor: '#fff', opacity: 1 }); selectedId = id; saveState(); draw(); renderEditor(); }
+    function addShape() { const id = Date.now(); layers.push({ id, type: 'shape', x: 400, y: 280, w: 400, h: 100, color: '#007aff', opacity: 1 }); selectedId = id; saveState(); draw(); renderEditor(); }
+    function handleImage(input) { if(!input.files[0]) return; const r = new FileReader(); r.onload = (e) => { const id = Date.now(); layers.push({ id, type: 'image', src: e.target.result, x: 100, y: 100, w: 300, h: 200, opacity: 1 }); selectedId = id; saveState(); draw(); renderEditor(); }; r.readAsDataURL(input.files[0]); }
+    function align(mode) { const l = layers.find(l => l.id === selectedId); if(!l) return; if(mode==='center'){ l.x=600; l.y=315; if(l.type!=='text'){l.x-=l.w/2; l.y-=l.h/2;} } draw(); saveState(); }
+    function moveLayer(dir) { const i = layers.findIndex(l => l.id === selectedId); if(i<0) return; const l = layers.splice(i, 1)[0]; if(dir==='top') layers.push(l); else layers.unshift(l); draw(); renderLayerList(); saveState(); }
+    function duplicate() { const l = layers.find(l => l.id === selectedId); if(!l) return; const n = JSON.parse(JSON.stringify(l)); n.id = Date.now(); n.x += 20; n.y += 20; layers.push(n); selectedId = n.id; draw(); renderEditor(); saveState(); }
+    function loadGoogleFont(f) { if(["Yu Gothic","Hiragino Sans","Meiryo"].includes(f)) return; document.getElementById('fontLink').href = `https://fonts.googleapis.com/css2?family=${f.replace(/ /g,'+')}:wght@100;400;700;900&display=swap`; }
+    function saveState() { history = history.slice(0, historyIndex + 1); history.push(JSON.stringify({ layers, canvasBg })); historyIndex++; if(history.length > 30) history.shift(); }
+    function undo() { if(historyIndex > 0) { historyIndex--; restore(history[historyIndex]); } }
+    function redo() { if(historyIndex < history.length - 1) { historyIndex++; restore(history[historyIndex]); } }
+    function restore(s) { const data = JSON.parse(s); layers = data.layers; canvasBg = data.canvasBg; layers.forEach(l => { if(l.type==='image') l.imgEl = null; }); draw(); renderEditor(); }
+    function switchTab(t) { document.querySelectorAll('.inspector').forEach(p => p.classList.remove('active')); document.getElementById(t).classList.add('active'); document.querySelectorAll('.tab').forEach(tab => tab.classList.toggle('active', tab.dataset.target === t)); }
+    function getMouse(e) { const r = canvas.getBoundingClientRect(); return { x: (e.clientX - r.left) * (1200 / r.width), y: (e.clientY - r.top) * (630 / r.height) }; }
+    function download() { selectedId = null; const oldGrid = showGrid; showGrid = false; draw(); const a = document.createElement('a'); a.download = `ogp-${Date.now()}.png`; a.href = canvas.toDataURL(); a.click(); showGrid = oldGrid; draw(); }
+
+    window.onload = init;
+</script>
+</body>
+</html>

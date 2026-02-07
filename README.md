@@ -3,6 +3,7 @@
 （俺のJSDocはあまりに多いから、LLMが生成するものって俺のもの学習してんのかな（ぼやき））  
 めんどいときはAIにコード生成やらせてますわよ！！！！  
 <br> <!-- 許して -->
+
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=AruihaYoru&layout=compact&theme=vision-friendly-dark)](https://github.com/anuraghazra/github-readme-stats)
 
 
@@ -11,12 +12,28 @@
 - **JavaScript**：[HelloWorld, but it's 800 lines long.](http://AruihaYoru.github.io/HelloWorld) （"HelloWorldを出すために800行使ったプロジェクト）
 - **CSS**：[iClound](https://github.com/AruihaYoru/iClound) をDLしてセットアップしてみればわかるよ。
 - **HTML**：さすがにこれは自然習得でしょ、出来て当然みたいな環境で育ちましたから
-- **Rust**: さすがにWASMが必要になってきた
+- **Rust**: さすがにWASMが必要になってきた（ドがつくへたくそ）
 - **Python**：[mrv player](https://github.com/AruihaYoru/NewVideo) / [minesweeper on CSS](https://github.com/AruihaYoru/no-js-minesweeper) とか
-- **C言語**：ちょっと（まだ一つも作ってないけど）。ワンクリックでスクショできるものが欲しかったから作っただけー。
+- **C言語**：[EzCLI](https://AruihaYoru.github.io/AruihaYoru/EzCLI) とか。あれはC言語とpythonのハイブリッド。  
 
+#### 逆にやったことないもの
+- **php**：ええと、昔、ブックオフでそれの参考書が売ってましたね。なんとなく触っていませんでした。あれなんなんですかね。名前しからしらないし<?phpっていうのは知ってる
+- **Java**：ほんとに使いたかったのはjavaなんですよね。知らないんだよ。
+
+#### なんか一応かじってるもの
+- **(似非)心理学**：ええとね。とある創作コミュニティでは、「『キャラクター』が何かをするには『動機』が必要で、その『動機』はそのキャラの性格や過去で決まる。」という理論があって。私はそれにのめりこみました。人間にストレスを与え続けるとどうなるか、条件付きの愛を受けて育つとどうなるのか。....オリキャラ作るときしか役に立ちませんが。
+- **(似非)言語学**：そんな詳しくはありません。ラテン語は好きです。
+- **音象徴**：これも同様に。オリキャラ作るときに勉強したものです。
+- **ウェブデザイン**：もちろん。私が最初に読んだものは、CSSの参考書だ。
+- **執筆**：これは、[Aruiha](https://AruihaYoru.github.io/AruihaYoru) を見てもらえばとってもわかると思います。
+こういうの学んでると、「それは違うでしょ」みたいなことばっか思うようになるんすよね（過去と行動があっていない、とか。）
+
+#### 好きなもの
 **好きな言語**：ラテン語と英語  
 **好きな言葉**：接続詞（日本語）と接尾語（ラテン語）
+
+**好きなもの**：映画（とっても好き！一年で100本とか見るよ！）  
+**嫌いなもの**：愚かさ
 
 **苦手な食べ物**：野菜、野菜、野菜、酢  
 **好きな食べ物**：エビの寿司....が好きなわけではない。
@@ -129,17 +146,9 @@
 
 [![AruihaYoru's Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=AruihaYoru&theme=react-dark)](https://github.com/ashutosh00710/github-readme-activity-graph)
 
-<!--
-### やらかしたこと
 
-#### Firebase
-[AruihaYoruのポータルページ](https://aruihayoru.github.io) を御覧なさい。  
-`resources\js\script.js` に、FirebaseのAPIキーとかが平文で埋め込まれてますわよ
--->
 
 <!--
-
-
 **AruihaYoru/AruihaYoru** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
 Here are some ideas to get you started:
