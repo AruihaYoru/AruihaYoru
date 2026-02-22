@@ -1,0 +1,178 @@
+:root {
+    --bg-color: #fdfdfd;
+    --text-color: #333;
+    --accent-color: #0091ff;
+    --secondary-accent-color: #1f5e8f;
+    --border-color: #eee;
+    --meta-color: #888;
+    --max-width: 700px;
+	--font-serif: "Georgia", "游明朝", "YuMincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "MS PMincho", serif;
+	--font-sans: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", "メイリオ", Meiryo, sans-serif;
+}
+
+/* 基本レイアウト */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-serif) !important;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: var(--max-width);
+    width: 100%;
+    padding: 4rem 2rem;
+    box-sizing: border-box;
+}
+
+/* ヘッダーセクション */
+.entry-header {
+    margin-bottom: 4rem;
+    border-bottom: 1px solid #000;
+    padding-bottom: 2rem;
+}
+
+.meta-info {
+    font-family: var(--font-sans) !important;
+    font-size: 0.75rem;
+    color: var(--meta-color);
+    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 1.5rem;
+    letter-spacing: 0.1em;
+}
+
+.category {
+    font-weight: bold;
+    color: var(--accent-color);
+    text-transform: uppercase;
+}
+
+.entry-title {
+    font-size: 1.8rem;
+    margin: 0 0 1.5rem 0;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1rem;
+    line-height: 1.2;
+}
+
+/* セクションタイトル（英語サブタイトル付き） */
+.section-title {
+    font-size: 1.6rem;
+    color: var(--accent-color);
+    margin: 4rem 0 3rem 0;
+    letter-spacing: 0.2em;
+    text-align: center;
+    font-weight: normal;
+}
+
+.section-title::after {
+    content: attr(data-en);
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    color: var(--meta-color);
+    margin-top: 0.5rem;
+    font-family: var(--font-sans) !important;
+}
+
+/* コンテンツ装飾 */
+.entry-description {
+    padding: 1rem 0;
+    border-top: 1px double var(--border-color);
+    margin-bottom: 2rem;
+}
+
+/* 用語集・グリッドレイアウト */
+.word-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.word-card {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+
+.word-term {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--secondary-accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.word-definition {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0;
+}
+
+/* 汎用パーツ：ボタン */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background-color: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    text-decoration: none;
+    font-family: var(--font-sans) !important;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    letter-spacing: 0.1em;
+}
+
+.btn:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+/* フッター */
+.entry-footer {
+    margin-top: 8rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--text-color);
+}
+
+.afterword {
+    font-size: 0.9rem;
+    color: var(--meta-color);
+    line-height: 2;
+}
+
+.afterword p:first-child {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.nav-back {
+    margin-top: 2rem;
+}
+
+.nav-back a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.nav-back a:hover {
+    color: var(--accent-color);
+}
+
+/* レスポンシブ */
+@media (max-width: 600px) {
+    .container {
+        padding: 2rem 1.5rem;
+    }
+    .entry-title {
+        font-size: 1.5rem;
+    }
+}
