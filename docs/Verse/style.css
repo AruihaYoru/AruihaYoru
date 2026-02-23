@@ -114,6 +114,17 @@ body {
     margin: 0;
 }
 
+.download-text {
+    font-size: 0.95rem;
+	font-weight:bold;
+    color: #555;
+    margin: 0;
+}
+
+.link {
+	color:#0093ff;
+}
+
 /* 汎用パーツ：ボタン */
 .btn {
     display: inline-block;
@@ -176,3 +187,35 @@ body {
         font-size: 1.5rem;
     }
 }
+
+/* 画像 */
+div.image img{
+	width:100%;
+	height:auto;
+}
+
+div.image {
+	box-shadow: 0 1px 6px rgb(0 0 0 / 25%)
+}
+
+div.image::after{
+	content: attr(data-caption);
+	width:calc(100% - 6px);
+	background-color: #eee;
+	display: block;
+	margin-top: -10px;
+	border: solid 1px #666;
+	text-align: center;
+	padding: 2px;
+	font-weight: 700;
+	font-size: 80%;
+}
+
+.image img {
+  cursor: zoom-in;
+}
+
+.gslide-image img {
+	margin:10vw !important; /* 許されるのか？ */
+}
+
