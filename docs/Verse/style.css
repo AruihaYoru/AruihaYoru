@@ -189,33 +189,42 @@ body {
 }
 
 /* 画像 */
-div.image img{
-	width:100%;
-	height:auto;
-}
-
 div.image {
-	box-shadow: 0 1px 6px rgb(0 0 0 / 25%)
+	box-shadow: 0 1px 6px rgb(0 0 0 / 25%);
+	width: 100%;
+	margin: 10px 0;
+	min-height: 375px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end; 
+	position: relative;
 }
 
-div.image::after{
+div.image img {
+	width: 100%;
+	height: auto;
+	display: block;
+	font-size: 0;
+	text-indent: -9999px;
+	flex-grow: 1;
+	object-fit: contain;
+}
+
+div.image::after {
 	content: attr(data-caption);
-	width:calc(100% - 6px);
 	background-color: #eee;
 	display: block;
-	margin-top: -10px;
 	border: solid 1px #666;
+	border-top: none;
 	text-align: center;
 	padding: 2px;
 	font-weight: 700;
-	font-size: 80%;
+	font-size: 80% !important;
+	width: 100%;
+	box-sizing: border-box;
+	margin-top: auto; 
 }
-
 .image img {
   cursor: zoom-in;
-}
-
-.gslide-image img {
-	margin:10vw !important; /* 許されるのか？ */
 }
 
