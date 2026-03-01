@@ -228,3 +228,7 @@ div.image::after {
   cursor: zoom-in;
 }
 
+/* 無理やりLuminousのを書き換える強引な手段 */
+.lum-lightbox-inner .lum-lightbox-caption {
+	max-width: none !important;
+}
