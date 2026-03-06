@@ -4,14 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AruihaYoru — High-End Digital Archive</title>
-    <meta name="description"
-        content="A premium digital exploration of AruihaYoru's projects, philosophy, and technical architecture.">
+    <title>AruihaYoru</title>
+
+    <meta name="description" content="デベロッパー「或いは夜」について">
+    <meta name="author" content="AruihaYoru">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="AruihaYoru — High-End Digital Archive">
+    <meta property="og:description" content="或いは夜のポータルページだよ！！！！">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yoru.is-a.tokyo/">
+    <meta property="og:image" content="https://yoru.is-a.tokyo/og-image.jpg"> <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="./icon.jpg" type="image/x-icon">
+    <link rel="apple-touch-icon" href="icon.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500&family=JetBrains+Mono:wght@100;300&family=Noto+Sans+JP:wght@200;400&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
+
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+
+    <meta name="theme-color" content="#0a0a0a">
+
+    <style>
+        .reveal { opacity: 0; }
+        :root {
+            --font-display: 'Cormorant Garamond', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --font-sans: 'Noto Sans JP', sans-serif;
+        }
+		
+		/* ru-ru */
+    </style>
 </head>
 
 <body>
-    <div class="theme-toggle">Obscura</div>
+    <canvas id="background-text"></canvas>
+    <div class="theme-toggle" style="display:none;">Obscura</div>
 
     <div class="side-nav">
         <div class="nav-dot" title="Top"></div>
@@ -27,8 +60,21 @@
         <!-- Hero Section -->
         <header class="hero-block">
             <div class="hero-main">
-                <h1 class="reveal">Hi there 👋</h1>
+                <h1 class="reveal">Aruiha<br>Yoru</h1>
             </div>
+
+            <!-- Ticker Control (Top Right) -->
+            <div class="ticker-wrap reveal">
+                <span class="ticker-icon">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                        <path
+                            d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z" />
+                    </svg>
+                </span>
+                <input type="range" id="ticker-volume" class="ticker-slider" min="0" max="0.2" step="0.005"
+                    value="0.03">
+            </div>
+
             <div class="scroll-indicator">DESCEND</div>
         </header>
 
@@ -51,7 +97,8 @@
                         <div class="text-detail">
                             <p>高次脳機能障害って言ったら間違い-rasiけど、文字にすると短期記憶障害みたいな感じ（JSDoc警報）。<br>
                                 割と真面目に数分もすれば忘れてしまうからAI使わないバイブコーディングみたいな感じになってる（そのためにも、一度AIに読ませてから直させてっていうスタイル）。<br>
-                                めんどいときはAIにコード生成やらせてますわよ！！！！</p>
+                                めんどいときはAIにコード生成やらせてますわよ！！！！<br>
+                                たまにエビだったりします。将来の夢は海獣医師</p>
                         </div>
                     </div>
                 </div>
@@ -62,94 +109,150 @@
         <section class="grid-capsule">
             <div class="content-box reveal">
                 <span class="section-label">02 — LOGS & PASSION</span>
-                <h2 class="title-large">💖 「推し」について話そうか？</h2>
 
-                <div class="fav-group">
-                    <div class="artifact-num">A</div>
-                    <h4>HTTP STATUS CODES</h4>
-                    <div class="favorites-grid">
-                        <div class="fav-card">
-                            <p><b>100: Continue.</b>全肯定ありがとうございますンナアアアア！！！！</p>
-                        </div>
-                        <div class="fav-card">
-                            <p><b>101: Switching Protocol.</b>Fun Fact:急に早口になったらかわいいね</p>
-                        </div>
-                        <div class="fav-card">
-                            <p><b>202: Accepted.</b>受理しただけで完了していない儚さがわかる友を探している</p>
-                        </div>
-                        <div class="fav-card">
-                            <p><b>303: See Other.</b>こいつ自身は何も出来ないのがいい</p>
-                        </div>
-                        <div class="fav-card">
-                            <p><b>403: Forbidden.</b>権限なしんな！！！！！！！</p>
-                        </div>
-                        <div class="fav-card">
-                            <p><b>429: Too Many Requests.</b>Good/10</p>
-                        </div>
-                        <div class="fav-card">
-                            <p><b>410: Gone.</b>410 >>>>>>>>> ALL</p>
-                        </div>
-                        <div class="fav-card">
-                            <p><b>500: Internal Server Error.</b>何が起きてるのかわかってなくて可愛い</p>
+                <div class="guestbook-container">
+                    <div class="visitor-stats">
+                        <div style="display: flex; flex-wrap: wrap; gap: 4rem; align-items: flex-end;">
+                            <div class="stat-item">
+                                <span class="artifact-num" style="font-size: 8rem; top: 0; left: -2rem;">V</span>
+                                <span class="stat-label">TOTAL VISITORS ( MAIN )</span>
+                                <div id="visitor-count" class="stat-value">...</div>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">VISITORS ( TENET )</span>
+                                <p id="count" class="stat-value"></p>
+                                <script src="https://counter.nanasi-rasi.net/counter.js"></script>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="fav-group">
-                    <div class="artifact-num">B</div>
-                    <h4>PORT NUMBERS</h4>
-                    <div class="favorites-grid">
-                        <div class="fav-card">
-                            <p><b>8000:</b> おれんちのWi-Fi特定してみやがれ</p>
+                    <div class="guestbook-main">
+                        <div class="guestbook-header">
+                            <h2 class="title-large" style="margin-bottom: 2rem;">Guestbook</h2>
+                            <div class="guestbook-input-group">
+                                <input type="text" id="signature-name" placeholder="Leave your mark (Name / Alias)"
+                                    maxlength="24">
+                                <button id="submit-signature">署名する</button>
+                            </div>
                         </div>
-                        <div class="fav-card">
-                            <p><b>3000:</b> Next.jsのおかげで好きになれたよ</p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="fav-group">
-                    <div class="artifact-num">C</div>
-                    <h4>SOFTWARE & TOOLS</h4>
-                    <div class="favorites-grid">
-                        <div class="fav-card">
-                            <p><b>Notepad++:</b> おれの嫁</p>
-                        </div>
-                        <div class="fav-card">
-                            <p><b>EDGE2:</b> 結構好き。定期的に使ってる</p>
-                        </div>
-                        <div class="fav-card">
-                            <p><b>FFmpeg:</b> たぶん大体のプロジェクトというか結構な場所で使ってる</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="fav-group">
-                    <div class="artifact-num">D</div>
-                    <h4>OTHERS</h4>
-                    <div class="favorites-grid">
-                        <div class="fav-card">
-                            <p><b>映画:</b> とっても好き！一年で100本とか見るよ！</p>
-                        </div>
-                        <div class="fav-card">
-                            <p><b>エビの寿司:</b> ....が好きなわけではない。</p>
+                        <div id="signature-list">
+                            <p style="text-align: center; opacity: 0.5;">Loading fragments...</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Philosophy -->
+        <!-- Philosophy & Skills -->
         <section class="vertical-block reveal">
-            <span class="section-label">03 — PHILOSOPHY</span>
-            <h2 class="title-large" style="font-size: clamp(2rem, 6vw, 4rem);">学んだことと「動機」</h2>
-            <div class="philosophy-grid">
-                <div class="text-detail">
-                    <p>とある創作コミュニティでは、「『キャラクター』が何かをするには『動機』が必要で、その『動機』はそのキャラの性格や過去で決まる。」という理論があって。私はそれにのめりこみました。</p>
+            <span class="section-label">03 — PHILOSOPHY & SKILLS</span>
+            <h2 class="title-large" style="font-size: clamp(2rem, 6vw, 4rem);">学んだこと</h2>
+
+            <div class="registry-container">
+                <!-- Group 01: Acquired -->
+                <div class="registry-section">
+                    <div class="registry-header">Acquired Skills</div>
+
+                    <div class="registry-row">
+                        <div class="registry-key">JavaScript</div>
+                        <div class="registry-value">
+                            私の第一言語です。基本はVanilla
+                            JSですが、必要であればTypeScriptも辞しません。あ、node.jsはいつか勉強したいと考えています（友人が少し言っていましたので）。代表例としては....<a
+                                href="http://AruihaYoru.github.io/HelloWorld" target="_blank">HelloWorld, but it's 800
+                                lines long.</a>など。
+                        </div>
+                    </div>
+
+                    <div class="registry-row">
+                        <div class="registry-key">CSS</div>
+                        <div class="registry-value">
+                            <a href="https://github.com/AruihaYoru/iClound" target="_blank">iClound</a>
+                            をDLしてセットアップしてみればわかるよ。
+                        </div>
+                    </div>
+
+                    <div class="registry-row">
+                        <div class="registry-key">HTML</div>
+                        <div class="registry-value">さすがにこれは自然習得でしょ、出来て当然みたいな環境で育ちましたから</div>
+                    </div>
+
+                    <div class="registry-row">
+                        <div class="registry-key">Rust</div>
+                        <div class="registry-value">さすがにWASMが必要になってきた（ドがつくへたくそ）</div>
+                    </div>
+
+                    <div class="registry-row">
+                        <div class="registry-key">Python</div>
+                        <div class="registry-value">
+                            <a href="https://github.com/AruihaYoru/NewVideo" target="_blank">mrv player</a> /
+                            <a href="https://github.com/AruihaYoru/no-js-minesweeper" target="_blank">minesweeper on
+                                CSS</a> とか
+                        </div>
+                    </div>
+
+                    <div class="registry-row">
+                        <div class="registry-key">C Language</div>
+                        <div class="registry-value">
+                            <a href="https://AruihaYoru.github.io/AruihaYoru/EzCLI" target="_blank">EzCLI</a>
+                            とか。あれはC言語とpythonのハイブリッド。
+                        </div>
+                    </div>
                 </div>
-                <div class="text-detail">
-                    <p>こういうの学んでると、「それは違うでしょ」みたいなことばっか思うようになるんすよね（過去と行動があっていない、とか。）</p>
+
+                <!-- Group 02: Void -->
+                <div class="registry-section">
+                    <div class="registry-header">Void Channels</div>
+
+                    <div class="registry-row">
+                        <div class="registry-key">PHP</div>
+                        <div class="registry-value">ええと、昔、ブックオフでそれの参考書が売ってましたね。なんとなく触っていませんでした。あれなんなんですかね。名前しか知らないし
+                            <code>&lt;?php</code> っていうのは知ってる。
+                        </div>
+                    </div>
+
+                    <div class="registry-row">
+                        <div class="registry-key">Java</div>
+                        <div class="registry-value">ほんとに使いたかったのはjavaなんですよね。知らないんだよ。</div>
+                    </div>
                 </div>
+
+                <!-- Group 03: Fragments -->
+                <div class="registry-section">
+                    <div class="registry-header">Fragments</div>
+
+                    <div class="registry-row">
+                        <div class="registry-key">(似非)心理学</div>
+                        <div class="registry-value">
+                            とある創作コミュニティでは、「『キャラクター』が何かをするには『動機』が必要で、その『動機』はそのキャラの性格や過去で決まる。」という理論があって。私はそれにのめりこみました。人間にストレスを与え続けるとどうなるか、条件付きの愛を受けて育つとどうなるのか。....オリキャラ作るときしか役に立ちませんが。
+                        </div>
+                    </div>
+
+                    <div class="registry-row">
+                        <div class="registry-key">(似非)言語学</div>
+                        <div class="registry-value">そんな詳しくはありません。ラテン語は好きです。</div>
+                    </div>
+
+                    <div class="registry-row">
+                        <div class="registry-key">音象徴</div>
+                        <div class="registry-value">これも同様に。オリキャラ作るときに勉強したものです。</div>
+                    </div>
+
+                    <div class="registry-row">
+                        <div class="registry-key">Web Design</div>
+                        <div class="registry-value">もちろん。私が最初に読んだものは、CSSの参考書だ。</div>
+                    </div>
+
+                    <div class="registry-row">
+                        <div class="registry-key">Writing</div>
+                        <div class="registry-value">これは、<a href="https://AruihaYoru.github.io/AruihaYoru"
+                                target="_blank">Aruiha</a> を見てもらえばとってもわかると思います。（リンク先は原罪閉鎖してるので、いつかミラーサイトをつくります。）</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="registry-footer-note">
+                <p>こういうの学んでると、「それは違うでしょ」みたいなことばっか思うようになるんすよね（過去と行動があっていない、とか。）</p>
             </div>
         </section>
 
@@ -160,25 +263,25 @@
                 <h2 class="title-large">Digital Remains</h2>
                 <div class="artifact-list">
                     <div class="artifact-vertical-item">
-                        <div class="artifact-num">A</div>
+                        <div class="artifact-num">01</div>
                         <h3>Mimi (Music Instrument Minimal Interface)</h3>
                         <p class="artifact-desc">
                             Ver1.0から一気にVer2.0まで飛ばした、たぶん一番頑張ったやつ。基本的には一般的なCSV形式音声フォーマットだけど、どうしてもっていうなら8kHz/4bitで声を再生することもできる。
                         </p>
                     </div>
                     <div class="artifact-vertical-item">
-                        <div class="artifact-num">B</div>
+                        <div class="artifact-num">02</div>
                         <h3>iClound</h3>
                         <p class="artifact-desc">
                             Youtubeプレイリストと特定のディレクトリを同期するプレイヤー。CSSがとってもクリーン！「わたしが欲しいもの」は「全員がほしいもの」のはず。</p>
                     </div>
                     <div class="artifact-vertical-item">
-                        <div class="artifact-num">C</div>
+                        <div class="artifact-num">03</div>
                         <h3>PhantomWords</h3>
                         <p class="artifact-desc">「ありえそうな」英単語に意味を追加する造語ジェネレータ。マルコフ連鎖。マルコフ連鎖をWeb Workerで動かしたよ！</p>
                     </div>
                     <div class="artifact-vertical-item">
-                        <div class="artifact-num">D</div>
+                        <div class="artifact-num">04</div>
                         <h3>gba2mp3</h3>
                         <p class="artifact-desc">
                             mp3形式のファイルをGBAで流せる. 具体的にはinput.mp3とinput.pngをinput/に配置してpythonつけるだけ！音質はこれまた8kHz/4bit。</p>
@@ -241,6 +344,9 @@
         </footer>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="script.js"></script>
 </body>
 

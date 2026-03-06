@@ -136,4 +136,299 @@ document.addEventListener("DOMContentLoaded", () => {
         emblem.innerText = text;
         canvas.appendChild(emblem);
     });
+
+    // 7. Ticking Clock Logic
+    const tickerSlider = document.getElementById('ticker-volume');
+
+    let tickerCtx;
+    let tickerGain;
+    let tickerInterval;
+
+    const initTicker = () => {
+        if (tickerCtx) return;
+        tickerCtx = new (window.AudioContext || window.webkitAudioContext)();
+        tickerGain = tickerCtx.createGain();
+        tickerGain.connect(tickerCtx.destination);
+
+        // Initial volume from slider
+        if (tickerSlider) {
+            tickerGain.gain.value = parseFloat(tickerSlider.value);
+        } else {
+            tickerGain.gain.value = 0.03;
+        }
+
+        tickerInterval = setInterval(() => {
+            if (tickerCtx.state === 'suspended') tickerCtx.resume();
+
+            const now = tickerCtx.currentTime;
+
+            // Create a sharp "tick" sound
+            const osc = tickerCtx.createOscillator();
+            const g = tickerCtx.createGain();
+
+            osc.connect(g);
+            g.connect(tickerGain);
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(1200, now);
+
+            g.gain.setValueAtTime(1, now);
+            g.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+
+            osc.start(now);
+            osc.stop(now + 0.05);
+        }, 1000);
+    };
+
+    if (tickerSlider) {
+        tickerSlider.addEventListener('input', (e) => {
+            initTicker(); // Start on first interaction if not yet started
+            if (tickerGain) {
+                tickerGain.gain.value = parseFloat(e.target.value);
+            }
+        });
+    }
+
+    // Auto-init ticker on any click
+    document.addEventListener('click', () => initTicker(), { once: true });
+
+    // 8. Dynamic Background Text Sizing
+    const BG_CONFIG = {
+        text: "ARUIHA",
+        font: "'impact', sans-serif",
+        weight: "1000",
+        baseSize: 100
+    };
+
+    const canvasBg = document.getElementById('background-text');
+
+    const updateBgLayout = () => {
+        if (!canvasBg) return;
+
+        const ctx = canvasBg.getContext('2d');
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const isMobile = width < 900;
+
+        const dpr = window.devicePixelRatio || 1;
+
+        canvasBg.width = width * dpr;
+        canvasBg.height = height * dpr;
+
+        canvasBg.style.width = `${width}px`;
+        canvasBg.style.height = `${height}px`;
+
+        ctx.scale(dpr, dpr);
+
+        ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#d4af37';
+        ctx.textBaseline = 'middle';
+        ctx.textAlign = 'center';
+
+        ctx.font = `normal ${BG_CONFIG.weight} ${BG_CONFIG.baseSize}px ${BG_CONFIG.font}`;
+
+        ctx.save();
+        ctx.translate(width / 2, height / 2);
+
+        const metrics = ctx.measureText(BG_CONFIG.text);
+        const textWidth = metrics.width;
+
+        const textHeight = BG_CONFIG.baseSize * 0.7;
+
+        if (isMobile) {
+            ctx.rotate(Math.PI / 2);
+            ctx.scale(height / textWidth, width / textHeight);
+        } else {
+            ctx.scale(width / textWidth, height / textHeight);
+        }
+
+        ctx.fillText(BG_CONFIG.text, 0, 0);
+        ctx.restore();
+    };
+
+    window.addEventListener('resize', updateBgLayout);
+
+    const observerTheme = new MutationObserver(updateBgLayout);
+    observerTheme.observe(document.body, { attributes: true, attributeFilter: ['data-theme', 'style'] });
+
+    if (document.fonts) {
+        document.fonts.load(`${BG_CONFIG.weight} 100px ${BG_CONFIG.font}`).then(() => {
+            updateBgLayout();
+        }).catch(err => {
+            console.error("Font loading failed:", err);
+            updateBgLayout();
+        });
+    } else {
+        updateBgLayout();
+    }
+
+    // 9. Firebase Integration (Counter & Guestbook)
+    const firebaseConfig = {
+        apiKey: "AIzaSyDo2SgQbOLvyOgpqKa0cFuBxLTMrfZhqqQ",
+        authDomain: "my-portfolio-counter-42d3c.firebaseapp.com",
+        projectId: "my-portfolio-counter-42d3c",
+        storageBucket: "my-portfolio-counter-42d3c.firebasestorage.app",
+        messagingSenderId: "653888609053",
+        appId: "1:653888609053:web:f3aafa1cadc24eec8cdff4",
+        measurementId: "G-DSBKJGPGYG"
+    };
+
+    if (typeof firebase !== 'undefined') {
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        const auth = firebase.auth();
+
+        // Authentication & Observer
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                setupGuestbook(db, user);
+            } else {
+                auth.signInAnonymously().catch(e => {
+                    console.error("Auth restriction:", e);
+                    setupGuestbook(db, null);
+                });
+            }
+        });
+
+        // Visitor Counter
+        const setupVisitorCounter = () => {
+            const countRef = db.collection('site').doc('counter');
+            const visitorCountElement = document.getElementById('visitor-count');
+            const visitedKey = 'aruihayoru-portfolio-visited';
+
+            countRef.onSnapshot(doc => {
+                const count = doc.exists ? (doc.data().count || 0) : 0;
+                if (visitorCountElement) visitorCountElement.textContent = count.toLocaleString();
+            }, e => console.log("System log: restricted."));
+
+            if (!localStorage.getItem(visitedKey)) {
+                db.runTransaction(transaction => {
+                    return transaction.get(countRef).then(doc => {
+                        const newCount = doc.exists ? (doc.data().count || 0) + 1 : 1;
+                        transaction.set(countRef, { count: newCount }, { merge: true });
+                    });
+                }).then(() => {
+                    localStorage.setItem(visitedKey, 'true');
+                }).catch(e => console.log("System log: update failed."));
+            }
+        };
+
+        // Guestbook Display & Interaction
+        const setupGuestbook = (db, currentUser) => {
+            const signaturesRef = db.collection('signatures').orderBy('createdAt', 'desc');
+            const listContainer = document.getElementById('signature-list');
+            const nameInput = document.getElementById('signature-name');
+            const submitBtn = document.getElementById('submit-signature');
+
+            const VISIBLE_COUNT_PC = 6;
+            const VISIBLE_COUNT_MOBILE = 3;
+
+            if (submitBtn && nameInput) {
+                // Remove old event for clean setup
+                const newBtn = submitBtn.cloneNode(true);
+                submitBtn.parentNode.replaceChild(newBtn, submitBtn);
+
+                newBtn.addEventListener('click', () => {
+                    if (!currentUser) return;
+                    const name = nameInput.value.trim();
+                    if (!name) return;
+
+                    newBtn.disabled = true;
+                    newBtn.textContent = 'Recording...';
+
+                    db.collection('signatures').add({
+                        name: name,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                        uid: currentUser.uid
+                    }).then(() => {
+                        nameInput.value = '';
+                    }).finally(() => {
+                        newBtn.disabled = false;
+                        newBtn.textContent = '署名する';
+                    });
+                });
+            }
+
+            signaturesRef.onSnapshot(snapshot => {
+                if (!listContainer) return;
+                listContainer.innerHTML = '';
+
+                if (snapshot.empty) {
+                    listContainer.innerHTML = '<p style="text-align: center; opacity: 0.5;">No fragments found.</p>';
+                    return;
+                }
+
+                const grid = document.createElement('div');
+                grid.id = 'signature-grid';
+                const items = [];
+
+                snapshot.forEach(doc => {
+                    const data = doc.data();
+                    const date = data.createdAt ? data.createdAt.toDate().toLocaleDateString('ja-JP') : '';
+
+                    const item = document.createElement('div');
+                    item.className = 'signature-item';
+                    item.innerHTML = `
+                        <div class="content">
+                            <span class="name">${data.name}</span>
+                            <span class="date">${date}</span>
+                        </div>
+                        <div class="actions"></div>
+                    `;
+
+                    if (currentUser && currentUser.uid === data.uid) {
+                        const actions = item.querySelector('.actions');
+                        const editBtn = document.createElement('button');
+                        editBtn.textContent = 'EDIT';
+                        editBtn.onclick = () => {
+                            const newName = prompt("Edit your fragment:", data.name);
+                            if (newName && newName.trim()) {
+                                db.collection('signatures').doc(doc.id).update({ name: newName.trim() });
+                            }
+                        };
+                        const delBtn = document.createElement('button');
+                        delBtn.textContent = 'ERASE';
+                        delBtn.onclick = () => {
+                            if (confirm("Erase this remains?")) {
+                                db.collection('signatures').doc(doc.id).delete();
+                            }
+                        };
+                        actions.appendChild(editBtn);
+                        actions.appendChild(delBtn);
+                    }
+
+                    grid.appendChild(item);
+                    items.push(item);
+                });
+
+                listContainer.appendChild(grid);
+
+                // Pagination/Toggle
+                let isExpanded = false; // Always start collapsed
+                const threshold = window.innerWidth < 900 ? VISIBLE_COUNT_MOBILE : VISIBLE_COUNT_PC;
+
+                if (items.length > threshold) {
+                    const toggle = document.createElement('button');
+                    toggle.id = 'toggle-signatures-btn';
+                    listContainer.appendChild(toggle);
+
+                    const updateView = () => {
+                        const count = window.innerWidth < 900 ? VISIBLE_COUNT_MOBILE : VISIBLE_COUNT_PC;
+                        items.forEach((item, i) => {
+                            item.classList.toggle('is-hidden', i >= count && !isExpanded);
+                        });
+                        toggle.textContent = isExpanded ? 'Show Less' : 'Recover More Fragments';
+                    };
+
+                    toggle.onclick = () => {
+                        isExpanded = !isExpanded;
+                        updateView();
+                    };
+                    updateView();
+                }
+            });
+        };
+
+        setupVisitorCounter();
+    }
+
 });
