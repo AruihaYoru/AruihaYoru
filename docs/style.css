@@ -5,8 +5,8 @@
     --bg-bottom: #020203;
     --text-top: #0a0a0a;
     --text-bottom: #fcfcfc;
-    --accent: #d4af37;
-    --accent-reverse: #7ba45f;
+    --accent: #d4af37;
+    --accent-reverse: #7ba45f;
     --accent-light: #8b6b1d;
     --font-serif: 'Shippori Mincho', serif;
     --font-display: 'Shippori Mincho', serif;
@@ -453,7 +453,7 @@ body::after {
 }
 
 .name-wrap {
-	display:block;
+    display: block;
 }
 
 .name-slider-wrap {
@@ -473,11 +473,39 @@ body::after {
 }
 
 .main-name-text {
-	font-size: 5rem;
-	font-weight: 900; 
-    line-height: 3rem;
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: normal;
+    /* Fixed line height for better display */
     color: var(--accent-reverse);
-    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: var(--transition-premium);
+    margin-bottom: 1rem;
+}
+
+.social-links-wrap {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+.social-link {
+    color: var(--accent);
+    opacity: 0.6;
+    transition: var(--transition-premium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-link:hover {
+    opacity: 1;
+    color: var(--accent-reverse);
+    transform: translateY(-2px);
+}
+
+.social-link svg {
+    width: 20px;
+    height: 20px;
 }
 
 @media (max-width: 900px) {
@@ -485,6 +513,10 @@ body::after {
         flex-direction: column;
         text-align: center;
         gap: 1.5rem;
+    }
+
+    .social-links-wrap {
+        justify-content: center;
     }
 }
 
@@ -1118,7 +1150,7 @@ body::after {
     .visitor-stats {
         gap: 3rem;
     }
-	
+
     .stat-value {
         font-size: 3.5rem;
     }
@@ -1139,9 +1171,9 @@ body::after {
 
 @media (max-width: 1700px) {
 
-	#moe-counter {
-		display:none;
-	}
+    #moe-counter {
+        display: none;
+    }
 
 }
 
