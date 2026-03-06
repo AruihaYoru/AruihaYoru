@@ -142,74 +142,90 @@ document.addEventListener("DOMContentLoaded", () => {
         emblem.innerText = text;
         canvas.appendChild(emblem);
     });
-
-	// 7. Ticking Clock Logic
-	const tickerSlider = document.getElementById('ticker-volume');
-
+	
+	// 7. clicker sound
 	let tickerCtx;
 	let tickerGain;
 	let tickerInterval;
+	let noiseBuffer;
+	const tickerSlider = document.getElementById('ticker-volume');
+
+	const createNoiseBuffer = (ctx) => {
+		const bufferSize = ctx.sampleRate * 0.02;
+		const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+		const data = buffer.getChannelData(0);
+		for (let i = 0; i < bufferSize; i++) {
+			data[i] = Math.random() * 2 - 1;
+		}
+		return buffer;
+	};
 
 	const initTicker = () => {
-		if (tickerCtx) return;
+		if (tickerCtx) {
+			if (tickerCtx.state === 'suspended') {
+				tickerCtx.resume();
+			}
+			return;
+		}
+
 		tickerCtx = new (window.AudioContext || window.webkitAudioContext)();
 		tickerGain = tickerCtx.createGain();
 		tickerGain.connect(tickerCtx.destination);
 
-		if (tickerSlider) {
-			tickerGain.gain.value = parseFloat(tickerSlider.value);
-		} else {
-			tickerGain.gain.value = 1.0;
-		}
+		const initialVolume = tickerSlider ? parseFloat(tickerSlider.value) : 0.2;
+		tickerGain.gain.value = initialVolume * 5.0;
+
+		noiseBuffer = createNoiseBuffer(tickerCtx);
 
 		tickerInterval = setInterval(() => {
 			if (tickerCtx.state === 'suspended') tickerCtx.resume();
 
 			const now = tickerCtx.currentTime;
-
-			// 1. ノイズバッファの作成 (「カチッ」という質感の元)
-			const bufferSize = tickerCtx.sampleRate * 0.02; // 0.02秒分
-			const buffer = tickerCtx.createBuffer(1, bufferSize, tickerCtx.sampleRate);
-			const data = buffer.getChannelData(0);
-			for (let i = 0; i < bufferSize; i++) {
-				data[i] = Math.random() * 2 - 1;
-			}
-
 			const noise = tickerCtx.createBufferSource();
-			noise.buffer = buffer;
+			noise.buffer = noiseBuffer;
 
 			const filter = tickerCtx.createBiquadFilter();
 			filter.type = 'bandpass';
-			filter.frequency.setValueAtTime(2500, now); 
+			filter.frequency.setValueAtTime(2500, now);
 			filter.Q.setValueAtTime(1, now);
 
-			const g = tickerCtx.createGain();
-
+			const envelope = tickerCtx.createGain();
 			noise.connect(filter);
-			filter.connect(g);
-			g.connect(tickerGain);
+			filter.connect(envelope);
+			envelope.connect(tickerGain);
 
-			g.gain.setValueAtTime(0.5, now);
-			g.gain.exponentialRampToValueAtTime(0.001, now + 0.01);
+			envelope.gain.setValueAtTime(0.5, now);
+			envelope.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
 
 			noise.start(now);
 			noise.stop(now + 0.02);
 		}, 1000);
+
+		if (tickerCtx.state === 'suspended') {
+			console.warn('Autoplay blocked. Waiting for user interaction.');
+		} else {
+			console.log('Autoplay started successfully.');
+		}
 	};
 
+	initTicker();
+
 	if (tickerSlider) {
+		tickerSlider.value = 0.2;
 		tickerSlider.addEventListener('input', (e) => {
 			initTicker();
 			if (tickerGain) {
-				const multiplier = 5.0; 
-				tickerGain.gain.value = parseFloat(e.target.value) * multiplier;
+				tickerGain.gain.setTargetAtTime(parseFloat(e.target.value) * 5.0, tickerCtx.currentTime, 0.01);
 			}
 		});
 	}
 
-    // Auto-init ticker on any click
-    document.addEventListener('click', () => initTicker(), { once: true });
-
+	document.addEventListener('click', () => {
+		initTicker();
+	}, { once: true });
+	
+	
+	
     // 8. Dynamic Background Text Sizing
     const BG_CONFIG = {
         text: "MIYABI",
