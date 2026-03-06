@@ -1137,7 +1137,7 @@ body::after {
     }
 }
 
-@media (max-width: 1760px) {
+@media (max-width: 1700px) {
 
 	#moe-counter {
 		display:none;
