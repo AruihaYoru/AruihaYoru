@@ -88,12 +88,18 @@ document.addEventListener("DOMContentLoaded", () => {
     // 5. Name Slider (AruihaYoru Variants)
     const nameEl = document.getElementById('aruiha-name');
     const names = [
-        "或いは夜",
-        "AruihaYoru",
-        "Or Night",
-        "Ou la Nuit",
-        "O la Noche",
-        "Oder Nacht"
+        "或いは夜", // 日本語
+        "AruihaYoru", // ローマ字表記
+        "Or Night", // 英語
+		"Aut Nox", // ラテン語
+		"クンネ ネコンカ", // アイヌ語（あんま詳しくないんであってるかは知らん）
+        "Ou la Nuit", // フランス語
+        "もしは、よさり", // 雅語
+        "O la Noche", // スペイン語
+        "いなれば晩", // 薩摩方言
+        "Oder Nacht", // ドイツ語
+        "ありくいぬよぅ", // 琉球方言
+        "أو ليل" // アラビア語
     ];
     let nameIdx = 0;
 
@@ -116,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 6. Ambient Background Elements
-    const phrases = ["MEMENTO MORI", "AMOR FATI", "NON DUCOR DUCO", "ARS LONGA"];
+    const phrases = ["MEMENTO MORI", "AMOR FATI", "NON DUCOR DUCO", "ARS LONGA", "SIC ITUR AD ASTRA", "VIVERE EST COGITARE", "UMBRA ET IMAGO", "ET IN ARCADIA EGO"];
     const canvas = document.querySelector('.canvas');
     phrases.forEach((text, i) => {
         const emblem = document.createElement('div');
@@ -126,8 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
             font-family: var(--font-mono) !important;
             font-size: 0.55rem;
             letter-spacing: 0.6em;
-            opacity: 0.08;
-            top: ${30 + i * 40}vh;
+            opacity: 0.01;
+            top: ${Math.random() * 90}vh;
             left: ${10 + Math.random() * 70}vw;
             pointer-events: none;
             z-index: 1;
@@ -137,64 +143,76 @@ document.addEventListener("DOMContentLoaded", () => {
         canvas.appendChild(emblem);
     });
 
-    // 7. Ticking Clock Logic
-    const tickerSlider = document.getElementById('ticker-volume');
+	// 7. Ticking Clock Logic
+	const tickerSlider = document.getElementById('ticker-volume');
 
-    let tickerCtx;
-    let tickerGain;
-    let tickerInterval;
+	let tickerCtx;
+	let tickerGain;
+	let tickerInterval;
 
-    const initTicker = () => {
-        if (tickerCtx) return;
-        tickerCtx = new (window.AudioContext || window.webkitAudioContext)();
-        tickerGain = tickerCtx.createGain();
-        tickerGain.connect(tickerCtx.destination);
+	const initTicker = () => {
+		if (tickerCtx) return;
+		tickerCtx = new (window.AudioContext || window.webkitAudioContext)();
+		tickerGain = tickerCtx.createGain();
+		tickerGain.connect(tickerCtx.destination);
 
-        // Initial volume from slider
-        if (tickerSlider) {
-            tickerGain.gain.value = parseFloat(tickerSlider.value);
-        } else {
-            tickerGain.gain.value = 0.03;
-        }
+		if (tickerSlider) {
+			tickerGain.gain.value = parseFloat(tickerSlider.value);
+		} else {
+			tickerGain.gain.value = 1.0;
+		}
 
-        tickerInterval = setInterval(() => {
-            if (tickerCtx.state === 'suspended') tickerCtx.resume();
+		tickerInterval = setInterval(() => {
+			if (tickerCtx.state === 'suspended') tickerCtx.resume();
 
-            const now = tickerCtx.currentTime;
+			const now = tickerCtx.currentTime;
 
-            // Create a sharp "tick" sound
-            const osc = tickerCtx.createOscillator();
-            const g = tickerCtx.createGain();
+			// 1. ノイズバッファの作成 (「カチッ」という質感の元)
+			const bufferSize = tickerCtx.sampleRate * 0.02; // 0.02秒分
+			const buffer = tickerCtx.createBuffer(1, bufferSize, tickerCtx.sampleRate);
+			const data = buffer.getChannelData(0);
+			for (let i = 0; i < bufferSize; i++) {
+				data[i] = Math.random() * 2 - 1;
+			}
 
-            osc.connect(g);
-            g.connect(tickerGain);
+			const noise = tickerCtx.createBufferSource();
+			noise.buffer = buffer;
 
-            osc.type = 'sine';
-            osc.frequency.setValueAtTime(1200, now);
+			const filter = tickerCtx.createBiquadFilter();
+			filter.type = 'bandpass';
+			filter.frequency.setValueAtTime(2500, now); 
+			filter.Q.setValueAtTime(1, now);
 
-            g.gain.setValueAtTime(1, now);
-            g.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+			const g = tickerCtx.createGain();
 
-            osc.start(now);
-            osc.stop(now + 0.05);
-        }, 1000);
-    };
+			noise.connect(filter);
+			filter.connect(g);
+			g.connect(tickerGain);
 
-    if (tickerSlider) {
-        tickerSlider.addEventListener('input', (e) => {
-            initTicker(); // Start on first interaction if not yet started
-            if (tickerGain) {
-                tickerGain.gain.value = parseFloat(e.target.value);
-            }
-        });
-    }
+			g.gain.setValueAtTime(0.5, now);
+			g.gain.exponentialRampToValueAtTime(0.001, now + 0.01);
+
+			noise.start(now);
+			noise.stop(now + 0.02);
+		}, 1000);
+	};
+
+	if (tickerSlider) {
+		tickerSlider.addEventListener('input', (e) => {
+			initTicker();
+			if (tickerGain) {
+				const multiplier = 5.0; 
+				tickerGain.gain.value = parseFloat(e.target.value) * multiplier;
+			}
+		});
+	}
 
     // Auto-init ticker on any click
     document.addEventListener('click', () => initTicker(), { once: true });
 
     // 8. Dynamic Background Text Sizing
     const BG_CONFIG = {
-        text: "ARUIHA",
+        text: "MIYABI",
         font: "'impact', sans-serif",
         weight: "1000",
         baseSize: 100
