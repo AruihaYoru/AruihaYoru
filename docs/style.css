@@ -569,6 +569,7 @@ body::after {
     font-size: 1.1rem;
     line-height: 1.8;
     opacity: 0.8;
+    text-align: left;
 }
 
 .text-detail b {
@@ -682,11 +683,15 @@ body::after {
         padding-left: 0.5rem;
     }
 
-    /* Change grid to single column on tech core */
     .content-box>div[style*="display: grid;"] {
         grid-template-columns: 1fr !important;
         gap: 2rem !important;
     }
+	
+	.text-detail {
+		font-size: 0.9rem;
+	}
+	
 }
 
 .minimal-player-wrap {
@@ -1066,6 +1071,7 @@ body::after {
     transition: var(--transition-premium);
     position: relative;
     overflow: hidden;
+    margin: 15px 0;
 }
 
 .guestbook-input-group button::after {
@@ -1219,7 +1225,7 @@ body::after {
     }
 
     .guestbook-input-group input {
-        border-bottom: none;
+        /*! border-bottom: none; */
     }
 
     .guestbook-input-group button {
