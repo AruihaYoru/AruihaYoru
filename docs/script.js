@@ -41,8 +41,15 @@ document.addEventListener("DOMContentLoaded", () => {
         // Parallax for Hero with Skew preserve
         const heroH1 = document.querySelector('.hero-main h1');
         if (heroH1) {
-            const shift = window.scrollY * 0.18;
+            const shift = window.scrollY * 0.3;
             heroH1.style.transform = `translateY(${shift}px) skewY(-6deg) rotate(-2deg)`;
+        }
+
+        // Ticker Wrap - Smooth Floating Follow
+        const tickerWrap = document.querySelector('.ticker-wrap');
+        if (tickerWrap) {
+            const tickerShift = window.scrollY * 0.01; // Moderated drift for smoother feel
+            tickerWrap.style.transform = `translateY(${tickerShift}px)`;
         }
     });
 
@@ -78,8 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     li.innerHTML = `<span>${label}: </span>${stats[label]}`;
                 }
             });
+            console.log("MIYABI protocol initialized. 雅 verified.");
         } catch (e) {
-            console.log("Archive access restricted.");
+            console.log("Archive access restricted. MIYABI bypass failed.");
         }
     };
 
@@ -91,8 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
         "或いは夜", // 日本語
         "AruihaYoru", // ローマ字表記
         "Or Night", // 英語
-		"Aut Nox", // ラテン語
-		"クンネ ネコンカ", // アイヌ語（あんま詳しくないんであってるかは知らん）
+        "Aut Nox", // ラテン語
+        "クンネ ネコンカ", // アイヌ語（あんま詳しくないんであってるかは知らん）
         "Ou la Nuit", // フランス語
         "もしは、よさり", // 雅語
         "O la Noche", // スペイン語
@@ -142,90 +150,108 @@ document.addEventListener("DOMContentLoaded", () => {
         emblem.innerText = text;
         canvas.appendChild(emblem);
     });
-	
-	// 7. clicker sound
-	let tickerCtx;
-	let tickerGain;
-	let tickerInterval;
-	let noiseBuffer;
-	const tickerSlider = document.getElementById('ticker-volume');
 
-	const createNoiseBuffer = (ctx) => {
-		const bufferSize = ctx.sampleRate * 0.02;
-		const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-		const data = buffer.getChannelData(0);
-		for (let i = 0; i < bufferSize; i++) {
-			data[i] = Math.random() * 2 - 1;
-		}
-		return buffer;
-	};
+    // 7. clicker sound
+    let tickerCtx;
+    let tickerGain;
+    let tickerInterval;
+    let noiseBuffer;
+    const tickerSlider = document.getElementById('ticker-volume');
 
-	const initTicker = () => {
-		if (tickerCtx) {
-			if (tickerCtx.state === 'suspended') {
-				tickerCtx.resume();
-			}
-			return;
-		}
+    const createNoiseBuffer = (ctx) => {
+        const bufferSize = ctx.sampleRate * 0.02;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+            data[i] = Math.random() * 2 - 1;
+        }
+        return buffer;
+    };
 
-		tickerCtx = new (window.AudioContext || window.webkitAudioContext)();
-		tickerGain = tickerCtx.createGain();
-		tickerGain.connect(tickerCtx.destination);
+    const initTicker = () => {
+        if (tickerCtx) {
+            if (tickerCtx.state === 'suspended') {
+                tickerCtx.resume();
+            }
+            return;
+        }
 
-		const initialVolume = tickerSlider ? parseFloat(tickerSlider.value) : 0.2;
-		tickerGain.gain.value = initialVolume * 5.0;
+        tickerCtx = new (window.AudioContext || window.webkitAudioContext)();
+        tickerGain = tickerCtx.createGain();
+        tickerGain.connect(tickerCtx.destination);
 
-		noiseBuffer = createNoiseBuffer(tickerCtx);
+        const initialVolume = tickerSlider ? parseFloat(tickerSlider.value) : 0.2;
+        tickerGain.gain.value = initialVolume * 5.0;
 
-		tickerInterval = setInterval(() => {
-			if (tickerCtx.state === 'suspended') tickerCtx.resume();
+        noiseBuffer = createNoiseBuffer(tickerCtx);
 
-			const now = tickerCtx.currentTime;
-			const noise = tickerCtx.createBufferSource();
-			noise.buffer = noiseBuffer;
+        tickerInterval = setInterval(() => {
+            if (tickerCtx.state === 'suspended') tickerCtx.resume();
 
-			const filter = tickerCtx.createBiquadFilter();
-			filter.type = 'bandpass';
-			filter.frequency.setValueAtTime(2500, now);
-			filter.Q.setValueAtTime(1, now);
+            const now = tickerCtx.currentTime;
+            const noise = tickerCtx.createBufferSource();
+            noise.buffer = noiseBuffer;
 
-			const envelope = tickerCtx.createGain();
-			noise.connect(filter);
-			filter.connect(envelope);
-			envelope.connect(tickerGain);
+            const filter = tickerCtx.createBiquadFilter();
+            filter.type = 'bandpass';
+            filter.frequency.setValueAtTime(2500, now);
+            filter.Q.setValueAtTime(1, now);
 
-			envelope.gain.setValueAtTime(0.5, now);
-			envelope.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
+            const envelope = tickerCtx.createGain();
+            noise.connect(filter);
+            filter.connect(envelope);
+            envelope.connect(tickerGain);
 
-			noise.start(now);
-			noise.stop(now + 0.02);
-		}, 1000);
+            envelope.gain.setValueAtTime(0.5, now);
+            envelope.gain.exponentialRampToValueAtTime(0.001, now + 0.015);
 
-		if (tickerCtx.state === 'suspended') {
-			console.warn('Autoplay blocked. Waiting for user interaction.');
-		} else {
-			console.log('Autoplay started successfully.');
-		}
-	};
+            noise.start(now);
+            noise.stop(now + 0.02);
+        }, 1000);
 
-	initTicker();
+        if (tickerCtx.state === 'suspended') {
+            console.warn('Autoplay blocked. Waiting for user interaction.');
+        } else {
+            console.log('Autoplay started successfully.');
+        }
+    };
 
-	if (tickerSlider) {
-		tickerSlider.value = 0.2;
-		tickerSlider.addEventListener('input', (e) => {
-			initTicker();
-			if (tickerGain) {
-				tickerGain.gain.setTargetAtTime(parseFloat(e.target.value) * 5.0, tickerCtx.currentTime, 0.01);
-			}
-		});
-	}
+    initTicker();
 
-	document.addEventListener('click', () => {
-		initTicker();
-	}, { once: true });
-	
-	
-	
+    if (tickerSlider) {
+        tickerSlider.value = 0.2;
+        tickerSlider.addEventListener('input', (e) => {
+            initTicker();
+            if (tickerGain) {
+                tickerGain.gain.setTargetAtTime(parseFloat(e.target.value) * 5.0, tickerCtx.currentTime, 0.01);
+            }
+        });
+    }
+
+    document.addEventListener('click', () => {
+        initTicker();
+    }, { once: true });
+
+    // 7.5 Ticker Wrap Mobile Expansion
+    const tickerWrapEl = document.querySelector('.ticker-wrap');
+    if (tickerWrapEl) {
+        // Toggle 'active' class on touch to expand on mobile
+        tickerWrapEl.addEventListener('touchstart', (e) => {
+            if (window.innerWidth < 900) {
+                tickerWrapEl.classList.toggle('active');
+            }
+        }, { passive: true });
+
+        // Close when clicking outside on mobile
+        document.addEventListener('touchstart', (e) => {
+            if (window.innerWidth < 900 && !tickerWrapEl.contains(e.target)) {
+                tickerWrapEl.classList.remove('active');
+            }
+        }, { passive: true });
+    }
+
+
+
     // 8. Dynamic Background Text Sizing
     const BG_CONFIG = {
         text: "MIYABI",
@@ -243,39 +269,42 @@ document.addEventListener("DOMContentLoaded", () => {
         const width = window.innerWidth;
         const height = window.innerHeight;
         const isMobile = width < 900;
-
         const dpr = window.devicePixelRatio || 1;
 
         canvasBg.width = width * dpr;
         canvasBg.height = height * dpr;
-
-        canvasBg.style.width = `${width}px`;
-        canvasBg.style.height = `${height}px`;
+        canvasBg.style.width = width + 'px';
+        canvasBg.style.height = height + 'px';
 
         ctx.scale(dpr, dpr);
 
+        // Draw 'MIYABI'
         ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#d4af37';
         ctx.textBaseline = 'middle';
         ctx.textAlign = 'center';
-
         ctx.font = `normal ${BG_CONFIG.weight} ${BG_CONFIG.baseSize}px ${BG_CONFIG.font}`;
 
         ctx.save();
         ctx.translate(width / 2, height / 2);
-
         const metrics = ctx.measureText(BG_CONFIG.text);
-        const textWidth = metrics.width;
-
         const textHeight = BG_CONFIG.baseSize * 0.7;
-
         if (isMobile) {
             ctx.rotate(Math.PI / 2);
-            ctx.scale(height / textWidth, width / textHeight);
+            ctx.scale(height / metrics.width, width / textHeight);
         } else {
-            ctx.scale(width / textWidth, height / textHeight);
+            ctx.scale(width / metrics.width, height / textHeight);
         }
-
         ctx.fillText(BG_CONFIG.text, 0, 0);
+        ctx.restore();
+
+        // Draw '雅' (The Hidden Essence)
+        ctx.save();
+        ctx.globalAlpha = 0.4; // Slightly more ghostly
+        ctx.font = `normal 900 ${BG_CONFIG.baseSize}px 'Noto Sans JP', sans-serif`;
+        ctx.translate(width * 0.8, height * 0.8);
+        ctx.rotate(-Math.PI / 12); // Slightly tilted
+        ctx.scale(0.5, 0.5); // Smaller but still huge
+        ctx.fillText("雅", 0, 0);
         ctx.restore();
     };
 

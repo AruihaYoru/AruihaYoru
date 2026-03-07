@@ -1,10 +1,5 @@
-/**
- * 指定された文字セットからランダムな文字列を生成する関数
- * @param {number} length - 生成する文字列の長さ
- * @returns {string}
- */
 const getRandomString = (length) => {
-  const charset = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const charset = "0123456789ABCDEF雅MIYABI夜";
   let result = "";
   for (let i = 0; i < length; i++) {
     result += charset.charAt(Math.floor(Math.random() * charset.length));
@@ -47,25 +42,31 @@ const startAnimation = (el) => {
   const originalText = el.dataset.original;
   const len = originalText.length;
   let iteration = 0;
-  const maxIterations = 20; // 止まるまでの「揺らぎ」の回数
+  // MIYABI EFFECT: Random duration for 'instability'
+  const maxIterations = 15 + Math.floor(Math.random() * 20);
 
-  // すでに動いている場合は重複させない
   if (el.dataset.running === "true") return;
   el.dataset.running = "true";
 
   const timer = setInterval(() => {
-    // ランダムな文字列を表示
-    el.textContent = getRandomString(len);
+    // MIYABI EFFECT: Occasionally show the full keyword
+    if (Math.random() > 0.92) {
+      el.textContent = "MIYABI";
+    } else if (Math.random() > 0.92) {
+      el.textContent = "雅";
+    } else {
+      el.textContent = getRandomString(len);
+    }
+
     iteration++;
 
-    // 一定回数繰り返したら元の文字列に戻して停止
     if (iteration >= maxIterations) {
       clearInterval(timer);
       el.textContent = originalText;
       el.dataset.running = "false";
-      el.classList.add('is-finished'); // 終了後のスタイル用
+      el.classList.add('is-finished');
     }
-  }, 50); // 50ms間隔で更新
+  }, 40 + Math.floor(Math.random() * 40)); // Variable speed
 };
 
 const resetAnimation = (el) => {

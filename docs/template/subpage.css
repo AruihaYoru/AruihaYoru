@@ -65,3 +65,15 @@ body {
         font-size: 1rem;
     }
 }
+
+@media (max-width: 480px) {
+    .article-title {
+        font-size: 2rem;
+    }
+    .page-container {
+        padding: 0 1rem;
+    }
+    .article-content {
+        font-size: 0.95rem;
+    }
+}

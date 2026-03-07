@@ -37,6 +37,9 @@
 
     <meta name="theme-color" content="#0a0a0a">
 
+    <script>
+    </script>
+
     <style>
         .reveal {
             opacity: 0;
@@ -53,8 +56,20 @@
 </head>
 
 <body>
-    <canvas id="background-text"></canvas>
-    <div class="theme-toggle" style="display:none;">Obscura</div>
+    <canvas id="background-text" data-trace="MIYABI_MIYABI_MIYABI"></canvas>
+    <!-- INTERNAL_KEY: 雅 -->
+    <div class="theme-toggle" style="display:none;" title="MIYABI">Obscura</div>
+
+    <!-- Ticker Control (Top Right) - Moved for smooth following -->
+    <div class="ticker-wrap reveal">
+        <span class="ticker-icon">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                <path
+                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z" />
+            </svg>
+        </span>
+        <input type="range" id="ticker-volume" class="ticker-slider" min="0" max="0.2" step="0.005" value="0.2">
+    </div>
 
     <div class="side-nav">
         <div class="nav-dot" title="Top"></div>
@@ -73,22 +88,13 @@
                 <h1 class="reveal">Aruiha<br>Yoru</h1>
             </div>
 
-            <!-- Ticker Control (Top Right) -->
-            <div class="ticker-wrap reveal">
-                <span class="ticker-icon">
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-                        <path
-                            d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z" />
-                    </svg>
-                </span>
-                <input type="range" id="ticker-volume" class="ticker-slider" min="0" max="0.2" step="0.005" value="0.2">
-            </div>
-
-            <div class="scroll-indicator">DESCEND</div>
+            <div class="scroll-indicator" data-miyabi="雅">DESCEND</div>
+            <!-- SEED: MIYABI -->
         </header>
 
         <!-- Biography: About Me -->
         <section class="grid-capsule">
+            <div class="vertical-label reveal" style="top: 10vh; right: -2vw;">PRIMARY_IDENTITY</div>
             <div class="content-box reveal">
                 <span class="section-label">01 — ESSENCE</span>
                 <div class="about-me-layout">
@@ -136,7 +142,9 @@
                         </div>
                     </div>
                     <div>
-                        <h2 class="title-large">わたしは学生！！！</h2>
+                        <h2 class="title-large">わたしは学生！！！ <span
+                                style="font-size: 0.8rem; opacity: 0.3; font-family: var(--font-mono) !important; font-weight: normal; vertical-align: middle; margin-left: 1rem;">MIYABI_ID:
+                                雅</span></h2>
                         <div class="text-detail">
                             <p>
                                 本名は薬師寺ホノカ（WHOISででてくる）。男性。中学二年生。<br>
@@ -154,6 +162,7 @@
 
         <!-- Status & Favorites -->
         <section class="grid-capsule">
+            <div class="vertical-label reveal" style="top: 20vh; left: -2vw;">NEURAL_ACTIVITY_LOGS</div>
             <div class="content-box reveal">
                 <span class="section-label">02 — LOGS & PASSION</span>
 
@@ -165,7 +174,7 @@
                                 <span class="stat-label">TOTAL VISITORS ( MAIN )</span>
                                 <div id="visitor-count" class="stat-value">...</div>
                             </div>
-                            <div class="stat-item">
+                            <div class="stat-item" id="tenet-counter">
                                 <span class="artifact-num" style="font-size: 8rem; top: 0; left: -2rem;">NN</span>
                                 <span class="stat-label">VISITORS ( TENET )</span>
                                 <p id="count" class="stat-value"></p>
@@ -200,6 +209,7 @@
 
         <!-- Connections -->
         <section class="grid-capsule">
+            <div class="vertical-label reveal" style="bottom: 10vh; right: -2vw;">EXTERNAL_CONNECTIONS</div>
             <div class="content-box reveal">
                 <span class="section-label">03 — CONNECTIONS</span>
                 <h2 class="title-large">Mutual Links</h2>
@@ -209,20 +219,24 @@
                         <p class="inspiration-comment">ゼンゼロやってて𝐵𝐼𝐺
                             𝐿𝑂𝑉𝐸―――だぜ　ストレージに困ってる人　サーバー関連に強い人（というかTENETの来訪者カウンタを作った人） </p>
                     </a>
+					
+					<p class="artifact-desc">というか、相互リンクめちゃくちゃ募集しております。<a href="https://discord.com/users/1427546345379467285">Discord</a>或いは<a href="https://x.com/AruihaYoru">X</a>まで。というか、極論Github<a href="https://github.com/AruihaYoru/AruihaYoru">Aruiha</a>にプルリクしてもらってもいい</p>
                 </div>
             </div>
         </section>
 
         <!-- Artifacts -->
         <section class="grid-capsule">
+            <div class="vertical-label reveal" style="top: 30vh; left: -2vw;">DIGITAL_REMAINS_INDEX</div>
             <div class="content-box reveal">
                 <span class="section-label">04 — ARTIFACTS</span>
                 <h2 class="title-large">Digital Remains</h2>
                 <div class="artifact-list">
                     <div class="artifact-vertical-item">
                         <div class="artifact-num">01</div>
-                        <h3>Mimi (Music Instrument Minimal Interface)</h3>
+                        <h3>Mimi</h3>
                         <p class="artifact-desc">
+                            「Music Instrument Minimal Interface」の略。
                             Ver1.0から一気にVer2.0まで飛ばした、たぶん一番頑張ったやつ。
                             基本的には一般的なCSV形式音声フォーマットだけど、どうしてもっていうなら8kHz/4bitで声を再生することもできる。
                             一番近い音声型式がorg（オルガニャ）。
@@ -238,7 +252,9 @@
                     </div>
                     <div class="artifact-vertical-item">
                         <div class="artifact-num">03</div>
-                        <h3>EzCLI</h3>
+                        <h3>EzCLI <span
+                                style="font-size: 0.6rem; opacity: 0.2; letter-spacing: 0.3em; font-family: var(--font-mono) !important;">(MIYABI_CORE)</span>
+                        </h3>
                         <p class="artifact-desc">
                             自分用のCLIツールたち。めちゃくちゃ便利すぎてまずい。
                             というか使ってくれ。
@@ -260,6 +276,7 @@
                     <div class="registry-header">Acquired Skills</div>
 
                     <div class="registry-row">
+                        <div class="artifact-num">α</div>
                         <div class="registry-key">JavaScript</div>
                         <div class="registry-value">
                             私の第一言語です。基本はVanilla
@@ -270,6 +287,7 @@
                     </div>
 
                     <div class="registry-row">
+                        <div class="artifact-num">β</div>
                         <div class="registry-key">CSS</div>
                         <div class="registry-value">
                             <a href="https://github.com/AruihaYoru/iClound" target="_blank">iClound</a>
@@ -278,16 +296,19 @@
                     </div>
 
                     <div class="registry-row">
+                        <div class="artifact-num">γ</div>
                         <div class="registry-key">HTML</div>
                         <div class="registry-value">さすがにこれは自然習得でしょ、出来て当然みたいな環境で育ちましたから</div>
                     </div>
 
                     <div class="registry-row">
+                        <div class="artifact-num">δ</div>
                         <div class="registry-key">Rust</div>
                         <div class="registry-value">さすがにWASMが必要になってきた（ドがつくへたくそ）</div>
                     </div>
 
                     <div class="registry-row">
+                        <div class="artifact-num">ε</div>
                         <div class="registry-key">Python</div>
                         <div class="registry-value">
                             <a href="https://github.com/AruihaYoru/NewVideo" target="_blank">mrv player</a> /
@@ -297,6 +318,7 @@
                     </div>
 
                     <div class="registry-row">
+                        <div class="artifact-num">ζ</div>
                         <div class="registry-key">C Language</div>
                         <div class="registry-value">
                             <a href="https://AruihaYoru.github.io/AruihaYoru/EzCLI" target="_blank">EzCLI</a>
@@ -310,6 +332,7 @@
                     <div class="registry-header">Void Channels</div>
 
                     <div class="registry-row">
+                        <div class="artifact-num">η</div>
                         <div class="registry-key">PHP</div>
                         <div class="registry-value">ええと、昔、ブックオフでそれの参考書が売ってましたね。なんとなく触っていませんでした。あれなんなんですかね。名前しか知らないし
                             <code>&lt;?php</code> っていうのは知ってる。
@@ -317,6 +340,7 @@
                     </div>
 
                     <div class="registry-row">
+                        <div class="artifact-num">θ</div>
                         <div class="registry-key">Java</div>
                         <div class="registry-value">ほんとに使いたかったのはjavaなんですよね。知らないんだよ。</div>
                     </div>
@@ -327,6 +351,7 @@
                     <div class="registry-header">Fragments</div>
 
                     <div class="registry-row">
+                        <div class="artifact-num">ι</div>
                         <div class="registry-key">(似非)心理学</div>
                         <div class="registry-value">
                             とある創作コミュニティでは、「『キャラクター』が何かをするには『動機』が必要で、その『動機』はそのキャラの性格や過去で決まる。」という理論があって。私はそれにのめりこみました。人間にストレスを与え続けるとどうなるか、条件付きの愛を受けて育つとどうなるのか。....オリキャラ作るときしか役に立ちませんが。
@@ -334,21 +359,26 @@
                     </div>
 
                     <div class="registry-row">
+                        <div class="artifact-num">κ</div>
                         <div class="registry-key">(似非)言語学</div>
                         <div class="registry-value">そんな詳しくはありません。ラテン語は好きです。</div>
                     </div>
 
                     <div class="registry-row">
+                        <div class="artifact-num">λ</div>
                         <div class="registry-key">音象徴</div>
-                        <div class="registry-value">これも同様に。オリキャラ作るときに勉強したものです。</div>
+                        <div class="registry-value">これも同様に。オリキャラ作るときに勉強したものです。音象徴って明らかに全員自覚あるのにどうして嘘だとか似非学問の扱い受けてるんだ？
+                        </div>
                     </div>
 
                     <div class="registry-row">
+                        <div class="artifact-num">μ</div>
                         <div class="registry-key">Web Design</div>
                         <div class="registry-value">もちろん。私が最初に読んだものは、CSSの参考書だ。</div>
                     </div>
 
                     <div class="registry-row">
+                        <div class="artifact-num">ν</div>
                         <div class="registry-key">Writing</div>
                         <div class="registry-value">これは、<a href="https://AruihaYoru.github.io/AruihaYoru"
                                 target="_blank">Aruiha</a> を見てもらえばとってもわかると思います。（リンク先は原罪閉鎖してるので、いつかミラーサイトをつくります。）</div>
@@ -358,6 +388,7 @@
 
             <div class="registry-footer-note">
                 <p>こういうの学んでると、「それは違うでしょ」みたいなことばっか思うようになるんすよね（過去と行動があっていない、とか。）</p>
+                <div style="opacity: 0.001; pointer-events: none; height: 0; overflow: hidden;">MIYABI雅MIYABI雅</div>
             </div>
         </section>
 
@@ -366,7 +397,11 @@
 
         <!-- System Architecture -->
         <section class="grid-capsule">
+            <div class="vertical-label reveal" style="top: 10vh; right: -2vw;">SYSTEM_ENVIRONMENT_STACK</div>
             <div class="content-box reveal">
+                <div
+                    style="position: absolute; top: 1rem; right: 2rem; font-family: var(--font-mono) !important; font-size: 0.5rem; opacity: 0.1; letter-spacing: 0.5em;">
+                    MIYABI_PROTOCOL_VER_2.6 // 雅</div>
                 <span class="section-label">06 — SYSTEM ARCH</span>
                 <h2 class="title-large">Technical Core</h2>
                 <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px;" class="tech-grid">
@@ -431,6 +466,8 @@
                     <li><span>コード内コメント加筆: </span>Gemini 3 Flash</li>
                     <li><span>演出: </span>「キメキャワスイッチ」（はたして何人がわかるのだろうか）</li>
                 </ul>
+                <p style="font-size: 0.1rem; opacity: 0.001; position: absolute; bottom: 0; right: 0;">雅 MIYABI 雅 MIYABI
+                </p>
             </div>
         </footer>
     </div>
