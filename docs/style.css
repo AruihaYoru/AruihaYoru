@@ -401,27 +401,87 @@ body::after {
 /* Sticky Side Nav */
 .side-nav {
     position: fixed;
-    left: 5vw;
+    left: 2.5vw;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 100;
-    mix-blend-mode: difference;
+    z-index: 50;
+    /* Lowered from 1000 to be less intrusive */
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Ensure sections scroll to a nice position */
+[id] {
+    scroll-margin-top: 12vh;
 }
 
 .nav-dot {
+    display: block;
     width: 6px;
     height: 6px;
-    background: #fff;
-    margin: 20px 0;
+    background: #000;
+    margin: 18px 0;
     border-radius: 50%;
-    opacity: 0.2;
-    transition: var(--transition-ultra);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.35;
+    /* Increased for better visibility */
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    position: relative;
+    text-decoration: none;
+}
+
+[data-theme="dark"] .nav-dot {
+    background: #fff;
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .nav-dot:hover {
     opacity: 0.8;
-    box-shadow: 0 0 10px #fff;
+    transform: scale(1.5);
+}
+
+.nav-dot.active {
+    opacity: 1;
+    transform: scale(1.8);
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+}
+
+.nav-dot::after {
+    content: attr(title);
+    position: absolute;
+    left: 100%;
+    margin-left: 15px;
+    top: 50%;
+    transform: translateY(-50%) translateX(-8px);
+    font-family: var(--font-mono) !important;
+    font-size: 0.5rem;
+    color: #fff;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+[data-theme="light"] .nav-dot::after {
+    color: #000;
+}
+
+.nav-dot:hover::after,
+.nav-dot.active::after {
+    opacity: 0.35;
+    /* Subdued presence */
+    transform: translateY(-50%) translateX(0);
+}
+
+.nav-dot.active::after {
+    opacity: 0.6;
+    letter-spacing: 0.25em;
 }
 
 /* Profile Icon Frame */
@@ -687,11 +747,11 @@ body::after {
         grid-template-columns: 1fr !important;
         gap: 2rem !important;
     }
-	
-	.text-detail {
-		font-size: 0.9rem;
-	}
-	
+
+    .text-detail {
+        font-size: 0.9rem;
+    }
+
 }
 
 .minimal-player-wrap {
@@ -1027,10 +1087,12 @@ body::after {
 
 .guestbook-input-group {
     display: flex;
-    gap: 0;
+    gap: 10px;
     /* Connected inputs */
-    margin-bottom: 6rem;
+    margin-bottom: 2rem;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 4px 5px;
 }
 
 .guestbook-input-group input {
@@ -1060,7 +1122,7 @@ body::after {
 .guestbook-input-group button {
     background: #9c8551;
     color: #fff;
-    /*! border: 1px solid var(--accent); */
+    border: 1px solid var(--accent);
     padding: 0 3rem;
     font-family: var(--font-mono) !important;
     font-size: 0.75rem;
@@ -1071,7 +1133,7 @@ body::after {
     transition: var(--transition-premium);
     position: relative;
     overflow: hidden;
-    margin: 15px 0;
+    margin: 3px 0;
 }
 
 .guestbook-input-group button::after {
@@ -1140,7 +1202,7 @@ body::after {
 }
 
 .signature-item .name {
-    font-family: var(--font-display);
+    font-family: var(--font-display) !important;
     font-size: 1.4rem;
     font-weight: 800;
     color: var(--accent);
@@ -1239,11 +1301,14 @@ body::after {
         display: none;
     }
 
-} /* else { */
-    #moe-counter {
-        size: 0.9;
-		/* こんなプロパティない */
-    }
+}
+
+/* else { */
+#moe-counter {
+    size: 0.9;
+    /* こんなプロパティない */
+}
+
 /* } */
 
 @media (max-width: 1200px) {
@@ -1333,5 +1398,5 @@ a {
 /* MIYABI */
 .scroll-indicator:after {
     content: attr(data-miyabi);
-	opacity:0.01;
+    opacity: 0.01;
 }

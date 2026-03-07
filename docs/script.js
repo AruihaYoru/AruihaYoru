@@ -29,10 +29,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Dynamic accent and text color adjustment - Sharp switch at 50%
         if (scrollPercent >= 50 && !isDark) {
+            body.setAttribute('data-theme', 'dark');
             body.style.background = '#020203';
             body.style.color = '#fcfcfc';
             body.style.setProperty('--accent', '#d4af37');
         } else if (scrollPercent < 50 && !isDark) {
+            body.setAttribute('data-theme', 'light');
             body.style.background = '#ffffff';
             body.style.color = '#0a0a0a';
             body.style.setProperty('--accent', 'var(--accent-light)');
@@ -63,6 +65,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // 3.5. Side Nav Highlighting (Intersection Observer)
+    const navDots = document.querySelectorAll('.nav-dot');
+    const sections = document.querySelectorAll('header[id], section[id]');
+
+    const navObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            // When a section enters the center area of the screen
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navDots.forEach(dot => {
+                    if (dot.getAttribute('href') === `#${id}`) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+        });
+    }, {
+        // Trigger precisely when the section reaches the middle part of the viewport
+        rootMargin: "-48% 0px -48% 0px",
+        threshold: 0
+    });
+
+    sections.forEach(section => navObserver.observe(section));
 
     // 4. Dynamic Data Injection (Client Stats)
     const updateStats = async () => {
@@ -426,17 +454,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 snapshot.forEach(doc => {
                     const data = doc.data();
-                    const date = data.createdAt ? data.createdAt.toDate().toLocaleDateString('ja-JP') : '';
+                    const dateObj = data.createdAt ? data.createdAt.toDate() : null;
+                    const dateStr = dateObj ? dateObj.toLocaleDateString('ja-JP') : '...';
+                    const isoStr = dateObj ? dateObj.toISOString() : '';
 
                     const item = document.createElement('div');
                     item.className = 'signature-item';
                     item.innerHTML = `
-                        <div class="content">
-                            <span class="name">${data.name}</span>
-                            <span class="date">${date}</span>
-                        </div>
-                        <div class="actions"></div>
-                    `;
+						<div class="content">
+							<strong class="name" role="text">${data.name}</strong>
+							<time datetime="${isoStr}" class="date">${dateStr}</time>
+						</div>
+						<div class="actions" aria-hidden="true"></div>
+					`;
 
                     if (currentUser && currentUser.uid === data.uid) {
                         const actions = item.querySelector('.actions');

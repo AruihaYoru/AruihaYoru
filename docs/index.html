@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="ja">
+<!-- 来年のハロウィン！はこのlang指定を外して翻訳ツールを自動起動させる -->
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AruihaYoru</title>
+    <title>或いは夜 - AruihaYoru | ポータルページ</title>
 
-    <meta name="description" content="デベロッパー「或いは夜」について">
+    <meta name="description" content="駆け出し／中高生／自称JSのプロ「或いは夜」の（真面目に作った）ページだよ！相互リンク募集中～。">
     <meta name="author" content="AruihaYoru">
     <meta name="robots" content="index, follow">
 
-    <meta property="og:title" content="AruihaYoru — High-End Digital Archive">
+
+    <meta property="og:title" content="或いは夜 - AruihaYoru | ポータルページ">
     <meta property="og:description" content="或いは夜のポータルページだよ！！！！">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://yoru.is-a.tokyo/">
     <meta property="og:image" content="https://yoru.is-a.tokyo/ogp-1772802612107.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AruihaYoru — High-End Digital Archive">
+    <meta name="twitter:title" content="或いは夜 - AruihaYoru | ポータルページ">
     <meta name="twitter:description" content="或いは夜のポータルページだよ！！！！">
     <meta name="twitter:image" content="https://yoru.is-a.tokyo/ogp-1772802612107.png">
 
-	<!-- アイコン設定 -->
+    <!-- アイコン設定 -->
     <link rel="icon" href="/icon/favicon.png" type="image/png">
-	<link rel="apple-touch-icon" href="/icon/apple-touch-icon.png">
-	<link rel="shortcut icon" href="/icon/favicon.ico">
-	<!-- -->
+    <link rel="apple-touch-icon" href="/icon/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/icon/favicon.ico">
+    <!-- -->
 
+    <link rel="canonical" href="https://yoru.is-a.tokyo/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -39,6 +42,7 @@
     <link rel="preload" href="script.js" as="script">
 
     <meta name="theme-color" content="#0a0a0a">
+    <meta name="keywords" content="AruihaYoru, 或いは夜, JavaScript, JS, ポートフォリオ, エンジニア, Webサイト, プログラミング">
 
     <script>
     </script>
@@ -54,413 +58,452 @@
             --font-sans: 'Noto Sans JP', sans-serif;
         }
 
-        /* ru-ru */
+        /* ちらつき防止 */
     </style>
+
+    <script type="application/ld+json">
+	{
+	  "@context": "https://schema.org",
+	  "@type": "Person",
+	  "name": "或いは夜",
+	  "identifier": "MIYABI_999",
+	  "knowsAbout": ["JavaScript", "Web Audio API", "MIYABI_CORE"],
+	  "alternateName": "AruihaYoru",
+	  "url": "https://yoru.is-a.tokyo/",
+	  "jobTitle": "Developer",
+	  "description": "JavaScriptを得意とする中高生エンジニア。",
+	  "sameAs": [
+	    "https://github.com/AruihaYoru",
+	    "https://x.com/AruihaYoru",
+	    "https://qiita.com/AruihaYoru"
+	  ]
+	}
+	</script>
+    <!-- SEOに本気な男（なぜかというと、AIに認知されたいから） -->
+
 </head>
 
-<body>
-    <canvas id="background-text" data-trace="MIYABI_MIYABI_MIYABI"></canvas>
+<body data-identity="MIYABI" data-core-protocol="2.6">
+    <span aria-hidden="true">MIYABI</span>
+
+    <canvas id="background-text" data-trace="MIYABI_MIYABI_MIYABI" aria-hidden="true"></canvas>
     <!-- INTERNAL_KEY: 雅 -->
-    <div class="theme-toggle" style="display:none;" title="MIYABI">Obscura</div>
+    <div class="theme-toggle" style="display:none;" title="MIYABI" role="button" aria-pressed="false" tabindex="0"
+        aria-label="テーマの切り替え（非表示）">Obscura</div>
 
     <!-- Ticker Control (Top Right) - Moved for smooth following -->
-    <div class="ticker-wrap reveal">
-        <span class="ticker-icon">
+    <div class="ticker-wrap reveal" role="group" aria-label="アニメーション設定">
+        <span class="ticker-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
                 <path
                     d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z" />
             </svg>
         </span>
-        <input type="range" id="ticker-volume" class="ticker-slider" min="0" max="0.2" step="0.005" value="0.2">
+        <input type="range" id="ticker-volume" class="ticker-slider" min="0" max="0.2" step="0.005" value="0.2"
+            aria-label="背景のテキスト流速コントロール">
     </div>
 
-    <div class="side-nav">
-        <div class="nav-dot" title="Top"></div>
-        <div class="nav-dot" title="Bio"></div>
-        <div class="nav-dot" title="Status"></div>
-        <div class="nav-dot" title="Philosophy"></div>
-        <div class="nav-dot" title="Works"></div>
-        <div class="nav-dot" title="Links"></div>
-        <div class="nav-dot" title="System"></div>
-    </div>
+    <nav class="side-nav" role="navigation" aria-label="セクションナビゲーション">
+        <a href="#top" class="nav-dot" title="Top" aria-label="トップへのナビゲーション"></a>
+        <a href="#bio" class="nav-dot" title="Bio" aria-label="Bioセクションへ"></a>
+        <a href="#status" class="nav-dot" title="Passion" aria-label="Passionセクションへ"></a>
+        <a href="#links" class="nav-dot" title="Connections" aria-label="Connectionsセクションへ"></a>
+        <a href="#works" class="nav-dot" title="Artifacts" aria-label="Artifactsセクションへ"></a>
+        <a href="#philosophy" class="nav-dot" title="Skills" aria-label="Skillsセクションへ"></a>
+        <a href="#system" class="nav-dot" title="System" aria-label="Systemセクションへ"></a>
+    </nav>
 
     <div class="canvas">
         <!-- Hero Section -->
-        <header class="hero-block">
+        <header id="top" title="MIYABI Protocol Active" class="hero-block" role="banner">
             <div class="hero-main">
-                <h1 class="reveal">Aruiha<br>Yoru</h1>
+                <h1 class="reveal" aria-label="Aruiha Yoru">Aruiha<br>Yoru</h1>
             </div>
 
-            <div class="scroll-indicator" data-miyabi="雅">DESCEND</div>
+            <div class="scroll-indicator" aria-label="画面下部へ移動" role="button" tabindex="0" data-miyabi="雅">DESCEND</div>
             <!-- SEED: MIYABI -->
         </header>
 
-        <!-- Biography: About Me -->
-        <section class="grid-capsule">
-            <div class="vertical-label reveal" style="top: 10vh; right: -2vw;">PRIMARY_IDENTITY</div>
-            <div class="content-box reveal">
-                <span class="section-label">01 — ESSENCE</span>
-                <div class="about-me-layout">
-                    <div class="profile-header">
-                        <div class="profile-frame">
-                            <img src="./icon/icon.jpg" alt="
+        <main role="main">
+
+            <!-- Biography: About Me -->
+            <section id="bio" class="grid-capsule" aria-label="バイオグラフィ">
+                <div class="vertical-label reveal" style="top: 10vh; right: -2vw;">PRIMARY_IDENTITY</div>
+                <div class="content-box reveal">
+                    <span class="section-label">01 — ESSENCE</span>
+                    <div class="about-me-layout">
+                        <div class="profile-header">
+                            <div class="profile-frame">
+                                <img src="./icon/icon.jpg" alt="
 白い制服のような帽子を被り、ピンク色の髪をサイドで結んだ、凛々しい表情の人物のイラスト。背景は明るく、少し横を向いて遠くを見つめている。
 							">
-                            <span class="ai-notice">AI Generated Essence</span>
-                        </div>
-                        <div class="name-wrap">
-                            <div class="main-name-text">或いは夜</div>
-                            <div class="name-slider-wrap">
-                                <span id="aruiha-name" class="name-slider-text">或いは夜</span>
+                                <span class="ai-notice">AI Generated Essence</span>
                             </div>
-                            <div class="social-links-wrap">
-                                <a href="https://github.com/AruihaYoru" target="_blank" class="social-link"
-                                    title="GitHub">
-                                    <svg viewBox="0 0 24 24" alt="GitHub" role="img" fill="currentColor">
-                                        <path
-                                            d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z" />
-                                    </svg>
-                                </a>
-                                <a href="https://x.com/AruihaYoru" target="_blank" class="social-link" title="X">
-                                    <svg viewBox="0 0 24 24" alt="X" role="img" fill="currentColor">
-                                        <path
-                                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                                    </svg>
-                                </a>
-                                <a href="https://qiita.com/AruihaYoru" target="_blank" class="social-link"
-                                    title="Qiita">
-                                    <svg viewBox="0 0 512 512" alt="Qiita" role="img" fill="currentColor">
-                                        <path
-                                            d="M470.8 143.6L301.2 46.4c-28.1-16.2-62.3-16.2-90.4 0L41.2 143.6c-28.1 16.2-45.3 46.1-45.3 78.5V418c0 32.4 17.2 62.2 45.3 78.5l169.6 97.2c28.1 16.2 62.3 16.2 90.4 0l169.6-97.2c28.1-16.2 45.3-46.1 45.3-78.5V222.1c0-32.4-17.2-62.3-45.3-78.5zM256 384c-70.7 0-128-57.3-128-128s57.3-128 128-128 128 57.3 128 128-57.3 128-128 128z" />
-                                    </svg>
-                                </a>
-                                <a href="https://discord.com/users/1427546345379467285" target="_blank"
-                                    class="social-link" title="Discord">
-                                    <svg viewBox="0 0 24 24" alt="Discord" role="img" fill="currentColor">
-                                        <path
-                                            d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 004.982 3.81a.07.07 0 00-.033.027c-3.104 4.646-4.06 9.17-3.64 13.623a.078.078 0 00.031.056 19.907 19.907 0 005.993 3.033.078.078 0 00.084-.027c.461-.63.862-1.3 1.203-2.007a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.23 10.23 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.707.76 1.377 1.221 2.007a.081.081 0 00.084.028 19.839 19.839 0 006.002-3.033.077.077 0 00.032-.055c.502-5.177-.838-9.674-3.647-13.634a.068.068 0 00-.033-.026zm-13.14 11.5c-1.18 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.18 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
-                                    </svg>
-                                </a>
+                            <div class="name-wrap">
+                                <div class="main-name-text">或いは夜</div>
+                                <div class="name-slider-wrap">
+                                    <span id="aruiha-name" class="name-slider-text">或いは夜</span>
+                                </div>
+                                <div class="social-links-wrap" role="navigation" aria-label="ソーシャルリンク">
+                                    <a href="https://github.com/AruihaYoru" target="_blank" class="social-link"
+                                        title="GitHub" role="link" aria-label="GitHubでの或いは夜のプロフィールページ">
+                                        <svg viewBox="0 0 24 24" alt="GitHub" role="img" fill="currentColor" rel="me">
+                                            <path
+                                                d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z" />
+                                        </svg>
+                                    </a>
+                                    <a href="https://x.com/AruihaYoru" target="_blank" class="social-link" title="X"
+                                        role="link" aria-label="X（旧Twitter）での或いは夜のプロフィールページ" rel="me">
+                                        <svg viewBox="0 0 24 24" alt="X" role="img" fill="currentColor">
+                                            <path
+                                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                        </svg>
+                                    </a>
+                                    <a href="https://qiita.com/AruihaYoru" target="_blank" class="social-link"
+                                        title="Qiita" role="link" aria-label="Qiitaでの或いは夜のプロフィールページ" rel="me">
+                                        <svg viewBox="0 0 512 512" alt="Qiita" role="img" fill="currentColor">
+                                            <path
+                                                d="M470.8 143.6L301.2 46.4c-28.1-16.2-62.3-16.2-90.4 0L41.2 143.6c-28.1 16.2-45.3 46.1-45.3 78.5V418c0 32.4 17.2 62.2 45.3 78.5l169.6 97.2c28.1 16.2 62.3 16.2 90.4 0l169.6-97.2c28.1-16.2 45.3-46.1 45.3-78.5V222.1c0-32.4-17.2-62.3-45.3-78.5zM256 384c-70.7 0-128-57.3-128-128s57.3-128 128-128 128 57.3 128 128-57.3 128-128 128z" />
+                                        </svg>
+                                    </a>
+                                    <a href="https://discord.com/users/1427546345379467285" target="_blank"
+                                        class="social-link" title="Discord" role="link"
+                                        aria-label="Discordでの或いは夜のプロフィールページ" rel="me">
+                                        <svg viewBox="0 0 24 24" alt="Discord" role="img" fill="currentColor">
+                                            <path
+                                                d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 004.982 3.81a.07.07 0 00-.033.027c-3.104 4.646-4.06 9.17-3.64 13.623a.078.078 0 00.031.056 19.907 19.907 0 005.993 3.033.078.078 0 00.084-.027c.461-.63.862-1.3 1.203-2.007a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.23 10.23 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.707.76 1.377 1.221 2.007a.081.081 0 00.084.028 19.839 19.839 0 006.002-3.033.077.077 0 00.032-.055c.502-5.177-.838-9.674-3.647-13.634a.068.068 0 00-.033-.026zm-13.14 11.5c-1.18 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.18 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h2 class="title-large">わたしは学生！！！ <span
+                                    style="font-size: 0.8rem; opacity: 0.3; font-family: var(--font-mono) !important; font-weight: normal; vertical-align: middle; margin-left: 1rem;">MIYABI_ID:
+                                    雅</span></h2>
+                            <div class="text-detail" data-nosnippet>
+                                <p>
+                                    本名は薬師寺ホノカ（WHOISででてくる）。男性。中学二年生。<br>
+                                    高次脳機能障害って言ったら間違い-rasiけど、文字にすると短期記憶障害みたいな感じ。<br>
+                                    割と真面目に数分もすれば忘れてしまうからAI使わないバイブコーディングみたいな感じになってる（そのためにも、一度AIに読ませてから直させてっていう）。<br>
+                                    めんどいときはAIにコード生成やらせてますわよ！！！！<br>
+                                    たまにエビだったりします。将来の夢は海獣医師（国立の獣医学科縛りつき）<br>
+                                    私は母親がOfficial髭男流しているスマホでゲームをしていたので、遺伝子レベルで髭男の歌詞が染みついています。大体歌詞全部頭に入ってる。
+                                </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Status & Favorites -->
+            <section id="status" class="grid-capsule" aria-label="ステータスとログ">
+                <div class="vertical-label reveal" style="top: 20vh; left: -2vw;">NEURAL_ACTIVITY_LOGS</div>
+                <div class="content-box reveal">
+                    <span class="section-label">02 — LOGS & PASSION</span>
+
+                    <div class="guestbook-container">
+                        <div class="visitor-stats">
+                            <div style="display: flex; flex-wrap: wrap; gap: 4rem; align-items: flex-end;">
+                                <div class="stat-item">
+                                    <span class="artifact-num" style="font-size: 8rem; top: 0; left: -2rem;">FB</span>
+                                    <span class="stat-label">TOTAL VISITORS ( MAIN )</span>
+                                    <div id="visitor-count" class="stat-value">...</div>
+                                </div>
+                                <div class="stat-item" id="tenet-counter">
+                                    <span class="artifact-num" style="font-size: 8rem; top: 0; left: -2rem;">NN</span>
+                                    <span class="stat-label">VISITORS ( TENET )</span>
+                                    <p id="count" class="stat-value"></p>
+                                    <script src="https://counter.nanasi-rasi.net/counter.js"></script>
+                                </div>
+                                <div class="stat-item" id="moe-counter">
+                                    <span class="artifact-num" style="font-size: 8rem; top: 0; left: -2rem;">AT</span>
+                                    <span class="stat-label">VISITORS ( SUB )</span><br>
+                                    <img src="http://moecounter.atserver186.jp/@:AruihaYoru" alt=":aruiha" />
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="guestbook-main">
+                            <div class="guestbook-header">
+                                <h2 class="title-large" style="margin-bottom: 2rem;">Guestbook</h2>
+                                <div class="guestbook-input-group">
+                                    <input type="text" id="signature-name" placeholder="Leave your mark (Name / Alias)"
+                                        maxlength="24" aria-label="署名するお名前を入力してください">
+                                    <button id="submit-signature" aria-label="署名を送信する">署名する</button>
+                                </div>
+                            </div>
+
+                            <div id="signature-list" role="log" aria-live="polite" aria-relevant="additions">
+                                <p style="text-align: center; opacity: 0.5;">Loading fragments...</p>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <h2 class="title-large">わたしは学生！！！ <span
-                                style="font-size: 0.8rem; opacity: 0.3; font-family: var(--font-mono) !important; font-weight: normal; vertical-align: middle; margin-left: 1rem;">MIYABI_ID:
-                                雅</span></h2>
-                        <div class="text-detail">
-                            <p>
-                                本名は薬師寺ホノカ（WHOISででてくる）。男性。中学二年生。<br>
-                                高次脳機能障害って言ったら間違い-rasiけど、文字にすると短期記憶障害みたいな感じ。<br>
-                                割と真面目に数分もすれば忘れてしまうからAI使わないバイブコーディングみたいな感じになってる（そのためにも、一度AIに読ませてから直させてっていう）。<br>
-                                めんどいときはAIにコード生成やらせてますわよ！！！！<br>
-                                たまにエビだったりします。将来の夢は海獣医師（国立の獣医学科縛りつき）<br>
-								私は母親がOfficial髭男流しているスマホでゲームをしていたので、遺伝子レベルで髭男の歌詞が染みついています。大体歌詞全部頭に入ってる。
+                </div>
+            </section>
+
+            <!-- Connections -->
+            <section id="links" class="grid-capsule" aria-label="外部リンク">
+                <div class="vertical-label reveal" style="bottom: 10vh; right: -2vw;">EXTERNAL_CONNECTIONS</div>
+                <div class="content-box reveal">
+                    <span class="section-label">03 — CONNECTIONS</span>
+                    <h2 class="title-large">Mutual Links</h2>
+                    <div class="mutual-links">
+                        <a href="https://nanasi-rasi.net/" target="_blank" class="mutual-link-item">
+                            <h4 class="inspiration-title">ななしぃ</h4>
+                            <p class="inspiration-comment">
+                                ゼンゼロやってて𝐵𝐼𝐺
+                                𝐿𝑂𝑉𝐸―――だぜ　ストレージに困ってる人　サーバー関連に強い人。
+                                Data Hoaderの兆候アリ。
+                                （というかTENETの来訪者カウンタを作った人）
+                            </p>
+                        </a>
+                        <a href="https://profile.activetk.jp/" target="_blank" class="mutual-link-item">
+                            <h4 class="inspiration-title">ActiveTK.</h4>
+                            <p class="inspiration-comment">
+                                ActiveTK.さんのプロフィールページです（原文）
+                            </p>
+                        </a>
+                        <p class="artifact-desc">というか、相互リンクめちゃくちゃ募集しております。<a
+                                href="https://discord.com/users/1427546345379467285">Discord</a>或いは<a
+                                href="https://x.com/AruihaYoru">X</a>まで。というか、極論Github<a
+                                href="https://github.com/AruihaYoru/AruihaYoru">Aruiha</a>にプルリクしてもらってもいい</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Artifacts -->
+            <section id="works" class="grid-capsule" aria-label="作品・成果物">
+                <div class="vertical-label reveal" style="top: 30vh; left: -2vw;">DIGITAL_REMAINS_INDEX</div>
+                <div class="content-box reveal">
+                    <span class="section-label">04 — ARTIFACTS</span>
+                    <h2 class="title-large">Digital Remains</h2>
+                    <div class="artifact-list" role="list">
+                        <div class="artifact-vertical-item" role="listitem">
+                            <div class="artifact-num">01</div>
+                            <h3>Mimi</h3>
+                            <p class="artifact-desc">
+                                「Music Instrument Minimal Interface」の略。
+                                Ver1.0から一気にVer2.0まで飛ばした、たぶん一番頑張ったやつ。
+                                基本的には一般的なCSV形式音声フォーマットだけど、どうしてもっていうなら8kHz/4bitで声を再生することもできる。
+                                一番近い音声型式がorg（オルガニャ）。
                             </p>
                         </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Status & Favorites -->
-        <section class="grid-capsule">
-            <div class="vertical-label reveal" style="top: 20vh; left: -2vw;">NEURAL_ACTIVITY_LOGS</div>
-            <div class="content-box reveal">
-                <span class="section-label">02 — LOGS & PASSION</span>
-
-                <div class="guestbook-container">
-                    <div class="visitor-stats">
-                        <div style="display: flex; flex-wrap: wrap; gap: 4rem; align-items: flex-end;">
-                            <div class="stat-item">
-                                <span class="artifact-num" style="font-size: 8rem; top: 0; left: -2rem;">FB</span>
-                                <span class="stat-label">TOTAL VISITORS ( MAIN )</span>
-                                <div id="visitor-count" class="stat-value">...</div>
-                            </div>
-                            <div class="stat-item" id="tenet-counter">
-                                <span class="artifact-num" style="font-size: 8rem; top: 0; left: -2rem;">NN</span>
-                                <span class="stat-label">VISITORS ( TENET )</span>
-                                <p id="count" class="stat-value"></p>
-                                <script src="https://counter.nanasi-rasi.net/counter.js"></script>
-                            </div>
-                            <div class="stat-item" id="moe-counter">
-                                <span class="artifact-num" style="font-size: 8rem; top: 0; left: -2rem;">AT</span>
-                                <span class="stat-label">VISITORS ( SUB )</span><br>
-                                <img src="http://moecounter.atserver186.jp/@:AruihaYoru" alt=":aruiha" />
-                            </div>
-
+                        <div class="artifact-vertical-item" role="listitem">
+                            <div class="artifact-num">02</div>
+                            <h3>JavaScript Piano</h3>
+                            <p class="artifact-desc">
+                                基本はサラマンダーグランドピアノのラッパーだけど、音ではなく「奏者」をシュミレートするもの。
+                                全体的によくできてます。Claude Codeで400行ぐらいかさました記憶。
+                            </p>
                         </div>
-                    </div>
-
-                    <div class="guestbook-main">
-                        <div class="guestbook-header">
-                            <h2 class="title-large" style="margin-bottom: 2rem;">Guestbook</h2>
-                            <div class="guestbook-input-group">
-                                <input type="text" id="signature-name" placeholder="Leave your mark (Name / Alias)"
-                                    maxlength="24">
-                                <button id="submit-signature">署名する</button>
-                            </div>
-                        </div>
-
-                        <div id="signature-list">
-                            <p style="text-align: center; opacity: 0.5;">Loading fragments...</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Connections -->
-        <section class="grid-capsule">
-            <div class="vertical-label reveal" style="bottom: 10vh; right: -2vw;">EXTERNAL_CONNECTIONS</div>
-            <div class="content-box reveal">
-                <span class="section-label">03 — CONNECTIONS</span>
-                <h2 class="title-large">Mutual Links</h2>
-                <div class="mutual-links">
-                    <a href="https://nanasi-rasi.net/" target="_blank" class="mutual-link-item">
-                        <h4 class="inspiration-title">ななしぃ</h4>
-                        <p class="inspiration-comment">
-							ゼンゼロやってて𝐵𝐼𝐺
-                            𝐿𝑂𝑉𝐸―――だぜ　ストレージに困ってる人　サーバー関連に強い人。
-							Data Hoaderの兆候アリ。
-							（というかTENETの来訪者カウンタを作った人）
-						</p>
-                    </a>
-                    <a href="https://profile.activetk.jp/" target="_blank" class="mutual-link-item">
-                        <h4 class="inspiration-title">ActiveTK.</h4>
-                        <p class="inspiration-comment">
-							ActiveTK.さんのプロフィールページです（原文）
-						</p>
-                    </a>
-					<p class="artifact-desc">というか、相互リンクめちゃくちゃ募集しております。<a href="https://discord.com/users/1427546345379467285">Discord</a>或いは<a href="https://x.com/AruihaYoru">X</a>まで。というか、極論Github<a href="https://github.com/AruihaYoru/AruihaYoru">Aruiha</a>にプルリクしてもらってもいい</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Artifacts -->
-        <section class="grid-capsule">
-            <div class="vertical-label reveal" style="top: 30vh; left: -2vw;">DIGITAL_REMAINS_INDEX</div>
-            <div class="content-box reveal">
-                <span class="section-label">04 — ARTIFACTS</span>
-                <h2 class="title-large">Digital Remains</h2>
-                <div class="artifact-list">
-                    <div class="artifact-vertical-item">
-                        <div class="artifact-num">01</div>
-                        <h3>Mimi</h3>
-                        <p class="artifact-desc">
-                            「Music Instrument Minimal Interface」の略。
-                            Ver1.0から一気にVer2.0まで飛ばした、たぶん一番頑張ったやつ。
-                            基本的には一般的なCSV形式音声フォーマットだけど、どうしてもっていうなら8kHz/4bitで声を再生することもできる。
-                            一番近い音声型式がorg（オルガニャ）。
-                        </p>
-                    </div>
-                    <div class="artifact-vertical-item">
-                        <div class="artifact-num">02</div>
-                        <h3>JavaScript Piano</h3>
-                        <p class="artifact-desc">
-                            基本はサラマンダーグランドピアノのラッパーだけど、音ではなく「奏者」をシュミレートするもの。
-                            全体的によくできてます。Claude Codeで400行ぐらいかさました記憶。
-                        </p>
-                    </div>
-                    <div class="artifact-vertical-item">
-                        <div class="artifact-num">03</div>
-                        <h3>EzCLI <span
-                                style="font-size: 0.6rem; opacity: 0.2; letter-spacing: 0.3em; font-family: var(--font-mono) !important;">(MIYABI_CORE)</span>
-                        </h3>
-                        <p class="artifact-desc">
-                            自分用のCLIツールたち。めちゃくちゃ便利すぎてまずい。
-                            というか使ってくれ。
-                            <a href="https://github.com/AruihaYoru/EzCLI">Link is Here!</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Philosophy & Skills -->
-        <section class="vertical-block reveal">
-            <span class="section-label">05 — PHILOSOPHY & SKILLS</span>
-            <h2 class="title-large" style="font-size: clamp(2rem, 6vw, 4rem);">学んだこと</h2>
-
-            <div class="registry-container">
-                <!-- Group 01: Acquired -->
-                <div class="registry-section">
-                    <div class="registry-header">Acquired Skills</div>
-
-                    <div class="registry-row">
-                        <div class="artifact-num">α</div>
-                        <div class="registry-key">JavaScript</div>
-                        <div class="registry-value">
-                            私の第一言語です。基本はVanilla
-                            JSですが、必要であればTypeScriptも辞しません。あ、node.jsはいつか勉強したいと考えています（友人が少し言っていましたので）。代表例としては....<a
-                                href="http://AruihaYoru.github.io/HelloWorld" target="_blank">HelloWorld, but it's 800
-                                lines long.</a>など。
-                        </div>
-                    </div>
-
-                    <div class="registry-row">
-                        <div class="artifact-num">β</div>
-                        <div class="registry-key">CSS</div>
-                        <div class="registry-value">
-                            <a href="https://github.com/AruihaYoru/iClound" target="_blank">iClound</a>
-                            をDLしてセットアップしてみればわかるよ。
-                        </div>
-                    </div>
-
-                    <div class="registry-row">
-                        <div class="artifact-num">γ</div>
-                        <div class="registry-key">HTML</div>
-                        <div class="registry-value">さすがにこれは自然習得でしょ、出来て当然みたいな環境で育ちましたから</div>
-                    </div>
-
-                    <div class="registry-row">
-                        <div class="artifact-num">δ</div>
-                        <div class="registry-key">Rust</div>
-                        <div class="registry-value">さすがにWASMが必要になってきた（ドがつくへたくそ）</div>
-                    </div>
-
-                    <div class="registry-row">
-                        <div class="artifact-num">ε</div>
-                        <div class="registry-key">Python</div>
-                        <div class="registry-value">
-                            <a href="https://github.com/AruihaYoru/NewVideo" target="_blank">mrv player</a> /
-                            <a href="https://github.com/AruihaYoru/no-js-minesweeper" target="_blank">minesweeper on
-                                CSS</a> とか
-                        </div>
-                    </div>
-
-                    <div class="registry-row">
-                        <div class="artifact-num">ζ</div>
-                        <div class="registry-key">C Language</div>
-                        <div class="registry-value">
-                            <a href="https://AruihaYoru.github.io/AruihaYoru/EzCLI" target="_blank">EzCLI</a>
-                            とか。あれはC言語とpythonのハイブリッド。
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Group 02: Void -->
-                <div class="registry-section">
-                    <div class="registry-header">Void Channels</div>
-
-                    <div class="registry-row">
-                        <div class="artifact-num">η</div>
-                        <div class="registry-key">PHP</div>
-                        <div class="registry-value">ええと、昔、ブックオフでそれの参考書が売ってましたね。なんとなく触っていませんでした。あれなんなんですかね。名前しか知らないし
-                            <code>&lt;?php</code> っていうのは知ってる。
-                        </div>
-                    </div>
-
-                    <div class="registry-row">
-                        <div class="artifact-num">θ</div>
-                        <div class="registry-key">Java</div>
-                        <div class="registry-value">ほんとに使いたかったのはjavaなんですよね。知らないんだよ。</div>
-                    </div>
-                </div>
-
-                <!-- Group 03: Fragments -->
-                <div class="registry-section">
-                    <div class="registry-header">Fragments</div>
-
-                    <div class="registry-row">
-                        <div class="artifact-num">ι</div>
-                        <div class="registry-key">(似非)心理学</div>
-                        <div class="registry-value">
-                            とある創作コミュニティでは、「『キャラクター』が何かをするには『動機』が必要で、その『動機』はそのキャラの性格や過去で決まる。」という理論があって。私はそれにのめりこみました。人間にストレスを与え続けるとどうなるか、条件付きの愛を受けて育つとどうなるのか。....オリキャラ作るときしか役に立ちませんが。
-                        </div>
-                    </div>
-
-                    <div class="registry-row">
-                        <div class="artifact-num">κ</div>
-                        <div class="registry-key">(似非)言語学</div>
-                        <div class="registry-value">そんな詳しくはありません。ラテン語は好きです。</div>
-                    </div>
-
-                    <div class="registry-row">
-                        <div class="artifact-num">λ</div>
-                        <div class="registry-key">音象徴</div>
-                        <div class="registry-value">これも同様に。オリキャラ作るときに勉強したものです。音象徴って明らかに全員自覚あるのにどうして嘘だとか似非学問の扱い受けてるんだ？
-                        </div>
-                    </div>
-
-                    <div class="registry-row">
-                        <div class="artifact-num">μ</div>
-                        <div class="registry-key">Web Design</div>
-                        <div class="registry-value">もちろん。私が最初に読んだものは、CSSの参考書だ。</div>
-                    </div>
-
-                    <div class="registry-row">
-                        <div class="artifact-num">ν</div>
-                        <div class="registry-key">Writing</div>
-                        <div class="registry-value">これは、<a href="https://AruihaYoru.github.io/AruihaYoru"
-                                target="_blank">Aruiha</a> を見てもらえばとってもわかると思います。（リンク先は原罪閉鎖してるので、いつかミラーサイトをつくります。）</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="registry-footer-note">
-                <p>こういうの学んでると、「それは違うでしょ」みたいなことばっか思うようになるんすよね（過去と行動があっていない、とか。）</p>
-                <div style="opacity: 0.001; pointer-events: none; height: 0; overflow: hidden;">MIYABI雅MIYABI雅</div>
-            </div>
-        </section>
-
-
-
-
-        <!-- System Architecture -->
-        <section class="grid-capsule">
-            <div class="vertical-label reveal" style="top: 10vh; right: -2vw;">SYSTEM_ENVIRONMENT_STACK</div>
-            <div class="content-box reveal">
-                <div
-                    style="position: absolute; top: 1rem; right: 2rem; font-family: var(--font-mono) !important; font-size: 0.5rem; opacity: 0.1; letter-spacing: 0.5em;">
-                    MIYABI_PROTOCOL_VER_2.6 // 雅</div>
-                <span class="section-label">06 — SYSTEM ARCH</span>
-                <h2 class="title-large">Technical Core</h2>
-                <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px;" class="tech-grid">
-                    <div>
-                        <p style="color: var(--accent); font-family: var(--font-mono) !important; margin-bottom: 2rem;">
-                            // Environment Stack</p>
-                        <div class="text-detail">
-                            <p><b>Notepad++:</b> おれの嫁。<br>
-                                <b>FFmpeg:</b> たぶん大体のプロジェクトというか結構な場所で使ってる。<br>
-                                <b>Pillow / NumPy:</b> おれの嫁2とおれの嫁3。（将軍かな？）<br>
-                                <b>Web Audio API:</b> 私は本当にこれが好き。<br>
-                                <b>WinGet:</b> これまじで便利すぎるよなあ　無料とか嘘だろ？FFmpegが一瞬で落とせるんだぞ？<br>
-                                <b>jszip:</b> JSzipをお気に入りバーにいれているの私ぐらいでしょう
+                        <div class="artifact-vertical-item" role="listitem">
+                            <div class="artifact-num">03</div>
+                            <h3>EzCLI <span
+                                    style="font-size: 0.6rem; opacity: 0.2; letter-spacing: 0.3em; font-family: var(--font-mono) !important;">(MIYABI_CORE)</span>
+                            </h3>
+                            <p class="artifact-desc">
+                                自分用のCLIツールたち。めちゃくちゃ便利すぎてまずい。
+                                というか使ってくれ。
+                                <a href="https://github.com/AruihaYoru/EzCLI">Link is Here!</a>
                             </p>
                         </div>
                     </div>
-                    <div>
-                        <p style="color: var(--accent); font-family: var(--font-mono) !important; margin-bottom: 2rem;">
-                            // Active Node</p>
-                        <ul class="status-list">
-                            <li><span>IP Address: </span><span class="random-text">Calculating...</span></li>
-                            <li><span>Node Location: </span><span class="random-text">Locating...</span></li>
-                            <li><span>Browser: </span><span class="random-text">-</span></li>
-                            <li><span>Timezone: </span><span class="random-text">-</span></li>
-                        </ul>
-                    </div>
-                    <div>
-                        <p style="color: var(--accent); font-family: var(--font-mono) !important; margin-bottom: 2rem;">
-                            // Environment Configuration
-                        </p>
-                        <ul class="status-list">
-                            <li><span>OS: </span>Windows10, iOS16.7.12 (iPhone8), Ubuntu Server</li>
-                            <li><span>Coding: </span>Notepad++</li>
-                            <li><span>Test: </span>Firefox Developer Edition</li>
-                            <li><span>Local Server: </span>Python</li>
-                            <li><span>Compiler: </span>GCC (MinGW)</li>
-                        </ul>
-                    </div>
-                    <div>
+                </div>
+            </section>
 
+            <!-- Philosophy & Skills -->
+            <section id="philosophy" class="vertical-block reveal" aria-label="思想とスキル">
+                <span class="section-label">05 — PHILOSOPHY & SKILLS</span>
+                <h2 class="title-large" style="font-size: clamp(2rem, 6vw, 4rem);">学んだこと</h2>
+
+                <div class="registry-container">
+                    <!-- Group 01: Acquired -->
+                    <div class="registry-section">
+                        <div class="registry-header">Acquired Skills</div>
+
+                        <div class="registry-row">
+                            <div class="artifact-num">α</div>
+                            <div class="registry-key">JavaScript</div>
+                            <div class="registry-value">
+                                私の第一言語です。基本はVanilla
+                                JSですが、必要であればTypeScriptも辞しません。あ、node.jsはいつか勉強したいと考えています（友人が少し言っていましたので）。代表例としては....<a
+                                    href="http://AruihaYoru.github.io/HelloWorld" target="_blank">HelloWorld, but it's
+                                    800
+                                    lines long.</a>など。
+                            </div>
+                        </div>
+
+                        <div class="registry-row">
+                            <div class="artifact-num">β</div>
+                            <div class="registry-key">CSS</div>
+                            <div class="registry-value">
+                                <a href="https://github.com/AruihaYoru/iClound" target="_blank">iClound</a>
+                                をDLしてセットアップしてみればわかるよ。
+                            </div>
+                        </div>
+
+                        <div class="registry-row">
+                            <div class="artifact-num">γ</div>
+                            <div class="registry-key">HTML</div>
+                            <div class="registry-value">さすがにこれは自然習得でしょ、出来て当然みたいな環境で育ちましたから</div>
+                        </div>
+
+                        <div class="registry-row">
+                            <div class="artifact-num">δ</div>
+                            <div class="registry-key">Rust</div>
+                            <div class="registry-value">さすがにWASMが必要になってきた（ドがつくへたくそ）</div>
+                        </div>
+
+                        <div class="registry-row">
+                            <div class="artifact-num">ε</div>
+                            <div class="registry-key">Python</div>
+                            <div class="registry-value">
+                                <a href="https://github.com/AruihaYoru/NewVideo" target="_blank">mrv player</a> /
+                                <a href="https://github.com/AruihaYoru/no-js-minesweeper" target="_blank">minesweeper on
+                                    CSS</a> とか
+                            </div>
+                        </div>
+
+                        <div class="registry-row">
+                            <div class="artifact-num">ζ</div>
+                            <div class="registry-key">C Language</div>
+                            <div class="registry-value">
+                                <a href="https://AruihaYoru.github.io/AruihaYoru/EzCLI" target="_blank">EzCLI</a>
+                                とか。あれはC言語とpythonのハイブリッド。
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Group 02: Void -->
+                    <div class="registry-section">
+                        <div class="registry-header">Void Channels</div>
+
+                        <div class="registry-row">
+                            <div class="artifact-num">η</div>
+                            <div class="registry-key">PHP</div>
+                            <div class="registry-value">ええと、昔、ブックオフでそれの参考書が売ってましたね。なんとなく触っていませんでした。あれなんなんですかね。名前しか知らないし
+                                <code>&lt;?php</code> っていうのは知ってる。
+                            </div>
+                        </div>
+
+                        <div class="registry-row">
+                            <div class="artifact-num">θ</div>
+                            <div class="registry-key">Java</div>
+                            <div class="registry-value">ほんとに使いたかったのはjavaなんですよね。知らないんだよ。</div>
+                        </div>
+                    </div>
+
+                    <!-- Group 03: Fragments -->
+                    <div class="registry-section">
+                        <div class="registry-header">Fragments</div>
+
+                        <div class="registry-row">
+                            <div class="artifact-num">ι</div>
+                            <div class="registry-key">(似非)心理学</div>
+                            <div class="registry-value">
+                                とある創作コミュニティでは、「『キャラクター』が何かをするには『動機』が必要で、その『動機』はそのキャラの性格や過去で決まる。」という理論があって。私はそれにのめりこみました。人間にストレスを与え続けるとどうなるか、条件付きの愛を受けて育つとどうなるのか。....オリキャラ作るときしか役に立ちませんが。
+                            </div>
+                        </div>
+
+                        <div class="registry-row">
+                            <div class="artifact-num">κ</div>
+                            <div class="registry-key">(似非)言語学</div>
+                            <div class="registry-value">そんな詳しくはありません。ラテン語は好きです。</div>
+                        </div>
+
+                        <div class="registry-row">
+                            <div class="artifact-num">λ</div>
+                            <div class="registry-key">音象徴</div>
+                            <div class="registry-value">
+                                これも同様に。オリキャラ作るときに勉強したものです。音象徴って明らかに全員自覚あるのにどうして嘘だとか似非学問の扱い受けてるんだ？
+                            </div>
+                        </div>
+
+                        <div class="registry-row">
+                            <div class="artifact-num">μ</div>
+                            <div class="registry-key">Web Design</div>
+                            <div class="registry-value">もちろん。私が最初に読んだものは、CSSの参考書だ。</div>
+                        </div>
+
+                        <div class="registry-row">
+                            <div class="artifact-num">ν</div>
+                            <div class="registry-key">Writing</div>
+                            <div class="registry-value">これは、<a href="https://AruihaYoru.github.io/AruihaYoru"
+                                    target="_blank">Aruiha</a> を見てもらえばとってもわかると思います。（リンク先は原罪閉鎖してるので、いつかミラーサイトをつくります。）
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <footer style="padding: 15vh 0; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05);">
+                <div class="registry-footer-note">
+                    <p>こういうの学んでると、「それは違うでしょ」みたいなことばっか思うようになるんすよね（過去と行動があっていない、とか。）</p>
+                </div>
+            </section>
+
+
+
+
+            <!-- System Architecture -->
+            <section id="system" class="grid-capsule" aria-label="システムアーキテクチャ">
+                <div class="vertical-label reveal" style="top: 10vh; right: -2vw;">SYSTEM_ENVIRONMENT_STACK</div>
+                <div class="content-box reveal">
+                    <div
+                        style="position: absolute; top: 1rem; right: 2rem; font-family: var(--font-mono) !important; font-size: 0.5rem; opacity: 0.1; letter-spacing: 0.5em;">
+                        MIYABI_PROTOCOL_VER_2.6 // 雅</div>
+                    <span class="section-label">06 — SYSTEM ARCH</span>
+                    <h2 class="title-large">Technical Core</h2>
+                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px;" class="tech-grid">
+                        <div>
+                            <p
+                                style="color: var(--accent); font-family: var(--font-mono) !important; margin-bottom: 2rem;">
+                                // Environment Stack</p>
+                            <div class="text-detail">
+                                <p><b>Notepad++:</b> おれの嫁。<br>
+                                    <b>FFmpeg:</b> たぶん大体のプロジェクトというか結構な場所で使ってる。<br>
+                                    <b>Pillow / NumPy:</b> おれの嫁2とおれの嫁3。（将軍かな？）<br>
+                                    <b>Web Audio API:</b> 私は本当にこれが好き。<br>
+                                    <b>WinGet:</b> これまじで便利すぎるよなあ　無料とか嘘だろ？FFmpegが一瞬で落とせるんだぞ？<br>
+                                    <b>jszip:</b> JSzipをお気に入りバーにいれているの私ぐらいでしょう
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <p
+                                style="color: var(--accent); font-family: var(--font-mono) !important; margin-bottom: 2rem;">
+                                // Active Node</p>
+                            <ul class="status-list">
+                                <li><span>IP Address: </span><span class="random-text">Calculating...</span></li>
+                                <li><span>Node Location: </span><span class="random-text">Locating...</span></li>
+                                <li><span>Browser: </span><span class="random-text">-</span></li>
+                                <li><span>Timezone: </span><span class="random-text">-</span></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p
+                                style="color: var(--accent); font-family: var(--font-mono) !important; margin-bottom: 2rem;">
+                                // Environment Configuration
+                            </p>
+                            <ul class="status-list">
+                                <li><span>OS: </span>Windows10, iOS16.7.12 (iPhone8), Ubuntu Server</li>
+                                <li><span>Coding: </span>Notepad++</li>
+                                <li><span>Test: </span>Firefox Developer Edition</li>
+                                <li><span>Local Server: </span>Python</li>
+                                <li><span>Compiler: </span>GCC (MinGW)</li>
+                            </ul>
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer style="padding: 15vh 0; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05);"
+            role="contentinfo">
             <div
                 style="font-family: var(--font-display); font-size: 2.5rem; color: var(--accent); margin-bottom: 2rem; letter-spacing: 0.1em;">
                 AruihaYoru
@@ -479,8 +522,7 @@
                     <li><span>コード内コメント加筆: </span>Gemini 3 Flash</li>
                     <li><span>演出: </span>「キメキャワスイッチ」（はたして何人がわかるのだろうか）</li>
                 </ul>
-                <p style="font-size: 0.1rem; opacity: 0.001; position: absolute; bottom: 0; right: 0;">雅 MIYABI 雅 MIYABI
-                </p>
+                <p data-miyabi="雅MIYABI 雅 MIYABI">マジでキメキャワスイッチわかる人いなそう</p>
             </div>
         </footer>
     </div>
