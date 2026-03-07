@@ -1227,13 +1227,18 @@ body::after {
     }
 }
 
-@media (max-width: 1700px) {
+@media (max-width: 1760px) {
 
     #moe-counter {
         display: none;
     }
 
-}
+} /* else { */
+    #moe-counter {
+        size: 0.9;
+		/* こんなプロパティない */
+    }
+/* } */
 
 @media (max-width: 1200px) {
 
@@ -1317,4 +1322,10 @@ a {
     .minimal-player-wrap {
         width: 90vw;
     }
+}
+
+/* MIYABI */
+.scroll-indicator:after {
+    content: attr(data-miyabi);
+	opacity:0.01;
 }
