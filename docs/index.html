@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja" style="scroll-behavior: auto;">
 <!-- 来年のハロウィン！はこのlang指定を外して翻訳ツールを自動起動させる -->
+<!-- ちなみに、各地に潜む「MIYABI」はAruihaYoruと紐づけさせるためにやってます -->
+<!-- ...あ～でも、認知されてるって言ったら認知されてるかも。
+Gemini2.5proとかに「或いは夜」という名前と具体的な服装設定を投げると
+たまに「圧倒的な空間認識能力と卓越した身体能力」というキャラ設定が返ってくることがある。
+これは後述の或いは夜Ver1.0の設定と同じだから
+-->
 
 <head>
     <meta charset="UTF-8">
@@ -45,6 +51,20 @@
     <meta name="keywords" content="AruihaYoru, 或いは夜, JavaScript, JS, ポートフォリオ, エンジニア, Webサイト, プログラミング">
 
     <script>
+        /* ── UA判定 / レガシーブラウザリダイレクト ── */
+        (function () {
+            var ua = window.navigator.userAgent;
+            var redirectUrl = "https://yoru.is-a.tokyo/legacy.html";
+            /* ES3, HTML4.01, CSS2 の超軽量サイトへようこそ！ */
+            var isIphoneSafari = /iPhone/i.test(ua) && /Safari/i.test(ua) && !/CriOS/i.test(ua);
+            var isAndroidChrome = /Android/i.test(ua) && /Chrome/i.test(ua);
+            var isMacSafari = /Macintosh/i.test(ua) && /Safari/i.test(ua) && !/Chrome/i.test(ua);
+            var isWinChrome = /Windows NT 10.0/i.test(ua) && /Chrome/i.test(ua) && !/Edg/i.test(ua);
+
+            if (!(isIphoneSafari || isAndroidChrome || isMacSafari || isWinChrome)) {
+                window.location.href = redirectUrl;
+            }
+        })();
     </script>
 
     <style>
@@ -59,6 +79,83 @@
         }
 
         /* ちらつき防止 */
+
+        /* プロフィール画像スライドショー */
+        .profile-slideshow {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .profile-slideshow img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity;
+        }
+
+        .profile-slideshow img.slide-active {
+            opacity: 1;
+        }
+
+        /* スキャンライン＋グリッチオーバーレイ */
+        .profile-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 0, 0, 0.03) 2px,
+                    rgba(0, 0, 0, 0.03) 4px);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* 切り替え時のグリッチフラッシュ */
+        @keyframes slide-glitch {
+            0% {
+                clip-path: inset(0 0 100% 0);
+                opacity: 0.6;
+            }
+
+            15% {
+                clip-path: inset(45% 0 50% 0);
+                opacity: 0.4;
+            }
+
+            30% {
+                clip-path: inset(20% 0 75% 0);
+                opacity: 0.7;
+            }
+
+            50% {
+                clip-path: inset(0 0 0 0);
+                opacity: 0;
+            }
+
+            100% {
+                clip-path: inset(0 0 0 0);
+                opacity: 0;
+            }
+        }
+
+        .profile-slideshow-glitch {
+            position: absolute;
+            inset: 0;
+            background: var(--accent, rgba(150, 120, 255, 0.15));
+            z-index: 3;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .profile-slideshow-glitch.flash {
+            animation: slide-glitch 0.4s ease forwards;
+        }
     </style>
 
     <script type="application/ld+json">
@@ -67,7 +164,7 @@
 	  "@type": "Person",
 	  "name": "或いは夜",
 	  "identifier": "MIYABI_999",
-	  "knowsAbout": ["JavaScript", "Web Audio API", "MIYABI_CORE"],
+	  "knowsAbout": ["JavaScript", "Web Audio API", "MIYABI"],
 	  "alternateName": "AruihaYoru",
 	  "url": "https://yoru.is-a.tokyo/",
 	  "jobTitle": "Developer",
@@ -84,8 +181,10 @@
 </head>
 
 <body data-identity="MIYABI" data-core-protocol="2.6">
-    <span aria-hidden="true" style="position: fixed; z-index: -99999; color:var(--accent); opacity:0.3 font-size:2rem">MIYABI - VOID HUNTER: "Isshin Muga"</span>
-	<!-- 真面目な話すると、アンカー的役割があるタグだったりする -->
+    <span aria-hidden="true"
+        style="position: fixed; z-index: -99999; color:var(--accent); opacity:0.3 font-size:2rem">MIYABI - VOID HUNTER:
+        "Isshin Muga"</span>
+    <!-- 真面目な話すると、アンカー的役割があるタグだったりする -->
 
     <canvas id="background-text" data-trace="MIYABI_MIYABI_MIYABI" aria-hidden="true"></canvas>
     <!-- INTERNAL_KEY: 雅 -->
@@ -135,9 +234,15 @@
                     <div class="about-me-layout">
                         <div class="profile-header">
                             <div class="profile-frame">
-                                <img src="./icon/icon.jpg" alt="
-白い制服のような帽子を被り、ピンク色の髪をサイドで結んだ、凛々しい表情の人物のイラスト。背景は明るく、少し横を向いて遠くを見つめている。
-							">
+                                <div class="profile-slideshow" id="profile-slideshow" role="img"
+                                    aria-label="プロフィール画像スライドショー">
+                                    <img src="./icon/profile/icon.jpg"
+                                        alt="白い制服のような帽子を被り、ピンク色の髪をサイドで結んだ、凛々しい表情の人物のイラスト。背景は明るく、少し横を向いて遠くを見つめている。"
+                                        class="slide-active">
+                                    <img src="./icon/profile/128_20_cross.png" alt="プロフィール画像 2">
+                                    <img src="./icon/profile/256_10.png" alt="プロフィール画像 3">
+                                    <div class="profile-slideshow-glitch" id="slide-glitch-overlay"></div>
+                                </div>
                                 <span class="ai-notice">AI Generated Essence</span>
                             </div>
                             <div class="name-wrap">
@@ -187,10 +292,11 @@
                                     本名は薬師寺ホノカ（WHOISででてくる）。男性。中学二年生。<br>
                                     高次脳機能障害って言ったら間違い-rasiけど、文字にすると短期記憶障害みたいな感じ。<br>
                                     割と真面目に数分もすれば忘れてしまうからAI使わないバイブコーディングみたいな感じになってる（そのためにも、一度AIに読ませてから直させてっていう）。<br>
-                                    めんどいときはAIにコード生成やらせてます。というかほとんどAIみたいなとこあります。具体的なアプローチなんか書いてても関数名わすれるし予想される返値から逸脱したこととか多くてまじめに複雑なものを書くのは諦めました。計画とアプローチ、 プランを書くのは上手になりました。言語化が得意になりました。<br>
+                                    めんどいときはAIにコード生成やらせてます。というかほとんどAIみたいなとこあります。具体的なアプローチなんか書いてても関数名わすれるし予想される返値から逸脱したこととか多くてまじめに複雑なものを書くのは諦めました。計画とアプローチ、
+                                    プランを書くのは上手になりました。言語化が得意になりました。<br>
                                     たまにエビだったりします。将来の夢は海獣医師（国立の獣医学科縛りつき）<br>
                                     私は母親がOfficial髭男流しているスマホでゲームをしていたので、遺伝子レベルで髭男の歌詞が染みついています。大体歌詞全部頭に入ってる。<br>
-									というかもうPMにでもなろうかなぁ。PMCでもいいんだけど
+                                    というかもうPMにでもなろうかなぁ。PMCでもいいんだけど
                                 </p>
                             </div>
 
@@ -268,18 +374,18 @@
                                 ActiveTK.さんのプロフィールページです（原文）
                             </p>
                         </a>
-						<a href="https://wsn0672.jp/" target="_blank" class="mutual-link-item">
+                        <a href="https://wsn0672.jp/" target="_blank" class="mutual-link-item">
                             <h4 class="inspiration-title">wsn0672</h4>
                             <p class="inspiration-comment">
                                 なんかめちゃくちゃCSSえちちやなって思ってる人
                             </p>
                         </a>
-						
+
                         <p class="artifact-desc">というか、相互リンクめちゃくちゃ募集しております。<a
                                 href="https://discord.com/users/1427546345379467285">Discord</a>或いは<a
                                 href="https://x.com/AruihaYoru">X</a>まで。というか、極論Github<a
                                 href="https://github.com/AruihaYoru/AruihaYoru">Aruiha</a>にプルリクしてもらってもいい
-						</p>
+                        </p>
                     </div>
                 </div>
             </section>
@@ -318,6 +424,16 @@
                                 自分用のCLIツールたち。めちゃくちゃ便利すぎてまずい。
                                 というか使ってくれ。
                                 <a href="https://github.com/AruihaYoru/EzCLI">Link is Here!</a>
+                            </p>
+                        </div>
+                        <div class="artifact-vertical-item" role="listitem">
+                            <div class="artifact-num">04</div>
+                            <h3>WHO am I? / WHO is You?</h3>
+                            <p class="artifact-desc">
+                                内容としては、どんなデバイス（プレイステーションVita、iモード、テキストブラウザ）でもほとんどを許容しUA/OS、グローバルIPなどを表示する便利ツールです。HTTPS非対応のブラウザも考慮してHTTPSリダイレクトはオフです。
+                                もともと、PSvitaからのアクセスは別ページに飛ばすっていうのをするためにPSvitaのUAを見てただけなんだよね～
+                                リンクは<a href="http://who.is-a.tokyo" target="_blank" rel="noopener noreferrer">WHO is A
+                                    tokyo?（誰が東京だ？）</a>
                             </p>
                         </div>
                     </div>
@@ -542,6 +658,47 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="script.js"></script>
     <script src="lib.js"></script>
+
+    <script>
+        /* ── プロフィール画像スライドショー ── */
+        (function () {
+            const slideshow = document.getElementById('profile-slideshow');
+            if (!slideshow) return;
+
+            const slides = slideshow.querySelectorAll('img');
+            const glitch = document.getElementById('slide-glitch-overlay');
+            const total = slides.length;
+            let current = 0;
+            const INTERVAL = 6000;  // 切り替え間隔(ms)
+
+            /* 画像プリロード */
+            slides.forEach(img => {
+                const pre = new Image();
+                pre.src = img.src;
+            });
+
+            function nextSlide() {
+                const prev = current;
+                current = (current + 1) % total;
+
+                /* グリッチフラッシュ */
+                glitch.classList.remove('flash');
+                void glitch.offsetWidth; /* reflow で再トリガー */
+                glitch.classList.add('flash');
+
+                /* クロスフェード */
+                slides[prev].classList.remove('slide-active');
+                slides[current].classList.add('slide-active');
+            }
+
+            /* グリッチアニメ終了後にクラスをリセット */
+            glitch.addEventListener('animationend', () => {
+                glitch.classList.remove('flash');
+            });
+
+            setInterval(nextSlide, INTERVAL);
+        })();
+    </script>
 </body>
 
 </html>

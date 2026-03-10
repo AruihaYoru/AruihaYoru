@@ -1,0 +1,510 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>或いは夜 - AruihaYoru | ポータルページ (Legacy)</title>
+    <meta name="description" content="駆け出し／中高生／自称JSのプロ「或いは夜」のページ。レガシーブラウザ対応版。">
+    <meta name="author" content="AruihaYoru">
+    <meta name="robots" content="noindex, follow">
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #0a0a0f;
+            color: #c8c0d8;
+            font-family: "Hiragino Kaku Gothic Pro", "MS PGothic", Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        a {
+            color: #9b85d4;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: #c4aff5;
+            text-decoration: none;
+        }
+
+        /* ── レイアウト ── */
+        #wrapper {
+            width: 760px;
+            margin: 0 auto;
+            padding: 20px 0 60px 0;
+        }
+
+        /* ── ヘッダー ── */
+        #site-header {
+            border-bottom: 1px solid #3a2f5a;
+            padding: 40px 20px 30px 20px;
+            text-align: center;
+        }
+
+        #site-header h1 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 42px;
+            font-weight: normal;
+            color: #e8dff8;
+            letter-spacing: 0.15em;
+        }
+
+        #site-header .sub-title {
+            font-size: 11px;
+            color: #5a4f7a;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        #legacy-notice {
+            background-color: #1a1228;
+            border: 1px solid #3a2f5a;
+            margin: 20px 20px 0 20px;
+            padding: 10px 16px;
+            font-size: 11px;
+            color: #6a5f8a;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        /* ── ナビゲーション ── */
+        #site-nav {
+            background-color: #0f0a1a;
+            border-bottom: 1px solid #2a1f4a;
+            padding: 0 20px;
+        }
+
+        #site-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #site-nav ul li {
+            display: inline;
+        }
+
+        #site-nav ul li a {
+            display: inline-block;
+            padding: 12px 18px;
+            color: #8a7aaa;
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-family: "Courier New", Courier, monospace;
+        }
+
+        #site-nav ul li a:hover {
+            color: #c4aff5;
+            background-color: #1a0f2a;
+        }
+
+        /* ── セクション共通 ── */
+        .section {
+            padding: 40px 20px;
+            border-bottom: 1px solid #1a1530;
+        }
+
+        .section-label {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 10px;
+            letter-spacing: 0.5em;
+            color: #5a4f7a;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .section h2 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 28px;
+            font-weight: normal;
+            color: #e0d4f8;
+            margin-bottom: 20px;
+        }
+
+        /* ── プロフィール ── */
+        #bio-table {
+            width: 100%;
+        }
+
+        #bio-table td {
+            vertical-align: top;
+            padding: 0;
+        }
+
+        #bio-table .col-img {
+            width: 160px;
+            padding-right: 24px;
+        }
+
+        #profile-img-wrap {
+            width: 140px;
+            height: 140px;
+            border: 1px solid #3a2f5a;
+            overflow: hidden;
+            background-color: #1a1228;
+        }
+
+        #profile-img-wrap img {
+            width: 140px;
+            height: 140px;
+        }
+
+        .ai-notice {
+            display: block;
+            font-family: "Courier New", Courier, monospace;
+            font-size: 9px;
+            color: #4a3f6a;
+            letter-spacing: 0.2em;
+            margin-top: 6px;
+            text-align: center;
+        }
+
+        .name-jp {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 24px;
+            color: #e0d4f8;
+            margin-bottom: 6px;
+        }
+
+        .bio-text {
+            font-size: 13px;
+            color: #a09ab8;
+            line-height: 1.9;
+        }
+
+        /* ── ソーシャルリンク ── */
+        .social-list {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0 0 0;
+        }
+
+        .social-list li {
+            display: inline;
+            margin-right: 16px;
+        }
+
+        .social-list li a {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 11px;
+            color: #8a7aaa;
+            text-decoration: none;
+            letter-spacing: 0.2em;
+        }
+
+        .social-list li a:hover {
+            color: #c4aff5;
+        }
+
+        /* ── 相互リンク ── */
+        .mutual-item {
+            border: 1px solid #2a1f4a;
+            padding: 16px;
+            margin-bottom: 12px;
+            background-color: #0d0a18;
+        }
+
+        .mutual-item h4 {
+            color: #c4aff5;
+            font-size: 15px;
+            font-weight: normal;
+            margin-bottom: 6px;
+        }
+
+        .mutual-item p {
+            font-size: 12px;
+            color: #7a708a;
+        }
+
+        /* ── Skills テーブル ── */
+        .skill-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .skill-table tr {
+            border-bottom: 1px solid #1a1530;
+        }
+
+        .skill-table td {
+            padding: 10px 8px;
+            vertical-align: top;
+        }
+
+        .skill-num {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 12px;
+            color: #4a3f6a;
+            width: 30px;
+        }
+
+        .skill-key {
+            color: #9b85d4;
+            font-weight: bold;
+            width: 140px;
+            font-size: 13px;
+        }
+
+        .skill-val {
+            color: #9090a8;
+            font-size: 13px;
+        }
+
+        /* ── フッター ── */
+        #site-footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid #1a1530;
+        }
+
+        #site-footer .footer-name {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 28px;
+            color: #9b85d4;
+            letter-spacing: 0.1em;
+        }
+
+        #site-footer .footer-copy {
+            font-family: "Courier New", Courier, monospace;
+            font-size: 10px;
+            letter-spacing: 0.5em;
+            color: #3a3050;
+            margin-top: 12px;
+        }
+
+        /* ── スライドショー用 ── */
+        #slide-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            overflow: hidden;
+        }
+
+        #slide-container img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 140px;
+            height: 140px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- ヘッダー -->
+        <div id="site-header">
+            <h1>AruihaYoru</h1>
+            <div class="sub-title">或いは夜 &mdash; Portal Page (Legacy)</div>
+        </div>
+
+        <div id="legacy-notice">
+            // This is the legacy-compatible version of yoru.is-a.tokyo<br>
+            // rendered for your browser environment. Full version: <a
+                href="https://yoru.is-a.tokyo/">yoru.is-a.tokyo</a>
+        </div>
+
+        <!-- ナビ -->
+        <div id="site-nav">
+            <ul>
+                <li><a href="#bio">Essence</a></li>
+                <li><a href="#links">Connections</a></li>
+                <li><a href="#works">Artifacts</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+        </div>
+
+        <!-- Biography -->
+        <div id="bio" class="section">
+            <span class="section-label">01 &mdash; Essence</span>
+            <h2>或いは夜</h2>
+
+            <table id="bio-table">
+                <tr>
+                    <td class="col-img">
+                        <div id="profile-img-wrap">
+                            <div id="slide-container">
+                                <img src="./icon/profile/icon.jpg" alt="プロフィール画像 1" id="slide0">
+                                <img src="./icon/profile/128_20_cross.png" alt="プロフィール画像 2" id="slide1"
+                                    style="display:none;">
+                                <img src="./icon/profile/256_10.png" alt="プロフィール画像 3" id="slide2" style="display:none;">
+                            </div>
+                        </div>
+                        <span class="ai-notice">AI Generated Essence</span>
+                    </td>
+                    <td>
+                        <div class="name-jp">或いは夜</div>
+                        <ul class="social-list">
+                            <li><a href="https://github.com/AruihaYoru" target="_blank">GitHub</a></li>
+                            <li><a href="https://x.com/AruihaYoru" target="_blank">X (Twitter)</a></li>
+                            <li><a href="https://qiita.com/AruihaYoru" target="_blank">Qiita</a></li>
+                            <li><a href="https://discord.com/users/1427546345379467285" target="_blank">Discord</a></li>
+                        </ul>
+                        <p class="bio-text" style="margin-top:14px;">
+                            本名は薬師寺ホノカ。男性。中学二年生。<br>
+                            高次脳機能障害寄りの短期記憶障害あり。JSが一番好きな言語です。<br>
+                            たまにエビだったりします。将来の夢は海獣医師。
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Connections -->
+        <div id="links" class="section">
+            <span class="section-label">03 &mdash; Connections</span>
+            <h2>Mutual Links</h2>
+
+            <div class="mutual-item">
+                <h4><a href="https://nanasi-rasi.net/" target="_blank">ななしぃ</a></h4>
+                <p>ゼンゼロやってる人。サーバー関連強め。TENETの来訪者カウンタを作った人。</p>
+            </div>
+            <div class="mutual-item">
+                <h4><a href="https://profile.activetk.jp/" target="_blank">ActiveTK.</a></h4>
+                <p>ActiveTK.さんのプロフィールページ（原文ママ）</p>
+            </div>
+            <div class="mutual-item">
+                <h4><a href="https://wsn0672.jp/" target="_blank">wsn0672</a></h4>
+                <p>めちゃくちゃCSSがすごい人</p>
+            </div>
+
+            <p class="bio-text" style="margin-top:16px;">
+                相互リンク募集中！
+                <a href="https://discord.com/users/1427546345379467285">Discord</a> または
+                <a href="https://x.com/AruihaYoru">X</a> まで。
+            </p>
+        </div>
+
+        <!-- Artifacts -->
+        <div id="works" class="section">
+            <span class="section-label">04 &mdash; Artifacts</span>
+            <h2>Digital Remains</h2>
+
+            <table class="skill-table">
+                <tr>
+                    <td class="skill-num">01</td>
+                    <td class="skill-key">Mimi</td>
+                    <td class="skill-val">「Music Instrument Minimal Interface」の略。Ver1.0から一気にVer2.0まで飛ばした一番頑張ったやつ。</td>
+                </tr>
+                <tr>
+                    <td class="skill-num">02</td>
+                    <td class="skill-key">JavaScript Piano</td>
+                    <td class="skill-val">サラマンダーグランドピアノのラッパー。音ではなく「奏者」をシミュレートする。</td>
+                </tr>
+                <tr>
+                    <td class="skill-num">03</td>
+                    <td class="skill-key">EzCLI</td>
+                    <td class="skill-val">自分用CLIツール集。
+                        <a href="https://github.com/AruihaYoru/EzCLI" target="_blank">GitHub</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="skill-num">04</td>
+                    <td class="skill-key">WHO am I?</td>
+                    <td class="skill-val">UA/OS/グローバルIPを表示する便利ツール。
+                        <a href="http://who.is-a.tokyo" target="_blank">who.is-a.tokyo</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Skills -->
+        <div id="skills" class="section">
+            <span class="section-label">05 &mdash; Skills</span>
+            <h2>学んだこと</h2>
+
+            <table class="skill-table">
+                <tr>
+                    <td class="skill-num">&alpha;</td>
+                    <td class="skill-key">JavaScript</td>
+                    <td class="skill-val">私の第一言語。基本はVanilla JSですが必要であればTypeScriptも。</td>
+                </tr>
+                <tr>
+                    <td class="skill-num">&beta;</td>
+                    <td class="skill-key">CSS</td>
+                    <td class="skill-val"><a href="https://github.com/AruihaYoru/iClound" target="_blank">iClound</a>
+                        を見れば分かる。</td>
+                </tr>
+                <tr>
+                    <td class="skill-num">&gamma;</td>
+                    <td class="skill-key">HTML</td>
+                    <td class="skill-val">自然習得。出来て当然みたいな環境で育ちました。</td>
+                </tr>
+                <tr>
+                    <td class="skill-num">&delta;</td>
+                    <td class="skill-key">Rust</td>
+                    <td class="skill-val">WASMが必要になってきたので（ドがつくへたくそ）</td>
+                </tr>
+                <tr>
+                    <td class="skill-num">&epsilon;</td>
+                    <td class="skill-key">Python</td>
+                    <td class="skill-val"><a href="https://github.com/AruihaYoru/NewVideo" target="_blank">mrv
+                            player</a> など</td>
+                </tr>
+                <tr>
+                    <td class="skill-num">&zeta;</td>
+                    <td class="skill-key">C Language</td>
+                    <td class="skill-val">EzCLIはC言語とPythonのハイブリッド。</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- フッター -->
+        <div id="site-footer">
+            <div class="footer-name">AruihaYoru</div>
+            <div class="footer-copy">ARS LONGA VITA BREVIS &bull; ARCHIVE 2026</div>
+            <p style="margin-top:12px; font-size:11px; color:#4a3f6a; font-family:'Courier New',Courier,monospace;">
+                // Legacy build &mdash; ES3 / HTML4.01 / CSS2
+            </p>
+        </div>
+
+    </div><!-- /#wrapper -->
+
+    <script type="text/javascript">
+        (function () {
+            var slides = [
+                document.getElementById('slide0'),
+                document.getElementById('slide1'),
+                document.getElementById('slide2')
+            ];
+            var total = slides.length;
+            var current = 0;
+            var INTERVAL = 6000;
+
+            function showSlide(idx) {
+                var i;
+                for (i = 0; i < total; i++) {
+                    slides[i].style.display = 'none';
+                }
+                slides[idx].style.display = 'block';
+            }
+
+            function nextSlide() {
+                current = (current + 1) % total;
+                showSlide(current);
+            }
+
+            /* 初期表示を確実に */
+            showSlide(0);
+
+            if (window.setInterval) {
+                window.setInterval(nextSlide, INTERVAL);
+            }
+        })();
+    </script>
+
+</body>
+
+</html>
