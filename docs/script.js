@@ -524,4 +524,43 @@ document.addEventListener("DOMContentLoaded", () => {
         setupVisitorCounter();
     }
 
+    // 10. Profile Image Slideshow
+    const slideshow = document.getElementById('profile-slideshow');
+    if (slideshow) {
+        const slides = slideshow.querySelectorAll('img');
+        const glitch = document.getElementById('slide-glitch-overlay');
+        const total = slides.length;
+        let current = 0;
+        const INTERVAL = 6000; // 切り替え間隔(ms)
+
+        /* 画像プリロード */
+        slides.forEach(img => {
+            const pre = new Image();
+            pre.src = img.src;
+        });
+
+        function nextSlide() {
+            const prev = current;
+            current = (current + 1) % total;
+
+            /* グリッチフラッシュ */
+            glitch.classList.remove('flash');
+            void glitch.offsetWidth; /* reflow で再トリガー */
+            glitch.classList.add('flash');
+
+            /* クロスフェード */
+            slides[prev].classList.remove('slide-active');
+            slides[current].classList.add('slide-active');
+        }
+
+        /* グリッチアニメ終了後にクラスをリセット */
+        glitch.addEventListener('animationend', () => {
+            glitch.classList.remove('flash');
+        });
+
+        setInterval(nextSlide, INTERVAL);
+    }
+
 });
+
+
