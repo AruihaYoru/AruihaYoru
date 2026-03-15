@@ -1,170 +1,18 @@
 ## Hi there 👋
-わたしは学生！！！とっても！！！高次脳機能障害って言ったら間違い-rasiけど、文字にすると短期記憶障害みたいな感じ（JSDoc警報）。  
-（俺のJSDocはあまりに多いから、LLMが生成するものって俺のもの学習してんのかな（ぼやき））  
-めんどいときはAIにコード生成やらせてますわよ！！！！  
-<br>割と真面目に数分もすれば忘れてしまうからAI使わないバイブコーディングみたいな感じになってる（そのためにも、一度AIに読ませてから直させてっていうスタイル）
-<br> <!-- 許して -->
+あはは　吾輩は学生であるぞ <br>
+[![Top Langs](https://github-readme-stats-one-psi-81.vercel.app/api/top-langs/?username=AruihaYoru&layout=compact&theme=vision-friendly-dark)](https://github.com/anuraghazra/github-readme-stats)<br>
+🦐が好きであります！  
+ほかに好きなものと言えばMD5と.NET
 
-  
-  
-  
-[![Top Langs](https://github-readme-stats-one-psi-81.vercel.app/api/top-langs/?username=AruihaYoru&layout=compact&theme=vision-friendly-dark)](https://github.com/anuraghazra/github-readme-stats)
-  
-  
-  
+## 今作ってるもの
+- **RudeOS:** 未だ構想の域を出ませんが、依存地獄をなんとか解決できれば今すぐにでも取り掛かります
+- **RudeBrowser:** 依存地獄がキツすぎて骨組みしかできてないし起動できることが稀
+- **自動作曲アルゴリズム:** 割と真面目にそろそろできそうです。AIよりはるかにクリーンだろ
+- **カエリナ語:** 人工言語です
+- **「ビネット」:** JavaScriptで動画作りたかったんですが、プロットを紛失しました
+- **Cozy:** WebPなんて使ってられっかってことで出来上がりました最強の画像フォーマット（なお未完成）
 
-### 🛠 学んだことがあるもの
-
-- **JavaScript**：[HelloWorld, but it's 800 lines long.](http://AruihaYoru.github.io/HelloWorld) （"HelloWorldを出すために800行使ったプロジェクト）
-- **CSS**：[iClound](https://github.com/AruihaYoru/iClound) をDLしてセットアップしてみればわかるよ。
-- **HTML**：さすがにこれは自然習得でしょ、出来て当然みたいな環境で育ちましたから
-- **Rust**: さすがにWASMが必要になってきた（ドがつくへたくそ）
-- **Python**：[mrv player](https://github.com/AruihaYoru/NewVideo) / [minesweeper on CSS](https://github.com/AruihaYoru/no-js-minesweeper) とか
-- **C言語**：[EzCLI](https://AruihaYoru.github.io/AruihaYoru/EzCLI) とか。あれはC言語とpythonのハイブリッド。  
-
-#### 逆にやったことないもの
-- **php**：ええと、昔、ブックオフでそれの参考書が売ってましたね。なんとなく触っていませんでした。あれなんなんですかね。名前しからしらないし<?phpっていうのは知ってる
-- **Java**：ほんとに使いたかったのはjavaなんですよね。知らないんだよ。
-
-#### なんか一応かじってるもの
-- **(似非)心理学**：ええとね。とある創作コミュニティでは、「『キャラクター』が何かをするには『動機』が必要で、その『動機』はそのキャラの性格や過去で決まる。」という理論があって。私はそれにのめりこみました。人間にストレスを与え続けるとどうなるか、条件付きの愛を受けて育つとどうなるのか。....オリキャラ作るときしか役に立ちませんが。
-- **(似非)言語学**：そんな詳しくはありません。ラテン語は好きです。
-- **音象徴**：これも同様に。オリキャラ作るときに勉強したものです。
-- **ウェブデザイン**：もちろん。私が最初に読んだものは、CSSの参考書だ。
-- **執筆**：これは、[Aruiha](https://AruihaYoru.github.io/AruihaYoru) を見てもらえばとってもわかると思います。
-こういうの学んでると、「それは違うでしょ」みたいなことばっか思うようになるんすよね（過去と行動があっていない、とか。）
-
-#### 好きなもの
-**好きな言語**：ラテン語と英語  
-**好きな言葉**：接続詞（日本語）と接尾語（ラテン語）
-
-**好きなもの**：映画（とっても好き！一年で100本とか見るよ！）  
-**嫌いなもの**：愚かさ
-
-**苦手な食べ物**：野菜、野菜、野菜、酢  
-**好きな食べ物**：エビの寿司....が好きなわけではない。
-
-* * *
-
-### 💖 「推し」について話そうか？
-
-#### HTTPステータスコード
-- INFO **100: Continue.** - *全肯定ありがとうございますンナアアアア！！！！*
-- INFO **101: Swithing Protocol.** - *Fun Fact:急に早口になったらかわいいね*
-- SUCCESS **202: Accepted.** - *受理しただけで完了していない儚さがわかる友を探している*
-- REDIRECT **303: See Other.** - *こいつ自身は何も出来ないのがいい*
-- ERROR **403: Forbidden.** - *権限なしんな！！！！！！！*
-- ERROR **429: Too Many Requests.** - *Good/10*
-- ERROR **410: Gone.** - *410>>>>>>>>>>>>>>>ALL*
-- SERVER ERROR **500: Internal Server Error.** - *何が起きてるのかわかってなくて可愛い
-
-
-#### ポート番号
-
-- **8000**：これは日によって変わるけど、大体なんか起動してるからおれのいえのWi-Fi特定してみやがれ
-- **3000**：Next.jsの**おかげで**好きになれたよ。ええと、デプロイで何が足りないのか知ってるなら勝手に補完してもいいんだよ
-- **27015**：家のWi-Fiで3979につなげるとブラウザでFPS空間にいけるよ
-- **3979**：家のWi-FiでつなげるとOpenTTDのサーバーにつながるよ。入ってるプラグインはJapanese Train Setが主かな
-
-#### ライブラリ・API
-
-- **FFmpeg**：たぶん大体のプロジェクトというか結構な場所で使ってる
-- **Pillow**：わたしの嫁
-- **NumPy**：わたしの嫁2
-- **pydub**：音声ですね、好き
-- **p5.js**：いまCollemojiっていうゲームつくってて、そのエフェクトで頑張ってる
-- **Z80.js**：いいね、個人的に思い入れがデカい
-- **jszip**：jszip.min.jsをお気に入り登録してるの俺ぐらいだろ
-- **three.js**: ギズモがあるの良すぎる
-- **Web Audio API**：縁が深い
-
-
-#### ソフトウェア
-
-- **Notepad++**：俺の嫁
-- **EDGE2**：結構好き。定期的に使ってる
-- **mGBA**：まあ、GBAの開発環境といえばここよね
-- **Battle Cat Ultimate**：ごめん、でも、俺にJavaを見せてくれた大好きな相手だ
-
-#### CLI
-
-- **git**:git bashは最高ってはっきりわかんだね
-- **winget**: 私は、彼に振り回されすぎている（レポジトリ弄りとかいうワケワカラン方法で修正したことがある）
-- **MinGW**:使い方をおしえて？
-
-
-* * *
-
-### 🚀 つくったもの
-
-- **Mimi (Music Instrument Minimal Interface)**
-
-    - Ver1.0から一気にVer2.0まで飛ばした、たぶん一番頑張ったやつ。
-    - 基本的には一般的なCSV形式音声フォーマットだけど、どうしてもっていうなら8kHz/4bitで声を再生することもできる。
-    - 人間による取り扱いは想定されておりませんしLLMによる取扱も多少は難しいかもしれません。
-- **iClound**
-  
-    - Youtubeプレイリストと特定のディレクトリを同期するプレイヤー。
-    - CSSがとってもクリーン！「わたしが欲しいもの」は「全員がほしいもの」のはず。
-    - ffmpegとnode.jsのセットアップがむずいやつ
-- **gba2mp3**
-
-    - mp3形式のファイルをGBAで流せる。まあ、1カートリッジに1曲だけど。
-    - 具体的にはinput.mp3とinput.pngをinput/に配置してpythonつけるだけ！
-    - 音質はこれまた8kHz/4bit
-- **PhantomWords**
-  
-    - 「ありえそうな」英単語に意味を追加する造語ジェネレータ。マルコフ連鎖。ogpサーバーを作ったりとか、とっても大変でした。
-    - マルコフ連鎖をWeb Workerで動かしたよ！
-    - WASMのほうが良いって気付いたから、そのうち修正するカモ。
-
-* * *
-
-### 💻 開発環境
-
-- **OS**：Windows10, iOS16.7.12（iPhone8）, Ubuntu Server
-- **Coding**：Notepad++
-- **Test**：Firefox Developer Edition
-- **Local Server**：Python
-- **Compiler**：GCC (MinGW)
-
-### 🎁 欲しいもの
-
-- EDGE2の正規ライセンス
-- ドメイン （aruihayoru.com/net/org"）
-- SIMカード
-
-
-### 割と真面目に許せなかったこと
-
-#### Mimi
-後述の音声フォーマット、Mimiにおいて、0F音源(Mimi Hex)の再生時間が総再生時間に加算されないバグがありました  
-さすがに夜中の11時、Gemini 2.5 proに全体のコードと修正した欲しいことを教え、完全版というかを生成させました。  
-するとですね！！！その部分が修正されましたが！！！  
-- 16進数ではなく10進数を取り扱うように変更  
-されましたんですよ！！！！！気づかずにデプロイしてあとから気づいてcdnをpurgeした私の労力isなに？？？！？！  
-
-#### 公共Wi-Fi
-昔、図書館のWi-Fiで少しだけコーディングしてたことがあって  
-それで...localhostつけてたんすよ  
-そしたら、`192.168.0.45`からGET送られてきて  
-腹が立ちましたね、誰ですか名乗れ
-
-[![AruihaYoru's Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=AruihaYoru&theme=react-dark)](https://github.com/ashutosh00710/github-readme-activity-graph)
-
-
-
-<!--
-**AruihaYoru/AruihaYoru** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## 逆に作ったもの
+- **Who Am I?:** 普通に、PSvitaのUAを特定するツールのはずたったのがただの確認くんになってしまいました。[who-am-I](https://who.is-a.tokyo)
+- **AutoMusic:** 自動作曲アルゴリズムみたいな名前してるけど自動作曲アルゴリズムが使うためのピアノエミュレータです。奏者エミュレータって言った方がましか。[My Piano But It`s On Javascript](https://aruihayoru.github.io/AutoMusic)
+-　**EzCLI:** 普通に便利なCLIツール群です。[Link is here!](https://github.com/aruihayoru/EzCLI)
