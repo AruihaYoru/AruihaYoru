@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const toggle = document.querySelector('.theme-toggle');
     const body = document.body;
     let isDark = false;
+    let isFinalePlaying = false; // Shared state for silencing ticker
 
     if (toggle) {
         toggle.addEventListener('click', () => {
@@ -214,6 +215,8 @@ document.addEventListener("DOMContentLoaded", () => {
         noiseBuffer = createNoiseBuffer(tickerCtx);
 
         tickerInterval = setInterval(() => {
+            if (isFinalePlaying) return; // Silence during music playback
+
             if (tickerCtx.state === 'suspended') tickerCtx.resume();
 
             const now = tickerCtx.currentTime;
@@ -559,6 +562,60 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         setInterval(nextSlide, INTERVAL);
+    }
+
+    // 11. Finale Audio Player Logic (300% Boost)
+    const finaleToggle = document.getElementById('finale-play-toggle');
+    const finaleStatus = document.getElementById('finale-status');
+    const finaleProgress = document.getElementById('finale-progress');
+    let finaleAudio, finaleCtx, finaleGain, finaleSource;
+    // isFinalePlaying moved to top-level scope
+
+    if (finaleToggle) {
+        const initFinaleAudio = () => {
+            if (finaleAudio) return;
+
+            finaleAudio = new Audio('wip_Finale(rev62).mp3');
+            finaleCtx = new (window.AudioContext || window.webkitAudioContext)();
+            finaleSource = finaleCtx.createMediaElementSource(finaleAudio);
+            finaleGain = finaleCtx.createGain();
+
+            // 300% Volume Boost
+            finaleGain.gain.value = 3.0;
+
+            finaleSource.connect(finaleGain);
+            finaleGain.connect(finaleCtx.destination);
+
+            finaleAudio.addEventListener('timeupdate', () => {
+                const progress = (finaleAudio.currentTime / finaleAudio.duration) * 100;
+                if (finaleProgress) finaleProgress.style.width = `${progress}%`;
+            });
+
+            finaleAudio.addEventListener('ended', () => {
+                isFinalePlaying = false;
+                finaleToggle.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
+                finaleStatus.innerText = 'FINISHED';
+            });
+        };
+
+        finaleToggle.addEventListener('click', () => {
+            initFinaleAudio();
+
+            if (finaleCtx.state === 'suspended') {
+                finaleCtx.resume();
+            }
+
+            if (isFinalePlaying) {
+                finaleAudio.pause();
+                finaleToggle.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>';
+                finaleStatus.innerText = 'PAUSED';
+            } else {
+                finaleAudio.play();
+                finaleToggle.innerHTML = '<svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" /></svg>';
+                finaleStatus.innerText = 'PLAYING_BOOSTED';
+            }
+            isFinalePlaying = !isFinalePlaying;
+        });
     }
 
 });

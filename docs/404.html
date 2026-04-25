@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - LOST_IN_VOID | 或いは夜</title>
+    <link rel="icon" href="/icon/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;500&family=JetBrains+Mono:wght@100;300&family=Noto+Sans+JP:wght@200;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #020203;
+            --accent: #d4af37;
+            --text: #fcfcfc;
+            --font-display: 'Cormorant Garamond', serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-display);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Subtle grain overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .glitch-wrap {
+            position: relative;
+            display: inline-block;
+        }
+
+        .error-code {
+            font-size: clamp(8rem, 20vw, 15rem);
+            font-weight: 800;
+            line-height: 1;
+            color: var(--accent);
+            font-family: var(--font-mono);
+            letter-spacing: -0.05em;
+            position: relative;
+            animation: glitch 1s infinite linear alternate-reverse;
+        }
+
+        .error-code::before,
+        .error-code::after {
+            content: "404";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+        }
+
+        .error-code::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .error-code::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+            animation: glitch-anim2 1s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); transform: skew(0.85deg); }
+            5% { clip: rect(70px, 9999px, 71px, 0); transform: skew(0.05deg); }
+            /* ... abbreviated for brevity, but let's make it punchy ... */
+            100% { clip: rect(67px, 9999px, 62px, 0); transform: skew(0.6deg); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); transform: skew(0.13deg); }
+            20% { clip: rect(80px, 9999px, 20px, 0); transform: skew(0.55deg); }
+            100% { clip: rect(10px, 9999px, 90px, 0); transform: skew(0.2deg); }
+        }
+
+        .message {
+            font-size: 1.5rem;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            opacity: 0.6;
+            margin-top: 2rem;
+            font-family: var(--font-mono);
+        }
+
+        .sub-message {
+            margin-top: 1rem;
+            font-style: italic;
+            opacity: 0.4;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 4rem;
+            padding: 1rem 3rem;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-link:hover {
+            background: var(--accent);
+            color: var(--bg);
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        .void-text {
+            position: absolute;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            opacity: 0.05;
+            letter-spacing: 1em;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        #miyabi-trace {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.5rem;
+            opacity: 0.2;
+            letter-spacing: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <div class="void-text" style="top: 10%; left: -10%;">ARCHIVE_RESTRICTED // ARCHIVE_RESTRICTED // ARCHIVE_RESTRICTED</div>
+    <div class="void-text" style="bottom: 15%; right: -5%; transform: rotate(90deg);">MIYABI_PROTOCOL_VOIDING // MIYABI_PROTOCOL_VOIDING</div>
+    
+    <div class="container">
+        <div class="glitch-wrap">
+            <h1 class="error-code">404</h1>
+        </div>
+        <p class="message">Lost in Void</p>
+        <p class="sub-message">The requested fragment does not exist in this timeline.</p>
+        
+        <a href="/" class="back-link">RETURN_TO_CORE</a>
+    </div>
+
+    <div id="miyabi-trace">ERROR_CODE: MIYABI_NOT_FOUND // 雅</div>
+
+    <script>
+        // Randomly move void text
+        document.querySelectorAll('.void-text').forEach(el => {
+            setInterval(() => {
+                el.style.opacity = Math.random() * 0.1;
+            }, 100);
+        });
+    </script>
+</body>
+</html>
