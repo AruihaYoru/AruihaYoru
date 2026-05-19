@@ -9,7 +9,7 @@ AIを使わないバイブコーディングじみたことしてます。あと
 <br>
 詳しくは: [AruihaYoru](https://yoru.is-a.tokyo)、あと[Github](https://github.is-a.tokyo)<br>
 俺がCSS真面目にするやつ： [Lady Miyabi!?](https://xn--eo5a.jp)、[isTokyo](https://japanese-capital.is-a.tokyo)
-冷静に考えて雅.jp（ピュニコードでeo5a）ってマジでなんで俺が取得できてるのかしら！
+<br>冷静に考えて雅.jp（ピュニコードでeo5a）ってマジでなんで俺が取得できてるのかしら！
 
 ## 今作ってるもの
 - **RudeOS:** 未だ構想の域を出ませんが、依存地獄をなんとか解決できれば今すぐにでも取り掛かります
