@@ -7,7 +7,10 @@
 高次機能脳障害（後天的じゃないので厳密には違いますが）というか短期記憶障害<br>
 AIを使わないバイブコーディングじみたことしてます。あとJavaScriptというかフロントエンド言語だけですかね、構文を覚えているのは。C言語とかも。
 <br>
-詳しくは: [AruihaYoru](https://yoru.is-a.tokyo)
+詳しくは: [AruihaYoru](https://yoru.is-a.tokyo)、あと[Github](https://github.is-a.tokyo)<br>
+俺がCSS真面目にするやつ： [Lady Miyabi!?](https://xn--eo5a.jp)、[isTokyo](https://japanese-capital.is-a.tokyo)
+冷静に考えて雅.jp（ピュニコードでeo5a）ってマジでなんで俺が取得できてるのかしら！
+
 ## 今作ってるもの
 - **RudeOS:** 未だ構想の域を出ませんが、依存地獄をなんとか解決できれば今すぐにでも取り掛かります
 - **RudeBrowser:** 依存地獄がキツすぎて骨組みしかできてないし起動できることが稀
